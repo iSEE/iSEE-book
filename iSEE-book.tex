@@ -113,7 +113,7 @@
 
 \title{Extending \emph{iSEE}}
 \author{Kevin Rue-Albrecht, Federico Marini, Charlotte Soneson, and Aaron Lun}
-\date{2020-07-05}
+\date{2020-07-08}
 
 \begin{document}
 \maketitle
@@ -686,8 +686,8 @@ This avoids potentially costly re-calculations throughout the lifetime of the \t
 ## 
 ## function (x, se) 
 ## standardGeneric(".cacheCommonInfo")
-## <bytecode: 0x7fd403926188>
-## <environment: 0x7fd403943c48>
+## <bytecode: 0x7f95d214ab88>
+## <environment: 0x7f95d2168648>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".cacheCommonInfo")  for currently available ones.
 \end{verbatim}
@@ -725,8 +725,8 @@ This is run for each panel during the \texttt{iSEE()} application set-up to vali
 ## 
 ## function (x, se) 
 ## standardGeneric(".refineParameters")
-## <bytecode: 0x7fd40301d350>
-## <environment: 0x7fd40305e8d0>
+## <bytecode: 0x7f95d0e06f50>
+## <environment: 0x7f95d0e4acd0>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".refineParameters")  for currently available ones.
 \end{verbatim}
@@ -776,8 +776,8 @@ This generic provides the most general mechanism for controlling the panel's int
 ## 
 ## function (x, se, select_info) 
 ## standardGeneric(".defineInterface")
-## <bytecode: 0x7fd4035c7f58>
-## <environment: 0x7fd4035d2a90>
+## <bytecode: 0x7f95d1a5ef58>
+## <environment: 0x7f95d1a69a90>
 ## Methods may be defined for arguments: x, se, select_info
 ## Use  showMethods(".defineInterface")  for currently available ones.
 \end{verbatim}
@@ -811,8 +811,8 @@ This generic allows developers to fine-tune the data UI for subclasses without r
 ## 
 ## function (x, se, select_info) 
 ## standardGeneric(".defineDataInterface")
-## <bytecode: 0x7fd402785930>
-## <environment: 0x7fd4027bc118>
+## <bytecode: 0x7f95e8fc6730>
+## <environment: 0x7f95d0204318>
 ## Methods may be defined for arguments: x, se, select_info
 ## Use  showMethods(".defineDataInterface")  for currently available ones.
 \end{verbatim}
@@ -849,8 +849,8 @@ For example, we can remove row selection UI elements for panels that only accept
 ## 
 ## function (x, field) 
 ## standardGeneric(".hideInterface")
-## <bytecode: 0x7fd4031e2400>
-## <environment: 0x7fd4031f0d30>
+## <bytecode: 0x7f95d0fdc400>
+## <environment: 0x7f95d0fec130>
 ## Methods may be defined for arguments: x, field
 ## Use  showMethods(".hideInterface")  for currently available ones.
 \end{verbatim}
@@ -890,8 +890,8 @@ For example, we can remove row selection UI elements for panels that only accept
 ## 
 ## function (x, se, select_info) 
 ## standardGeneric(".defineVisualColorInterface")
-## <bytecode: 0x7fd40354a198>
-## <environment: 0x7fd40356fae8>
+## <bytecode: 0x7f95d19e1198>
+## <environment: 0x7f95d1a06ae8>
 ## Methods may be defined for arguments: x, se, select_info
 ## Use  showMethods(".defineVisualColorInterface")  for currently available ones.
 \end{verbatim}
@@ -921,8 +921,8 @@ For example, we can remove row selection UI elements for panels that only accept
 ## 
 ## function (x, se) 
 ## standardGeneric(".defineVisualFacetInterface")
-## <bytecode: 0x7fd403518f68>
-## <environment: 0x7fd40351eac8>
+## <bytecode: 0x7f95d19aff68>
+## <environment: 0x7f95d19b5ac8>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".defineVisualFacetInterface")  for currently available ones.
 \end{verbatim}
@@ -952,8 +952,8 @@ For example, we can remove row selection UI elements for panels that only accept
 ## 
 ## function (x, se) 
 ## standardGeneric(".defineVisualShapeInterface")
-## <bytecode: 0x7fd4034a9de0>
-## <environment: 0x7fd4034b4640>
+## <bytecode: 0x7f95d1940de0>
+## <environment: 0x7f95d194b640>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".defineVisualShapeInterface")  for currently available ones.
 \end{verbatim}
@@ -983,8 +983,8 @@ For example, we can remove row selection UI elements for panels that only accept
 ## 
 ## function (x, se) 
 ## standardGeneric(".defineVisualSizeInterface")
-## <bytecode: 0x7fd40346f710>
-## <environment: 0x7fd403484120>
+## <bytecode: 0x7f95d1906710>
+## <environment: 0x7f95d191b120>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".defineVisualSizeInterface")  for currently available ones.
 \end{verbatim}
@@ -1014,8 +1014,8 @@ For example, we can remove row selection UI elements for panels that only accept
 ## 
 ## function (x, se) 
 ## standardGeneric(".defineVisualTextInterface")
-## <bytecode: 0x7fd40344a6e0>
-## <environment: 0x7fd403457668>
+## <bytecode: 0x7f95d18e16e0>
+## <environment: 0x7f95d18ee668>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".defineVisualTextInterface")  for currently available ones.
 \end{verbatim}
@@ -1044,8 +1044,8 @@ For example, we can remove row selection UI elements for panels that only accept
 ## 
 ## function (x) 
 ## standardGeneric(".defineVisualOtherInterface")
-## <bytecode: 0x7fd4034f71f0>
-## <environment: 0x7fd4034fad20>
+## <bytecode: 0x7f95d198e1f0>
+## <environment: 0x7f95d1991d20>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".defineVisualOtherInterface")  for currently available ones.
 \end{verbatim}
@@ -1085,8 +1085,8 @@ Developers can define arbitrarily complex observer logic here as long as it is s
 ## {
 ##     standardGeneric(".createObservers")
 ## }
-## <bytecode: 0x7fd403837b58>
-## <environment: 0x7fd4038785f8>
+## <bytecode: 0x7f95d205d558>
+## <environment: 0x7f95d209bff8>
 ## Methods may be defined for arguments: x, se, input, session, pObjects, rObjects
 ## Use  showMethods(".createObservers")  for currently available ones.
 \end{verbatim}
@@ -1137,8 +1137,8 @@ Note that this generic only defines the output in the \texttt{iSEE()} interface;
 ## {
 ##     standardGeneric(".defineOutput")
 ## }
-## <bytecode: 0x7fd40358dea8>
-## <environment: 0x7fd4035a3f58>
+## <bytecode: 0x7f95d1a24ea8>
+## <environment: 0x7f95d1a3af58>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".defineOutput")  for currently available ones.
 \end{verbatim}
@@ -1172,8 +1172,8 @@ This is usually as simple as calling functions like \texttt{renderPlotOutput()} 
 ## {
 ##     standardGeneric(".renderOutput")
 ## }
-## <bytecode: 0x7fd4167a5678>
-## <environment: 0x7fd4167b2b88>
+## <bytecode: 0x7f95d0d96678>
+## <environment: 0x7f95d0da3b88>
 ## Methods may be defined for arguments: x, se, output, pObjects, rObjects
 ## Use  showMethods(".renderOutput")  for currently available ones.
 \end{verbatim}
@@ -1209,8 +1209,8 @@ Some effort is required here to ensure that the commands used to generate the ou
 ## {
 ##     standardGeneric(".generateOutput")
 ## }
-## <bytecode: 0x7fd40324eac8>
-## <environment: 0x7fd403282070>
+## <bytecode: 0x7f95e8eb5ac8>
+## <environment: 0x7f95e8ed7070>
 ## Methods may be defined for arguments: x, se, all_memory, all_contents
 ## Use  showMethods(".generateOutput")  for currently available ones.
 \end{verbatim}
@@ -1244,8 +1244,8 @@ This is called whenever the user requests a download of the panel outputs.
 ## {
 ##     standardGeneric(".exportOutput")
 ## }
-## <bytecode: 0x7fd403425d70>
-## <environment: 0x7fd4034332c0>
+## <bytecode: 0x7f95d18bcd70>
+## <environment: 0x7f95d18ca2c0>
 ## Methods may be defined for arguments: x, se, all_memory, all_contents
 ## Use  showMethods(".exportOutput")  for currently available ones.
 \end{verbatim}
@@ -1281,8 +1281,8 @@ Developers of \texttt{DotPlot} subclasses can specialize this generic to avoid h
 ## 
 ## function (x, labels, envir) 
 ## standardGeneric(".generateDotPlot")
-## <bytecode: 0x7fd4032f71c8>
-## <environment: 0x7fd403300a20>
+## <bytecode: 0x7f95e8f4c1c8>
+## <environment: 0x7f95e8f55a20>
 ## Methods may be defined for arguments: x, labels, envir
 ## Use  showMethods(".generateDotPlot")  for currently available ones.
 \end{verbatim}
@@ -1312,8 +1312,8 @@ This allows developers to change the data setup for a \texttt{DotPlot} subclass 
 ## 
 ## function (x, envir) 
 ## standardGeneric(".generateDotPlotData")
-## <bytecode: 0x7fd4032b9388>
-## <environment: 0x7fd4032dd008>
+## <bytecode: 0x7f95e8f0e388>
+## <environment: 0x7f95e8f32008>
 ## Methods may be defined for arguments: x, envir
 ## Use  showMethods(".generateDotPlotData")  for currently available ones.
 \end{verbatim}
@@ -1347,8 +1347,8 @@ This usually doesn't need to be specialized.
 ## 
 ## function (x, envir) 
 ## standardGeneric(".prioritizeDotPlotData")
-## <bytecode: 0x7fd403077900>
-## <environment: 0x7fd40307b4a0>
+## <bytecode: 0x7f95d0e65100>
+## <environment: 0x7f95d0e68ca0>
 ## Methods may be defined for arguments: x, envir
 ## Use  showMethods(".prioritizeDotPlotData")  for currently available ones.
 \end{verbatim}
@@ -1378,8 +1378,8 @@ This usually doesn't need to be specialized.
 ## 
 ## function (x) 
 ## standardGeneric(".colorByNoneDotPlotField")
-## <bytecode: 0x7fd4038e2ae0>
-## <environment: 0x7fd4038e86b8>
+## <bytecode: 0x7f95d21086e0>
+## <environment: 0x7f95d210e2b8>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".colorByNoneDotPlotField")  for currently available ones.
 \end{verbatim}
@@ -1406,8 +1406,8 @@ This usually doesn't need to be specialized.
 ## 
 ## function (x) 
 ## standardGeneric(".colorByNoneDotPlotScale")
-## <bytecode: 0x7fd4038b41d8>
-## <environment: 0x7fd4038c5fe8>
+## <bytecode: 0x7f95d20d71d8>
+## <environment: 0x7f95d20e95e8>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".colorByNoneDotPlotScale")  for currently available ones.
 \end{verbatim}
@@ -1441,8 +1441,8 @@ For example, a hypothetical MA plot panel would only accept log-fold changes on 
 ## 
 ## function (x, se) 
 ## standardGeneric(".allowableYAxisChoices")
-## <bytecode: 0x7fd40395f4d8>
-## <environment: 0x7fd403965e08>
+## <bytecode: 0x7f95d2183ed8>
+## <environment: 0x7f95d218a808>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".allowableYAxisChoices")  for currently available ones.
 \end{verbatim}
@@ -1470,8 +1470,8 @@ For example, a hypothetical MA plot panel would only accept log-fold changes on 
 ## 
 ## function (x, se) 
 ## standardGeneric(".allowableXAxisChoices")
-## <bytecode: 0x7fd403981660>
-## <environment: 0x7fd40398a640>
+## <bytecode: 0x7f95d21a6060>
+## <environment: 0x7f95d21af040>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".allowableXAxisChoices")  for currently available ones.
 \end{verbatim}
@@ -1506,8 +1506,8 @@ If this is specialized, there is usually no need to specialize \texttt{.generate
 ## 
 ## function (x, envir) 
 ## standardGeneric(".generateTable")
-## <bytecode: 0x7fd40320fcf0>
-## <environment: 0x7fd40321b6d0>
+## <bytecode: 0x7f95d1015cf0>
+## <environment: 0x7f95d10216d0>
 ## Methods may be defined for arguments: x, envir
 ## Use  showMethods(".generateTable")  for currently available ones.
 \end{verbatim}
@@ -1544,8 +1544,8 @@ It can also be used to indicate that the panel does not transmit anything.
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionDimension")
-## <bytecode: 0x7fd403119318>
-## <environment: 0x7fd40311ed30>
+## <bytecode: 0x7f95d0f0cf18>
+## <environment: 0x7f95d0f12930>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionDimension")  for currently available ones.
 \end{verbatim}
@@ -1580,8 +1580,8 @@ This is defined as the selection that the user can actively change by interactin
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionActive")
-## <bytecode: 0x7fd4031a0cf8>
-## <environment: 0x7fd4031a99e0>
+## <bytecode: 0x7f95d0f998f8>
+## <environment: 0x7f95d0fa25e0>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionActive")  for currently available ones.
 \end{verbatim}
@@ -1614,8 +1614,8 @@ The identity of the selected rows/columns will ultimately be transmitted to othe
 ## 
 ## function (x, index) 
 ## standardGeneric(".multiSelectionCommands")
-## <bytecode: 0x7fd40313d778>
-## <environment: 0x7fd4031424a8>
+## <bytecode: 0x7f95d0f32778>
+## <environment: 0x7f95d0f374a8>
 ## Methods may be defined for arguments: x, index
 ## Use  showMethods(".multiSelectionCommands")  for currently available ones.
 \end{verbatim}
@@ -1646,8 +1646,8 @@ This is used for reporting ``percent selected'' statistics below each panel.
 ## 
 ## function (x, contents) 
 ## standardGeneric(".multiSelectionAvailable")
-## <bytecode: 0x7fd40317b890>
-## <environment: 0x7fd40317f270>
+## <bytecode: 0x7f95d0f73090>
+## <environment: 0x7f95d0f76a70>
 ## Methods may be defined for arguments: x, contents
 ## Use  showMethods(".multiSelectionAvailable")  for currently available ones.
 \end{verbatim}
@@ -1677,8 +1677,8 @@ This is used to wipe selections in response to changes to the plot content that 
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionClear")
-## <bytecode: 0x7fd40315fcb8>
-## <environment: 0x7fd4031628d0>
+## <bytecode: 0x7f95d0f560b8>
+## <environment: 0x7f95d0f58cd0>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionClear")  for currently available ones.
 \end{verbatim}
@@ -1709,8 +1709,8 @@ This is used to determine how changes in the upstream transmitters should propag
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionRestricted")
-## <bytecode: 0x7fd4030d34a0>
-## <environment: 0x7fd4030d84e0>
+## <bytecode: 0x7f95d0ec34a0>
+## <environment: 0x7f95d0ec98e0>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionRestricted")  for currently available ones.
 \end{verbatim}
@@ -1741,8 +1741,8 @@ This usually doesn't need to be specialized.
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionInvalidated")
-## <bytecode: 0x7fd4030ef628>
-## <environment: 0x7fd4030f5238>
+## <bytecode: 0x7f95d0ee0a28>
+## <environment: 0x7f95d0ee6638>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionInvalidated")  for currently available ones.
 \end{verbatim}
@@ -1775,8 +1775,8 @@ It can also be used to indicate that the panel does not transmit anything.
 ## 
 ## function (x) 
 ## standardGeneric(".singleSelectionDimension")
-## <bytecode: 0x7fd416773f48>
-## <environment: 0x7fd41677d838>
+## <bytecode: 0x7f95d0d64f48>
+## <environment: 0x7f95d0d6e838>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".singleSelectionDimension")  for currently available ones.
 \end{verbatim}
@@ -1810,8 +1810,8 @@ The identity of the row/column is passed onto other panels to affect their behav
 ## 
 ## function (x, pObjects) 
 ## standardGeneric(".singleSelectionValue")
-## <bytecode: 0x7fd416719ea0>
-## <environment: 0x7fd416721c70>
+## <bytecode: 0x7f95d0d0aea0>
+## <environment: 0x7f95d0d12c70>
 ## Methods may be defined for arguments: x, pObjects
 ## Use  showMethods(".singleSelectionValue")  for currently available ones.
 \end{verbatim}
@@ -1842,8 +1842,8 @@ This will also automatically set up some of the more difficult observers if suff
 ## 
 ## function (x, pObjects) 
 ## standardGeneric(".singleSelectionValue")
-## <bytecode: 0x7fd416719ea0>
-## <environment: 0x7fd416721c70>
+## <bytecode: 0x7f95d0d0aea0>
+## <environment: 0x7f95d0d12c70>
 ## Methods may be defined for arguments: x, pObjects
 ## Use  showMethods(".singleSelectionValue")  for currently available ones.
 \end{verbatim}
