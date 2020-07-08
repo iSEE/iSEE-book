@@ -12,36 +12,3 @@ pre {
 pre code {
   white-space: inherit;
 }
-
-.book .book-summary ul.summary li a,
-.book .book-summary ul.summary li span {
-  color: #c4d931;
-  font-weight: bold;
-}
-
-.book .book-summary {
-  background-color: #0092ac;
-}
-
-.book .book-summary ul.summary li a:hover,
-.book .book-summary ul.summary li.active>a {
-  color: white;
-}
-
-/*.book .book-summary ul.summary li.part>span*/
-.book .book-summary ul.summary li span {
-  color: black;
-  opacity: .5;
-}
-
-.book .book-body .page-wrapper .page-inner section.normal h1 {
-  color: #87b13f;
-}
-
-.book .book-body .page-wrapper .page-inner section.normal h2 {
-  color: #87b13f;
-}
-
-.book .book-body .page-wrapper .page-inner section.normal h3 {
-  color: #1a81c2;
-}
