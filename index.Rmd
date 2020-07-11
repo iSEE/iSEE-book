@@ -8,6 +8,7 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 description: "This book describes how to use the Bioconductor iSEE package to create web-applications for exploring data stored in SummarizedExperiment objects."
+favicon: "favicon_package_v0.16/favicon.ico"
 ---
 
 ```{r, include=FALSE}
