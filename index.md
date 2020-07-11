@@ -1,13 +1,14 @@
 --- 
 title: "Extending _iSEE_"
 author: Kevin Rue-Albrecht, Federico Marini, Charlotte Soneson, and Aaron Lun
-date: "2020-07-08"
+date: "2020-07-11"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 description: "This book describes how to use the Bioconductor iSEE package to create web-applications for exploring data stored in SummarizedExperiment objects."
+favicon: "favicon_package_v0.16/favicon.ico"
 ---
 
 
