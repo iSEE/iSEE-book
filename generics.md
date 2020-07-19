@@ -27,8 +27,8 @@ getGeneric(".cacheCommonInfo")
 ## 
 ## function (x, se) 
 ## standardGeneric(".cacheCommonInfo")
-## <bytecode: 0x7faa944830a0>
-## <environment: 0x7faa944a6a70>
+## <bytecode: 0x7fc8a7cf83a8>
+## <environment: 0x7fc8a7d17e68>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".cacheCommonInfo")  for currently available ones.
 ```
@@ -63,8 +63,8 @@ getGeneric(".refineParameters")
 ## 
 ## function (x, se) 
 ## standardGeneric(".refineParameters")
-## <bytecode: 0x7faa94cb3ee0>
-## <environment: 0x7faa94cfbb70>
+## <bytecode: 0x7fc8a751a5b0>
+## <environment: 0x7fc8a7564240>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".refineParameters")  for currently available ones.
 ```
@@ -109,8 +109,8 @@ getGeneric(".defineInterface")
 ## 
 ## function (x, se, select_info) 
 ## standardGeneric(".defineInterface")
-## <bytecode: 0x7faa942c0fd8>
-## <environment: 0x7faa942cfa20>
+## <bytecode: 0x7fc8a7b17238>
+## <environment: 0x7fc8a7b27880>
 ## Methods may be defined for arguments: x, se, select_info
 ## Use  showMethods(".defineInterface")  for currently available ones.
 ```
@@ -141,8 +141,8 @@ getGeneric(".defineDataInterface")
 ## 
 ## function (x, se, select_info) 
 ## standardGeneric(".defineDataInterface")
-## <bytecode: 0x7faa9430fcf8>
-## <environment: 0x7faa943498e0>
+## <bytecode: 0x7fc8a7b70090>
+## <environment: 0x7fc8a7ba8060>
 ## Methods may be defined for arguments: x, se, select_info
 ## Use  showMethods(".defineDataInterface")  for currently available ones.
 ```
@@ -176,8 +176,8 @@ getGeneric(".hideInterface")
 ## 
 ## function (x, field) 
 ## standardGeneric(".hideInterface")
-## <bytecode: 0x7faa94e87348>
-## <environment: 0x7faa94e99c40>
+## <bytecode: 0x7fc8a76f0de0>
+## <environment: 0x7fc8a76ff800>
 ## Methods may be defined for arguments: x, field
 ## Use  showMethods(".hideInterface")  for currently available ones.
 ```
@@ -213,8 +213,8 @@ getGeneric(".defineVisualColorInterface")
 ## 
 ## function (x, se, select_info) 
 ## standardGeneric(".defineVisualColorInterface")
-## <bytecode: 0x7faa94255278>
-## <environment: 0x7faa94273358>
+## <bytecode: 0x7fc8a7a9d4d8>
+## <environment: 0x7fc8a7abedb8>
 ## Methods may be defined for arguments: x, se, select_info
 ## Use  showMethods(".defineVisualColorInterface")  for currently available ones.
 ```
@@ -241,8 +241,8 @@ getGeneric(".defineVisualFacetInterface")
 ## 
 ## function (x, se) 
 ## standardGeneric(".defineVisualFacetInterface")
-## <bytecode: 0x7faa94227010>
-## <environment: 0x7faa94231e48>
+## <bytecode: 0x7fc8a7a68270>
+## <environment: 0x7fc8a7a73ca8>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".defineVisualFacetInterface")  for currently available ones.
 ```
@@ -269,8 +269,8 @@ getGeneric(".defineVisualShapeInterface")
 ## 
 ## function (x, se) 
 ## standardGeneric(".defineVisualShapeInterface")
-## <bytecode: 0x7faa941a9e08>
-## <environment: 0x7faa941badd0>
+## <bytecode: 0x7fc8a79ed5f8>
+## <environment: 0x7fc8a79fe068>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".defineVisualShapeInterface")  for currently available ones.
 ```
@@ -297,8 +297,8 @@ getGeneric(".defineVisualSizeInterface")
 ## 
 ## function (x, se) 
 ## standardGeneric(".defineVisualSizeInterface")
-## <bytecode: 0x7faa941818f0>
-## <environment: 0x7faa9418f308>
+## <bytecode: 0x7fc8a79bc840>
+## <environment: 0x7fc8a79ced68>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".defineVisualSizeInterface")  for currently available ones.
 ```
@@ -325,8 +325,8 @@ getGeneric(".defineVisualTextInterface")
 ## 
 ## function (x, se) 
 ## standardGeneric(".defineVisualTextInterface")
-## <bytecode: 0x7faa9692d3a8>
-## <environment: 0x7faa96937128>
+## <bytecode: 0x7fc8a7997208>
+## <environment: 0x7fc8a799c440>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".defineVisualTextInterface")  for currently available ones.
 ```
@@ -352,8 +352,8 @@ getGeneric(".defineVisualOtherInterface")
 ## 
 ## function (x) 
 ## standardGeneric(".defineVisualOtherInterface")
-## <bytecode: 0x7faa942072e8>
-## <environment: 0x7faa9420c600>
+## <bytecode: 0x7fc8a7a47cc0>
+## <environment: 0x7fc8a7a4b7f0>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".defineVisualOtherInterface")  for currently available ones.
 ```
@@ -389,8 +389,8 @@ getGeneric(".createObservers")
 ## {
 ##     standardGeneric(".createObservers")
 ## }
-## <bytecode: 0x7faa943ac9c8>
-## <environment: 0x7faa943defc0>
+## <bytecode: 0x7fc8a7c0b390>
+## <environment: 0x7fc8a7c4c4c8>
 ## Methods may be defined for arguments: x, se, input, session, pObjects, rObjects
 ## Use  showMethods(".createObservers")  for currently available ones.
 ```
@@ -436,8 +436,8 @@ getGeneric(".defineOutput")
 ## {
 ##     standardGeneric(".defineOutput")
 ## }
-## <bytecode: 0x7faa94293ba8>
-## <environment: 0x7faa9429c788>
+## <bytecode: 0x7fc8a7ae49d0>
+## <environment: 0x7fc8a7aee5b0>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".defineOutput")  for currently available ones.
 ```
@@ -468,8 +468,8 @@ getGeneric(".renderOutput")
 ## {
 ##     standardGeneric(".renderOutput")
 ## }
-## <bytecode: 0x7faa94c39a78>
-## <environment: 0x7faa94c4e318>
+## <bytecode: 0x7fc8a74a5510>
+## <environment: 0x7fc8a74b69e8>
 ## Methods may be defined for arguments: x, se, output, pObjects, rObjects
 ## Use  showMethods(".renderOutput")  for currently available ones.
 ```
@@ -502,8 +502,8 @@ getGeneric(".generateOutput")
 ## {
 ##     standardGeneric(".generateOutput")
 ## }
-## <bytecode: 0x7faa94efd088>
-## <environment: 0x7faa94f73460>
+## <bytecode: 0x7fc8a77682c0>
+## <environment: 0x7fc8a78536e0>
 ## Methods may be defined for arguments: x, se, all_memory, all_contents
 ## Use  showMethods(".generateOutput")  for currently available ones.
 ```
@@ -534,8 +534,8 @@ getGeneric(".exportOutput")
 ## {
 ##     standardGeneric(".exportOutput")
 ## }
-## <bytecode: 0x7faa9690e078>
-## <environment: 0x7faa969153c8>
+## <bytecode: 0x7fc8a7972d90>
+## <environment: 0x7fc8a797e028>
 ## Methods may be defined for arguments: x, se, all_memory, all_contents
 ## Use  showMethods(".exportOutput")  for currently available ones.
 ```
@@ -567,8 +567,8 @@ getGeneric(".generateDotPlot")
 ## 
 ## function (x, labels, envir) 
 ## standardGeneric(".generateDotPlot")
-## <bytecode: 0x7faa96885688>
-## <environment: 0x7faa968a1910>
+## <bytecode: 0x7fc8a78feb58>
+## <environment: 0x7fc8a7907620>
 ## Methods may be defined for arguments: x, labels, envir
 ## Use  showMethods(".generateDotPlot")  for currently available ones.
 ```
@@ -595,8 +595,8 @@ getGeneric(".generateDotPlotData")
 ## 
 ## function (x, envir) 
 ## standardGeneric(".generateDotPlotData")
-## <bytecode: 0x7faa9684f998>
-## <environment: 0x7faa9687b650>
+## <bytecode: 0x7fc8a78ae078>
+## <environment: 0x7fc8a78e86c0>
 ## Methods may be defined for arguments: x, envir
 ## Use  showMethods(".generateDotPlotData")  for currently available ones.
 ```
@@ -627,8 +627,8 @@ getGeneric(".prioritizeDotPlotData")
 ## 
 ## function (x, envir) 
 ## standardGeneric(".prioritizeDotPlotData")
-## <bytecode: 0x7faa94d10cc8>
-## <environment: 0x7faa94d15c30>
+## <bytecode: 0x7fc8a757a798>
+## <environment: 0x7fc8a757e338>
 ## Methods may be defined for arguments: x, envir
 ## Use  showMethods(".prioritizeDotPlotData")  for currently available ones.
 ```
@@ -655,8 +655,8 @@ getGeneric(".colorByNoneDotPlotField")
 ## 
 ## function (x) 
 ## standardGeneric(".colorByNoneDotPlotField")
-## <bytecode: 0x7faa94443d18>
-## <environment: 0x7faa944478f0>
+## <bytecode: 0x7fc8a7cb8fb0>
+## <environment: 0x7fc8a7cbcbf8>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".colorByNoneDotPlotField")  for currently available ones.
 ```
@@ -679,8 +679,8 @@ getGeneric(".colorByNoneDotPlotScale")
 ## 
 ## function (x) 
 ## standardGeneric(".colorByNoneDotPlotScale")
-## <bytecode: 0x7faa94424fc0>
-## <environment: 0x7faa9442ac08>
+## <bytecode: 0x7fc8a7c924c8>
+## <environment: 0x7fc8a7c960d8>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".colorByNoneDotPlotScale")  for currently available ones.
 ```
@@ -710,8 +710,8 @@ getGeneric(".allowableYAxisChoices")
 ## 
 ## function (x, se) 
 ## standardGeneric(".allowableYAxisChoices")
-## <bytecode: 0x7faa944c02c8>
-## <environment: 0x7faa944c4c78>
+## <bytecode: 0x7fc8a7d3bf60>
+## <environment: 0x7fc8a7d3e980>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".allowableYAxisChoices")  for currently available ones.
 ```
@@ -735,8 +735,8 @@ getGeneric(".allowableXAxisChoices")
 ## 
 ## function (x, se) 
 ## standardGeneric(".allowableXAxisChoices")
-## <bytecode: 0x7faa944e0418>
-## <environment: 0x7faa944e4d58>
+## <bytecode: 0x7fc8a7d5e120>
+## <environment: 0x7fc8a7d60a60>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".allowableXAxisChoices")  for currently available ones.
 ```
@@ -767,8 +767,8 @@ getGeneric(".generateTable")
 ## 
 ## function (x, envir) 
 ## standardGeneric(".generateTable")
-## <bytecode: 0x7faa94eb6128>
-## <environment: 0x7faa94ec2e98>
+## <bytecode: 0x7fc8a7720b50>
+## <environment: 0x7fc8a772c4f8>
 ## Methods may be defined for arguments: x, envir
 ## Use  showMethods(".generateTable")  for currently available ones.
 ```
@@ -800,8 +800,8 @@ getGeneric(".multiSelectionDimension")
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionDimension")
-## <bytecode: 0x7faa94db6b18>
-## <environment: 0x7faa94dc0408>
+## <bytecode: 0x7fc8a76205b0>
+## <environment: 0x7fc8a7625fc8>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionDimension")  for currently available ones.
 ```
@@ -833,8 +833,8 @@ getGeneric(".multiSelectionActive")
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionActive")
-## <bytecode: 0x7faa94e45440>
-## <environment: 0x7faa94e4c218>
+## <bytecode: 0x7fc8a76acfc8>
+## <environment: 0x7fc8a76b7cb0>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionActive")  for currently available ones.
 ```
@@ -864,8 +864,8 @@ getGeneric(".multiSelectionCommands")
 ## 
 ## function (x, index) 
 ## standardGeneric(".multiSelectionCommands")
-## <bytecode: 0x7faa94dda378>
-## <environment: 0x7faa94de4f80>
+## <bytecode: 0x7fc8a7645e10>
+## <environment: 0x7fc8a7650a50>
 ## Methods may be defined for arguments: x, index
 ## Use  showMethods(".multiSelectionCommands")  for currently available ones.
 ```
@@ -893,8 +893,8 @@ getGeneric(".multiSelectionAvailable")
 ## 
 ## function (x, contents) 
 ## standardGeneric(".multiSelectionAvailable")
-## <bytecode: 0x7faa94e1ec90>
-## <environment: 0x7faa94e22670>
+## <bytecode: 0x7fc8a7686760>
+## <environment: 0x7fc8a768c140>
 ## Methods may be defined for arguments: x, contents
 ## Use  showMethods(".multiSelectionAvailable")  for currently available ones.
 ```
@@ -921,8 +921,8 @@ getGeneric(".multiSelectionClear")
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionClear")
-## <bytecode: 0x7faa94dffcb8>
-## <environment: 0x7faa94e067a8>
+## <bytecode: 0x7fc8a766b750>
+## <environment: 0x7fc8a7672278>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionClear")  for currently available ones.
 ```
@@ -950,8 +950,8 @@ getGeneric(".multiSelectionRestricted")
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionRestricted")
-## <bytecode: 0x7faa94d6e468>
-## <environment: 0x7faa94d753f0>
+## <bytecode: 0x7fc8a75d7f00>
+## <environment: 0x7fc8a75dee88>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionRestricted")  for currently available ones.
 ```
@@ -979,8 +979,8 @@ getGeneric(".multiSelectionInvalidated")
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionInvalidated")
-## <bytecode: 0x7faa94d8b9b8>
-## <environment: 0x7faa94d91600>
+## <bytecode: 0x7fc8a75f5450>
+## <environment: 0x7fc8a75fb098>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionInvalidated")  for currently available ones.
 ```
@@ -1009,8 +1009,8 @@ getGeneric(".singleSelectionDimension")
 ## 
 ## function (x) 
 ## standardGeneric(".singleSelectionDimension")
-## <bytecode: 0x7faa94c08d40>
-## <environment: 0x7faa94c0e758>
+## <bytecode: 0x7fc8a7473410>
+## <environment: 0x7fc8a747a1f0>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".singleSelectionDimension")  for currently available ones.
 ```
@@ -1041,8 +1041,8 @@ getGeneric(".singleSelectionValue")
 ## 
 ## function (x, pObjects) 
 ## standardGeneric(".singleSelectionValue")
-## <bytecode: 0x7faa94bacd10>
-## <environment: 0x7faa94bb2ae0>
+## <bytecode: 0x7fc8a7415da8>
+## <environment: 0x7fc8a741bb78>
 ## Methods may be defined for arguments: x, pObjects
 ## Use  showMethods(".singleSelectionValue")  for currently available ones.
 ```
@@ -1070,8 +1070,8 @@ getGeneric(".singleSelectionValue")
 ## 
 ## function (x, pObjects) 
 ## standardGeneric(".singleSelectionValue")
-## <bytecode: 0x7faa94bacd10>
-## <environment: 0x7faa94bb2ae0>
+## <bytecode: 0x7fc8a7415da8>
+## <environment: 0x7fc8a741bb78>
 ## Methods may be defined for arguments: x, pObjects
 ## Use  showMethods(".singleSelectionValue")  for currently available ones.
 ```
