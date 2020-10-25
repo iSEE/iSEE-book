@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 6 Dynamic differential expression | Extending iSEE</title>
   <meta name="description" content="This book describes how to use the Bioconductor iSEE package to create web-applications for exploring data stored in SummarizedExperiment objects." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 6 Dynamic differential expression | Extending iSEE" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Kevin Rue-Albrecht, Federico Marini, Charlotte Soneson, and Aaron Lun" />
 
 
-<meta name="date" content="2020-07-19" />
+<meta name="date" content="2020-10-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -158,9 +160,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3.7" data-path="panels.html"><a href="panels.html#rowdatatable"><i class="fa fa-check"></i><b>1.3.7</b> <code>RowDataTable</code></a></li>
 <li class="chapter" data-level="1.3.8" data-path="panels.html"><a href="panels.html#complexheatmapplot"><i class="fa fa-check"></i><b>1.3.8</b> <code>ComplexHeatmapPlot</code></a></li>
 </ul></li>
+<li class="chapter" data-level="1.4" data-path="panels.html"><a href="panels.html#extending-the-classes"><i class="fa fa-check"></i><b>1.4</b> Extending the classes</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="api.html"><a href="api.html"><i class="fa fa-check"></i><b>2</b> Panel generics</a><ul>
-<li class="chapter" data-level="2.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.1" data-path="api.html"><a href="api.html#overview-1"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
 <li class="chapter" data-level="2.2" data-path="api.html"><a href="api.html#parameter-set-up"><i class="fa fa-check"></i><b>2.2</b> Parameter set-up</a></li>
 <li class="chapter" data-level="2.3" data-path="api.html"><a href="api.html#defining-the-user-interface"><i class="fa fa-check"></i><b>2.3</b> Defining the user interface</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="api.html"><a href="api.html#in-general"><i class="fa fa-check"></i><b>2.3.1</b> In general</a></li>
@@ -179,14 +182,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="server.html"><a href="server.html"><i class="fa fa-check"></i><b>3</b> Application state</a><ul>
-<li class="chapter" data-level="3.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.1" data-path="server.html"><a href="server.html#overview-2"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
 <li class="chapter" data-level="3.2" data-path="server.html"><a href="server.html#updating-parameters"><i class="fa fa-check"></i><b>3.2</b> Updating parameters</a></li>
 <li class="chapter" data-level="3.3" data-path="server.html"><a href="server.html#using-the-memory"><i class="fa fa-check"></i><b>3.3</b> Using the memory</a></li>
 <li class="chapter" data-level="3.4" data-path="server.html"><a href="server.html#responding-to-events"><i class="fa fa-check"></i><b>3.4</b> Responding to events</a></li>
 </ul></li>
 <li class="part"><span><b>II Worked examples</b></span></li>
 <li class="chapter" data-level="4" data-path="developing.html"><a href="developing.html"><i class="fa fa-check"></i><b>4</b> Reduced dimension hexbin plot</a><ul>
-<li class="chapter" data-level="4.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.1" data-path="developing.html"><a href="developing.html#overview-3"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
 <li class="chapter" data-level="4.2" data-path="developing.html"><a href="developing.html#class-basics"><i class="fa fa-check"></i><b>4.2</b> Class basics</a></li>
 <li class="chapter" data-level="4.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>4.3</b> Setting up the interface</a></li>
 <li class="chapter" data-level="4.4" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>4.4</b> Creating the observers</a></li>
@@ -194,36 +197,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>4.6</b> In action</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html"><i class="fa fa-check"></i><b>5</b> Dynamic reduced dimensions</a><ul>
-<li class="chapter" data-level="5.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
-<li class="chapter" data-level="5.2" data-path="developing.html"><a href="developing.html#class-basics"><i class="fa fa-check"></i><b>5.2</b> Class basics</a></li>
-<li class="chapter" data-level="5.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>5.3</b> Setting up the interface</a></li>
-<li class="chapter" data-level="5.4" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>5.4</b> Creating the observers</a></li>
+<li class="chapter" data-level="5.1" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#overview-4"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#class-basics-1"><i class="fa fa-check"></i><b>5.2</b> Class basics</a></li>
+<li class="chapter" data-level="5.3" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#setting-up-the-interface-1"><i class="fa fa-check"></i><b>5.3</b> Setting up the interface</a></li>
+<li class="chapter" data-level="5.4" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#creating-the-observers-1"><i class="fa fa-check"></i><b>5.4</b> Creating the observers</a></li>
 <li class="chapter" data-level="5.5" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#making-the-plot"><i class="fa fa-check"></i><b>5.5</b> Making the plot</a></li>
-<li class="chapter" data-level="5.6" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>5.6</b> In action</a></li>
+<li class="chapter" data-level="5.6" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#in-action-1"><i class="fa fa-check"></i><b>5.6</b> In action</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html"><i class="fa fa-check"></i><b>6</b> Dynamic differential expression</a><ul>
-<li class="chapter" data-level="6.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
-<li class="chapter" data-level="6.2" data-path="developing.html"><a href="developing.html#class-basics"><i class="fa fa-check"></i><b>6.2</b> Class basics</a></li>
-<li class="chapter" data-level="6.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>6.3</b> Setting up the interface</a></li>
-<li class="chapter" data-level="6.4" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>6.4</b> Creating the observers</a></li>
+<li class="chapter" data-level="6.1" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#overview-5"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#class-basics-2"><i class="fa fa-check"></i><b>6.2</b> Class basics</a></li>
+<li class="chapter" data-level="6.3" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#setting-up-the-interface-2"><i class="fa fa-check"></i><b>6.3</b> Setting up the interface</a></li>
+<li class="chapter" data-level="6.4" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#creating-the-observers-2"><i class="fa fa-check"></i><b>6.4</b> Creating the observers</a></li>
 <li class="chapter" data-level="6.5" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#making-the-table"><i class="fa fa-check"></i><b>6.5</b> Making the table</a></li>
-<li class="chapter" data-level="6.6" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>6.6</b> In action</a></li>
+<li class="chapter" data-level="6.6" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#in-action-2"><i class="fa fa-check"></i><b>6.6</b> In action</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html"><i class="fa fa-check"></i><b>7</b> Annotated gene list</a><ul>
-<li class="chapter" data-level="7.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
-<li class="chapter" data-level="7.2" data-path="developing.html"><a href="developing.html#class-basics"><i class="fa fa-check"></i><b>7.2</b> Class basics</a></li>
-<li class="chapter" data-level="7.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>7.3</b> Setting up the interface</a></li>
-<li class="chapter" data-level="7.4" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>7.4</b> Creating the observers</a></li>
-<li class="chapter" data-level="7.5" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>7.5</b> In action</a></li>
+<li class="chapter" data-level="7.1" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#overview-6"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#class-basics-3"><i class="fa fa-check"></i><b>7.2</b> Class basics</a></li>
+<li class="chapter" data-level="7.3" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#setting-up-the-interface-3"><i class="fa fa-check"></i><b>7.3</b> Setting up the interface</a></li>
+<li class="chapter" data-level="7.4" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#creating-the-observers-3"><i class="fa fa-check"></i><b>7.4</b> Creating the observers</a></li>
+<li class="chapter" data-level="7.5" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#in-action-3"><i class="fa fa-check"></i><b>7.5</b> In action</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html"><i class="fa fa-check"></i><b>8</b> Gene ontology table</a><ul>
-<li class="chapter" data-level="8.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
-<li class="chapter" data-level="8.2" data-path="developing.html"><a href="developing.html#class-basics"><i class="fa fa-check"></i><b>8.2</b> Class basics</a></li>
-<li class="chapter" data-level="8.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>8.3</b> Setting up the interface</a></li>
+<li class="chapter" data-level="8.1" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#overview-7"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#class-basics-4"><i class="fa fa-check"></i><b>8.2</b> Class basics</a></li>
+<li class="chapter" data-level="8.3" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#setting-up-the-interface-4"><i class="fa fa-check"></i><b>8.3</b> Setting up the interface</a></li>
 <li class="chapter" data-level="8.4" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#generating-the-output"><i class="fa fa-check"></i><b>8.4</b> Generating the output</a></li>
-<li class="chapter" data-level="8.5" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>8.5</b> Creating the observers</a></li>
-<li class="chapter" data-level="8.6" data-path="api.html"><a href="api.html#handling-selections"><i class="fa fa-check"></i><b>8.6</b> Handling selections</a></li>
-<li class="chapter" data-level="8.7" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>8.7</b> In action</a></li>
+<li class="chapter" data-level="8.5" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#creating-the-observers-4"><i class="fa fa-check"></i><b>8.5</b> Creating the observers</a></li>
+<li class="chapter" data-level="8.6" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#handling-selections-1"><i class="fa fa-check"></i><b>8.6</b> Handling selections</a></li>
+<li class="chapter" data-level="8.7" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#in-action-4"><i class="fa fa-check"></i><b>8.7</b> In action</a></li>
 </ul></li>
 <li class="part"><span><b>III Appendix</b></span></li>
 <li class="chapter" data-level="9" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>9</b> Contributors</a><ul>
@@ -253,13 +256,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="dynamic-differential-expression" class="section level1">
 <h1><span class="header-section-number">Chapter 6</span> Dynamic differential expression</h1>
-<div id="overview" class="section level2">
+<div id="overview-5" class="section level2">
 <h2><span class="header-section-number">6.1</span> Overview</h2>
 <p>In this case study, we will create a panel class to dynamically compute differential expression (DE) statistics between the active sample-level selection and the other saved selections from a transmitting panel.
 We will present the results of this computation in a <code>DataTable</code> widget from the <em><a href="https://CRAN.R-project.org/package=DT">DT</a></em> package, where each row is a gene and each column is a relevant statistic (<span class="math inline">\(p\)</span>-value, FDR, log-fold changes, etc.).
 The class proposed here is the basis of the <code>DifferentialStatsticsTable</code> from <em><a href="https://bioconductor.org/packages/3.11/iSEEu">iSEEu</a></em>.</p>
 </div>
-<div id="class-basics" class="section level2">
+<div id="class-basics-2" class="section level2">
 <h2><span class="header-section-number">6.2</span> Class basics</h2>
 <p>First, we define the basics of our new <code>Panel</code> class.
 As our new class will be showing each gene as a row, we inherit from the <code>RowTable</code> virtual class.
@@ -294,7 +297,7 @@ We also define a constructor to conveniently create new instances.</p>
 <span id="cb188-8"><a href="dynamic-differential-expression.html#cb188-8"></a>    <span class="kw">new</span>(<span class="st">&quot;DGETable&quot;</span>, ...)</span>
 <span id="cb188-9"><a href="dynamic-differential-expression.html#cb188-9"></a>}</span></code></pre></div>
 </div>
-<div id="setting-up-the-interface" class="section level2">
+<div id="setting-up-the-interface-2" class="section level2">
 <h2><span class="header-section-number">6.3</span> Setting up the interface</h2>
 <p>The most basic requirement is to define some methods that describe our new panel in the <code>iSEE()</code> interface.
 This includes defining the full name and desired default color for display purposes:</p>
@@ -328,7 +331,7 @@ For <code>DGETable</code>s, we need to flip this around by specializing <code>.h
 <p>A more advanced version of this panel class might consider responding to a row selection by only performing the DE analysis on the selected features.
 In such cases, we would not need to hide <code>RowSelectionSource</code>, though we will leave that as an exercise for the curious.</p>
 </div>
-<div id="creating-the-observers" class="section level2">
+<div id="creating-the-observers-2" class="section level2">
 <h2><span class="header-section-number">6.4</span> Creating the observers</h2>
 <p>We specialize <code>.createObservers</code> to define some observers to respond to changes in our new interface elements.
 Note the use of <code>callNextMethod()</code> to ensure that observers of the parent class are also created;
@@ -379,7 +382,7 @@ This performs all pairwise comparisons, so is not as efficient as could be, but 
 This ensures that they do not clash with global variables created by <code>iSEE()</code> itself
 (which is not an issue when running the app, but makes things difficult when the code is reported for tracking purposes).</p>
 </div>
-<div id="in-action" class="section level2">
+<div id="in-action-2" class="section level2">
 <h2><span class="header-section-number">6.6</span> In action</h2>
 <p>Let’s put our new panel to the test.
 We’ll use the <code>sce</code> object from Chapter <a href="developing.html#developing">4</a>, which includes some precomputed dimensionality reduction results.

@@ -113,7 +113,7 @@
 
 \title{Extending \emph{iSEE}}
 \author{Kevin Rue-Albrecht, Federico Marini, Charlotte Soneson, and Aaron Lun}
-\date{2020-07-19}
+\date{2020-10-25}
 
 \begin{document}
 \maketitle
@@ -144,8 +144,9 @@ Potential end-users of \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{
 
 This chapter provides a list of all of the classes that are implemented by the core \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{iSEE}} package.
 Each class comes with its specialized implementations of methods for various generics described in Chapter \ref{api}.
-Thus, it is often possible for developers to inherit from one of these classes to get most of the methods implemented ``for free''.
-The classes themselves are either virtual or concrete; the latter can be created and used directly in an \texttt{iSEE()} application, while the former can only be used as a parent of a concrete subclass.
+Thus, it is often possible for developers to inherit from one of these classes to get most of the relevant methods implemented ``for free''.
+The classes themselves are either virtual or concrete; the latter can be created and used directly in an \texttt{iSEE()} application,
+while the former can only be used as a parent of a concrete subclass.
 Here, we will provide a brief summary of each class along with a listing of its available slots.
 Readers should refer to the documentation for each class (links below) for more details.
 
@@ -179,7 +180,7 @@ It also controls the transmission of multiple row/column selections across panel
 \subsection{\texorpdfstring{\texttt{DotPlot}}{DotPlot}}\label{dotplot}}
 
 The \href{https://isee.github.io/iSEE/reference/DotPlot-class.html}{\texttt{DotPlot}} class inherits from the \texttt{Panel} class and is the base class for dot-based plots.
-This refers to all plots where each row or column is represented by no more than one dot/point on the plot.
+This refers to all plots where each row or column is represented by no more than one dot (i.e., point) on the plot.
 It provides functionality to create the plot, control the aesthetics of the points and to manage the brush/lasso selection.
 
 \begin{Shaded}
@@ -216,8 +217,8 @@ It provides functionality to create the plot, control the aesthetics of the poin
 \subsection{\texorpdfstring{\texttt{ColumnDotPlot}}{ColumnDotPlot}}\label{columndotplot}}
 
 The \href{https://isee.github.io/iSEE/reference/ColumnDotPlot-class.html}{\texttt{ColumnDotPlot}} class inherits from the \texttt{DotPlot} class and represents all per-column dot plots.
-This refers to all plots where each column is represented by no more than one dot/point on the plot.
-It provides functionality to manage \texttt{colData} fields for modifying the plot aesthetics.
+This refers to all plots where each column is represented by no more than one dot on the plot.
+It provides functionality to modify the plot aesthetics based on per-column values in the \texttt{colData} or assays.
 It is also restricted to receiving and transmitting column identities in single and multiple selections.
 
 \begin{Shaded}
@@ -256,8 +257,8 @@ It is also restricted to receiving and transmitting column identities in single 
 \subsection{\texorpdfstring{\texttt{RowDotPlot}}{RowDotPlot}}\label{rowdotplot}}
 
 The \href{https://isee.github.io/iSEE/reference/RowDotPlot-class.html}{\texttt{RowDotPlot}} class inherits from the \texttt{DotPlot} class and represents all per-row dot plots.
-This refers to all plots where each row is represented by no more than one dot/point on the plot.
-It provides functionality to manage \texttt{rowData} fields for modifying the plot aesthetics.
+This refers to all plots where each row is represented by no more than one dot on the plot.
+It provides functionality to modify the plot aesthetics based on per-row values in the \texttt{rowData} or assays.
 It is also restricted to receiving and transmitting row identities in single and multiple selections.
 
 \begin{Shaded}
@@ -297,7 +298,7 @@ It is also restricted to receiving and transmitting row identities in single and
 
 The \href{https://isee.github.io/iSEE/reference/Table-class.html}{\texttt{Table}} class inherits from the \texttt{Panel} class and represents all tables rendered using \emph{\href{https://CRAN.R-project.org/package=DT}{DT}}.
 Each row of the table is expected to correspond to a row or column of the \texttt{SummarizedExperiment}.
-This class provides functionality to render the \texttt{DT::datatable} widget, monitor single selections and apply search filters.
+This class provides functionality to render the \texttt{DT::datatable} widget, monitor single/multiple selections and apply search filters.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -320,7 +321,7 @@ This class provides functionality to render the \texttt{DT::datatable} widget, m
 \hypertarget{columntable}{%
 \subsection{\texorpdfstring{\texttt{ColumnTable}}{ColumnTable}}\label{columntable}}
 
-The \href{https://isee.github.io/iSEE/reference/ColumnTable-class.html}{\texttt{ColumnTable}} class inherits from the \texttt{Table} class and represents all tables where the rows correspond to columns of the \texttt{SummarizedExperiment}.
+The \href{https://isee.github.io/iSEE/reference/ColumnTable-class.html}{\texttt{ColumnTable}} class inherits from the \texttt{Table} class and represents all tables where the rows have a one-to-zero-or-one mapping to columns of the \texttt{SummarizedExperiment}.
 Instances of this class can only transmit single and multiple selections on columns.
 
 \begin{Shaded}
@@ -344,7 +345,7 @@ Instances of this class can only transmit single and multiple selections on colu
 \hypertarget{rowtable}{%
 \subsection{\texorpdfstring{\texttt{RowTable}}{RowTable}}\label{rowtable}}
 
-The \href{https://isee.github.io/iSEE/reference/RowTable-class.html}{\texttt{RowTable}} class inherits from the \texttt{Table} class and represents all tables where the rows correspond to rows of the \texttt{SummarizedExperiment}.
+The \href{https://isee.github.io/iSEE/reference/RowTable-class.html}{\texttt{RowTable}} class inherits from the \texttt{Table} class and represents all tables where the rows have a one-to-zero-or-one mapping to rows of the \texttt{SummarizedExperiment}.
 Instances of this class can only transmit single and multiple selections on rows.
 
 \begin{Shaded}
@@ -372,7 +373,7 @@ Instances of this class can only transmit single and multiple selections on rows
 \subsection{\texorpdfstring{\texttt{ReducedDimensionPlot}}{ReducedDimensionPlot}}\label{reduceddimensionplot}}
 
 The \href{https://isee.github.io/iSEE/reference/ReducedDimensionPlot-class.html}{\texttt{ReducedDimensionPlot}} class inherits from the \texttt{ColumnDotPlot} class and plots reduced dimension coordinates from an entry of the \texttt{reducedDims} in a \texttt{SingleCellExperiment}.
-It provides functionality to choose the result and extract the relevant entry in preparation for plotting.
+It provides functionality to choose the result and extract the relevant dimensions in preparation for plotting.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -412,7 +413,7 @@ It provides functionality to choose the result and extract the relevant entry in
 \subsection{\texorpdfstring{\texttt{FeatureAssayPlot}}{FeatureAssayPlot}}\label{featureassayplot}}
 
 The \href{https://isee.github.io/iSEE/reference/FeatureAssayPlot-class.html}{\texttt{FeatureAssayPlot}} class inherits from the \texttt{ColumnDotPlot} class and plots the assay values for a feature across all samples, using an entry of the \texttt{assays()} from any \texttt{SummarizedExperiment} object.
-It provides functionality to choose the feature of interest and any associated variable to plot on the x-axis, as well as a method to extract the relevant pieces of data in preparation for plotting.
+It provides functionality to choose the feature of interest and any associated variable to plot on the x-axis, where the feature of interest can be chosen by a single selection from other row-transmitting panels.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -455,7 +456,7 @@ It provides functionality to choose the feature of interest and any associated v
 \subsection{\texorpdfstring{\texttt{ColumnDataPlot}}{ColumnDataPlot}}\label{columndataplot}}
 
 The \href{https://isee.github.io/iSEE/reference/ColumnDataPlot-class.html}{\texttt{ColumnDataPlot}} class inherits from the \texttt{ColumnDotPlot} class and plots \texttt{colData} variables by themselves or against each other.
-It provides functionality to choose and extract the variables to plot.
+It provides functionality to choose the variables to plot.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -495,7 +496,7 @@ It provides functionality to choose and extract the variables to plot.
 \subsection{\texorpdfstring{\texttt{SampleAssayPlot}}{SampleAssayPlot}}\label{sampleassayplot}}
 
 The \href{https://isee.github.io/iSEE/reference/SampleAssayPlot-class.html}{\texttt{SampleAssayPlot}} class inherits from the \texttt{RowDotPlot} class and plots the assay values for a sample across all features, using an entry of the \texttt{assays()} from any \texttt{SummarizedExperiment} object.
-It provides functionality to choose the sample of interest and any associated variable to plot on the x-axis, as well as a method to extract the relevant pieces of data in preparation for plotting.
+It provides functionality to choose the sample of interest and any associated variable to plot on the x-axis, where the sample of interest can be chosen by a single selection from other column-transmitting panels.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -655,11 +656,46 @@ It provides functionality to specify the features to be shown, which assay to sh
 ## [35] "SelectionHistory"
 \end{verbatim}
 
+\hypertarget{extending-the-classes}{%
+\section{Extending the classes}\label{extending-the-classes}}
+
+When creating a new panel class, it is necessary to inherit from a \texttt{Panel} subclass.
+An appropriate choice of subclass can save a lot of work by providing that access to all of that subclass's generics.
+This means that only a few methods need to be manually specialized to finish the panel, usually to change the output or interface.
+
+\textbf{Case study 1.}
+If we wanted to create a \texttt{Panel} with a different plot for viewing the dimensionality reduction results, we could inherit from the \texttt{ReducedDimensionPlot} panel.
+This gives us access to the interface elements to choose the reduced dimensions, plus the underlying code to extract the values for plotting.
+Then, we only need to overwrite the generic responsible for generating the plot.
+Note that the \texttt{ReducedDimensionPlot} is itself a subclass of the \texttt{ColumnDataPlot}, so there is an implicit assumption that each column of the \texttt{SummarizedExperiment} will be represented as a single point on the plot.
+(Conceptually, at least. The point can be invisible.)
+
+\textbf{Case study 2.}
+Let's say we want to create a \texttt{Panel} to plot the assay values of a feature against the corresponding set of values in another assay, e.g., to plot gene expression against genotype in experiments with both RNA-seq and whole genome sequencing.
+None of the existing concrete panels support the use of information from two separate assays, so we would not be able to inherit from them.
+However, the plot would follow the expectations of the \texttt{ColumnDotPlot}, in that each column of the \texttt{SummarizedExperiment} would be represented no more than once on the plot.
+Thus, we can inherit from the \texttt{ColumnDotPlot}, giving us automatic access to methods for managing the visual options and multiple column selections.
+Then, we only need to define our own methods - to create the user interface elements to choose the two assays, and to extract those values in preparation for plotting.
+
+\textbf{Case study 3.}
+We might want to create a new heatmap that averages values across columns before displaying them.
+This is not an uncommon request if our dataset contains many experimental groups and we want to compress them into averages for visualization.
+However, we cannot easily inherit from the \texttt{ComplexHeatmapPlot} as it does not mandate the definition of a grouping factor.
+We also cannot inherit from \texttt{DotPlot}s or \texttt{Table}s as we are not showing anything of the sort.
+Thus, we must inherit from the \texttt{Panel} class and manually define methods for most of the generics.
+(Though this task is not as hard as it seems, due to many utilities exported by \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{iSEE}} to facilitate observer and interface set-up.)
+
+\textbf{Case study 4.}
+Finally, we want to create a table that dynamically computes statistics for each feature, e.g., for differential expression based on a user-selected factor.
+We can thus inherit from the \texttt{RowTable} where each feature is represented by one row of the table.
+Then, we just have to define interface elements to allow users to specify the nature of the computed statistics,
+and to define a new method to actually generate the table of interest with said statistics.
+
 \hypertarget{api}{%
 \chapter{Panel generics}\label{api}}
 
-\hypertarget{overview}{%
-\section{Overview}\label{overview}}
+\hypertarget{overview-1}{%
+\section{Overview}\label{overview-1}}
 
 This chapter lists of all generics provided by \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{iSEE}} to implement class-specific behaviors.
 For each generic, we will show its signature and all available methods implemented for subclasses.
@@ -686,8 +722,8 @@ This avoids potentially costly re-calculations throughout the lifetime of the \t
 ## 
 ## function (x, se) 
 ## standardGeneric(".cacheCommonInfo")
-## <bytecode: 0x7fead8ff1818>
-## <environment: 0x7feacd01a6d8>
+## <bytecode: 0x7fa9b5b91608>
+## <environment: 0x7fa9b5bb99d8>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".cacheCommonInfo")  for currently available ones.
 \end{verbatim}
@@ -725,8 +761,8 @@ This is run for each panel during the \texttt{iSEE()} application set-up to vali
 ## 
 ## function (x, se) 
 ## standardGeneric(".refineParameters")
-## <bytecode: 0x7feacbf81970>
-## <environment: 0x7feacbfcb600>
+## <bytecode: 0x7fa9b525a690>
+## <environment: 0x7fa9b529b010>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".refineParameters")  for currently available ones.
 \end{verbatim}
@@ -776,8 +812,8 @@ This generic provides the most general mechanism for controlling the panel's int
 ## 
 ## function (x, se, select_info) 
 ## standardGeneric(".defineInterface")
-## <bytecode: 0x7fead8e35b08>
-## <environment: 0x7fead8e3e640>
+## <bytecode: 0x7fa9b59b1280>
+## <environment: 0x7fa9b59c1cc8>
 ## Methods may be defined for arguments: x, se, select_info
 ## Use  showMethods(".defineInterface")  for currently available ones.
 \end{verbatim}
@@ -811,8 +847,8 @@ This generic allows developers to fine-tune the data UI for subclasses without r
 ## 
 ## function (x, se, select_info) 
 ## standardGeneric(".defineDataInterface")
-## <bytecode: 0x7fead8e7e8e0>
-## <environment: 0x7fead8eb4010>
+## <bytecode: 0x7fa9b5a05768>
+## <environment: 0x7fa9b5a3cf88>
 ## Methods may be defined for arguments: x, se, select_info
 ## Use  showMethods(".defineDataInterface")  for currently available ones.
 \end{verbatim}
@@ -849,8 +885,8 @@ For example, we can remove row selection UI elements for panels that only accept
 ## 
 ## function (x, field) 
 ## standardGeneric(".hideInterface")
-## <bytecode: 0x7feacc95efa0>
-## <environment: 0x7feacc96cd50>
+## <bytecode: 0x7fa9b5427b78>
+## <environment: 0x7fa9b543a4a8>
 ## Methods may be defined for arguments: x, field
 ## Use  showMethods(".hideInterface")  for currently available ones.
 \end{verbatim}
@@ -890,8 +926,8 @@ For example, we can remove row selection UI elements for panels that only accept
 ## 
 ## function (x, se, select_info) 
 ## standardGeneric(".defineVisualColorInterface")
-## <bytecode: 0x7fead8cff380>
-## <environment: 0x7fead8ddb438>
+## <bytecode: 0x7fa9b59304f0>
+## <environment: 0x7fa9b5960f98>
 ## Methods may be defined for arguments: x, se, select_info
 ## Use  showMethods(".defineVisualColorInterface")  for currently available ones.
 \end{verbatim}
@@ -921,8 +957,8 @@ For example, we can remove row selection UI elements for panels that only accept
 ## 
 ## function (x, se) 
 ## standardGeneric(".defineVisualFacetInterface")
-## <bytecode: 0x7fead8d8b388>
-## <environment: 0x7fead8d90278>
+## <bytecode: 0x7fa9b5901288>
+## <environment: 0x7fa9b590acc0>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".defineVisualFacetInterface")  for currently available ones.
 \end{verbatim}
@@ -952,8 +988,8 @@ For example, we can remove row selection UI elements for panels that only accept
 ## 
 ## function (x, se) 
 ## standardGeneric(".defineVisualShapeInterface")
-## <bytecode: 0x7fead8d1eb38>
-## <environment: 0x7fead8d2d938>
+## <bytecode: 0x7fa9b588a110>
+## <environment: 0x7fa9b5892e40>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".defineVisualShapeInterface")  for currently available ones.
 \end{verbatim}
@@ -983,8 +1019,8 @@ For example, we can remove row selection UI elements for panels that only accept
 ## 
 ## function (x, se) 
 ## standardGeneric(".defineVisualSizeInterface")
-## <bytecode: 0x7fead8ce95b0>
-## <environment: 0x7fead8cf6e40>
+## <bytecode: 0x7fa9b584af88>
+## <environment: 0x7fa9b586cb58>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".defineVisualSizeInterface")  for currently available ones.
 \end{verbatim}
@@ -1014,8 +1050,8 @@ For example, we can remove row selection UI elements for panels that only accept
 ## 
 ## function (x, se) 
 ## standardGeneric(".defineVisualTextInterface")
-## <bytecode: 0x7fead8cc1888>
-## <environment: 0x7fead8ccaaf8>
+## <bytecode: 0x7fa9b58364d0>
+## <environment: 0x7fa9b5837740>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".defineVisualTextInterface")  for currently available ones.
 \end{verbatim}
@@ -1044,8 +1080,8 @@ For example, we can remove row selection UI elements for panels that only accept
 ## 
 ## function (x) 
 ## standardGeneric(".defineVisualOtherInterface")
-## <bytecode: 0x7fead8d6ada0>
-## <environment: 0x7fead8d6e908>
+## <bytecode: 0x7fa9b58df4d8>
+## <environment: 0x7fa9b58e3008>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".defineVisualOtherInterface")  for currently available ones.
 \end{verbatim}
@@ -1085,8 +1121,8 @@ Developers can define arbitrarily complex observer logic here as long as it is s
 ## {
 ##     standardGeneric(".createObservers")
 ## }
-## <bytecode: 0x7fead8f0faa0>
-## <environment: 0x7fead8f54410>
+## <bytecode: 0x7fa9b5aa2ef0>
+## <environment: 0x7fa9b5ae1dd8>
 ## Methods may be defined for arguments: x, se, input, session, pObjects, rObjects
 ## Use  showMethods(".createObservers")  for currently available ones.
 \end{verbatim}
@@ -1137,8 +1173,8 @@ Note that this generic only defines the output in the \texttt{iSEE()} interface;
 ## {
 ##     standardGeneric(".defineOutput")
 ## }
-## <bytecode: 0x7fead8e027c8>
-## <environment: 0x7fead8e0d2b8>
+## <bytecode: 0x7fa9b597da20>
+## <environment: 0x7fa9b5988078>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".defineOutput")  for currently available ones.
 \end{verbatim}
@@ -1172,8 +1208,8 @@ This is usually as simple as calling functions like \texttt{renderPlotOutput()} 
 ## {
 ##     standardGeneric(".renderOutput")
 ## }
-## <bytecode: 0x7feacbf0dd08>
-## <environment: 0x7feacbf1f1a8>
+## <bytecode: 0x7fa9b51e34a0>
+## <environment: 0x7fa9b51fa7e0>
 ## Methods may be defined for arguments: x, se, output, pObjects, rObjects
 ## Use  showMethods(".renderOutput")  for currently available ones.
 \end{verbatim}
@@ -1209,8 +1245,8 @@ Some effort is required here to ensure that the commands used to generate the ou
 ## {
 ##     standardGeneric(".generateOutput")
 ## }
-## <bytecode: 0x7feacc9cd358>
-## <environment: 0x7feacca0b090>
+## <bytecode: 0x7fa9b549de08>
+## <environment: 0x7fa9b54d2868>
 ## Methods may be defined for arguments: x, se, all_memory, all_contents
 ## Use  showMethods(".generateOutput")  for currently available ones.
 \end{verbatim}
@@ -1244,8 +1280,8 @@ This is called whenever the user requests a download of the panel outputs.
 ## {
 ##     standardGeneric(".exportOutput")
 ## }
-## <bytecode: 0x7fead8c9cb90>
-## <environment: 0x7fead8ca6118>
+## <bytecode: 0x7fa9b5808b38>
+## <environment: 0x7fa9b5817d28>
 ## Methods may be defined for arguments: x, se, all_memory, all_contents
 ## Use  showMethods(".exportOutput")  for currently available ones.
 \end{verbatim}
@@ -1281,8 +1317,8 @@ Developers of \texttt{DotPlot} subclasses can specialize this generic to avoid h
 ## 
 ## function (x, labels, envir) 
 ## standardGeneric(".generateDotPlot")
-## <bytecode: 0x7fead8b91c80>
-## <environment: 0x7fead8bb0888>
+## <bytecode: 0x7fa9b554e7e0>
+## <environment: 0x7fa9b555a1f8>
 ## Methods may be defined for arguments: x, labels, envir
 ## Use  showMethods(".generateDotPlot")  for currently available ones.
 \end{verbatim}
@@ -1312,8 +1348,8 @@ This allows developers to change the data setup for a \texttt{DotPlot} subclass 
 ## 
 ## function (x, envir) 
 ## standardGeneric(".generateDotPlotData")
-## <bytecode: 0x7feacca40738>
-## <environment: 0x7fead8b5b3b8>
+## <bytecode: 0x7fa9b550a300>
+## <environment: 0x7fa9b55323b8>
 ## Methods may be defined for arguments: x, envir
 ## Use  showMethods(".generateDotPlotData")  for currently available ones.
 \end{verbatim}
@@ -1347,8 +1383,8 @@ This usually doesn't need to be specialized.
 ## 
 ## function (x, envir) 
 ## standardGeneric(".prioritizeDotPlotData")
-## <bytecode: 0x7feacbfe2758>
-## <environment: 0x7feacbfe76c0>
+## <bytecode: 0x7fa9b52b5478>
+## <environment: 0x7fa9b52bb018>
 ## Methods may be defined for arguments: x, envir
 ## Use  showMethods(".prioritizeDotPlotData")  for currently available ones.
 \end{verbatim}
@@ -1378,8 +1414,8 @@ This usually doesn't need to be specialized.
 ## 
 ## function (x) 
 ## standardGeneric(".colorByNoneDotPlotField")
-## <bytecode: 0x7fead8fb8458>
-## <environment: 0x7fead8fbc068>
+## <bytecode: 0x7fa9b5b4e9b0>
+## <environment: 0x7fa9b5b525f8>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".colorByNoneDotPlotField")  for currently available ones.
 \end{verbatim}
@@ -1406,8 +1442,8 @@ This usually doesn't need to be specialized.
 ## 
 ## function (x) 
 ## standardGeneric(".colorByNoneDotPlotScale")
-## <bytecode: 0x7fead8f998f8>
-## <environment: 0x7fead8f9f540>
+## <bytecode: 0x7fa9b5b34190>
+## <environment: 0x7fa9b5b37dd8>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".colorByNoneDotPlotScale")  for currently available ones.
 \end{verbatim}
@@ -1441,8 +1477,8 @@ For example, a hypothetical MA plot panel would only accept log-fold changes on 
 ## 
 ## function (x, se) 
 ## standardGeneric(".allowableYAxisChoices")
-## <bytecode: 0x7feacd039e78>
-## <environment: 0x7feacd03c898>
+## <bytecode: 0x7fa9b5bd3268>
+## <environment: 0x7fa9b5bd9b98>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".allowableYAxisChoices")  for currently available ones.
 \end{verbatim}
@@ -1470,8 +1506,8 @@ For example, a hypothetical MA plot panel would only accept log-fold changes on 
 ## 
 ## function (x, se) 
 ## standardGeneric(".allowableXAxisChoices")
-## <bytecode: 0x7feacd059f90>
-## <environment: 0x7feacd05c8d0>
+## <bytecode: 0x7fa9b5633828>
+## <environment: 0x7fa9b563c078>
 ## Methods may be defined for arguments: x, se
 ## Use  showMethods(".allowableXAxisChoices")  for currently available ones.
 \end{verbatim}
@@ -1506,8 +1542,8 @@ If this is specialized, there is usually no need to specialize \texttt{.generate
 ## 
 ## function (x, envir) 
 ## standardGeneric(".generateTable")
-## <bytecode: 0x7feacc98dd48>
-## <environment: 0x7feacc99ab28>
+## <bytecode: 0x7fa9b5458958>
+## <environment: 0x7fa9b54695d8>
 ## Methods may be defined for arguments: x, envir
 ## Use  showMethods(".generateTable")  for currently available ones.
 \end{verbatim}
@@ -1544,8 +1580,8 @@ It can also be used to indicate that the panel does not transmit anything.
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionDimension")
-## <bytecode: 0x7feacc88e7a8>
-## <environment: 0x7feacc894188>
+## <bytecode: 0x7fa9b535d290>
+## <environment: 0x7fa9b5362ca8>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionDimension")  for currently available ones.
 \end{verbatim}
@@ -1580,8 +1616,8 @@ This is defined as the selection that the user can actively change by interactin
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionActive")
-## <bytecode: 0x7feacc91b188>
-## <environment: 0x7feacc925e38>
+## <bytecode: 0x7fa9b53e9c70>
+## <environment: 0x7fa9b53f2958>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionActive")  for currently available ones.
 \end{verbatim}
@@ -1614,8 +1650,8 @@ The identity of the selected rows/columns will ultimately be transmitted to othe
 ## 
 ## function (x, index) 
 ## standardGeneric(".multiSelectionCommands")
-## <bytecode: 0x7feacc8b4008>
-## <environment: 0x7feacc8c0010>
+## <bytecode: 0x7fa9b5380af0>
+## <environment: 0x7fa9b5387820>
 ## Methods may be defined for arguments: x, index
 ## Use  showMethods(".multiSelectionCommands")  for currently available ones.
 \end{verbatim}
@@ -1646,8 +1682,8 @@ This is used for reporting ``percent selected'' statistics below each panel.
 ## 
 ## function (x, contents) 
 ## standardGeneric(".multiSelectionAvailable")
-## <bytecode: 0x7feacc8f8920>
-## <environment: 0x7feacc8fc300>
+## <bytecode: 0x7fa9b53c3408>
+## <environment: 0x7fa9b53c8de8>
 ## Methods may be defined for arguments: x, contents
 ## Use  showMethods(".multiSelectionAvailable")  for currently available ones.
 \end{verbatim}
@@ -1677,8 +1713,8 @@ This is used to wipe selections in response to changes to the plot content that 
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionClear")
-## <bytecode: 0x7feacc8db948>
-## <environment: 0x7feacc8e4438>
+## <bytecode: 0x7fa9b53a2520>
+## <environment: 0x7fa9b53a9048>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionClear")  for currently available ones.
 \end{verbatim}
@@ -1709,8 +1745,8 @@ This is used to determine how changes in the upstream transmitters should propag
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionRestricted")
-## <bytecode: 0x7feacc8460f8>
-## <environment: 0x7feacc84d080>
+## <bytecode: 0x7fa9b5312be0>
+## <environment: 0x7fa9b5315c58>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionRestricted")  for currently available ones.
 \end{verbatim}
@@ -1741,8 +1777,8 @@ This usually doesn't need to be specialized.
 ## 
 ## function (x) 
 ## standardGeneric(".multiSelectionInvalidated")
-## <bytecode: 0x7feacc863648>
-## <environment: 0x7feacc867290>
+## <bytecode: 0x7fa9b5332130>
+## <environment: 0x7fa9b5337d78>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".multiSelectionInvalidated")  for currently available ones.
 \end{verbatim}
@@ -1775,8 +1811,8 @@ It can also be used to indicate that the panel does not transmit anything.
 ## 
 ## function (x) 
 ## standardGeneric(".singleSelectionDimension")
-## <bytecode: 0x7feacbee2440>
-## <environment: 0x7feacbee9e20>
+## <bytecode: 0x7fa9b51b5c80>
+## <environment: 0x7fa9b51bd660>
 ## Methods may be defined for arguments: x
 ## Use  showMethods(".singleSelectionDimension")  for currently available ones.
 \end{verbatim}
@@ -1810,8 +1846,8 @@ The identity of the row/column is passed onto other panels to affect their behav
 ## 
 ## function (x, pObjects) 
 ## standardGeneric(".singleSelectionValue")
-## <bytecode: 0x7feacbe883d0>
-## <environment: 0x7feacbe90130>
+## <bytecode: 0x7fa9b515dbd8>
+## <environment: 0x7fa9b5163970>
 ## Methods may be defined for arguments: x, pObjects
 ## Use  showMethods(".singleSelectionValue")  for currently available ones.
 \end{verbatim}
@@ -1842,8 +1878,8 @@ This will also automatically set up some of the more difficult observers if suff
 ## 
 ## function (x, pObjects) 
 ## standardGeneric(".singleSelectionValue")
-## <bytecode: 0x7feacbe883d0>
-## <environment: 0x7feacbe90130>
+## <bytecode: 0x7fa9b515dbd8>
+## <environment: 0x7fa9b5163970>
 ## Methods may be defined for arguments: x, pObjects
 ## Use  showMethods(".singleSelectionValue")  for currently available ones.
 \end{verbatim}
@@ -1863,8 +1899,8 @@ This will also automatically set up some of the more difficult observers if suff
 \hypertarget{server}{%
 \chapter{Application state}\label{server}}
 
-\hypertarget{overview}{%
-\section{Overview}\label{overview}}
+\hypertarget{overview-2}{%
+\section{Overview}\label{overview-2}}
 
 \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{iSEE}} uses global variables to keep track of the application state and to trigger reactive expressions.
 These are passed in the ubiquitous \texttt{pObjects} and \texttt{rObjects} arguments for non-reactive and reactive variables, respectively.
@@ -1926,8 +1962,8 @@ Developers should only use these functions to track updates to the same panel fo
 \hypertarget{developing}{%
 \chapter{Reduced dimension hexbin plot}\label{developing}}
 
-\hypertarget{overview}{%
-\section{Overview}\label{overview}}
+\hypertarget{overview-3}{%
+\section{Overview}\label{overview-3}}
 
 In this example, we will create a panel class to show dimensionality reduction results using a hexbin plot.
 The idea is to improve plotting speed for large datasets by binning points rather than showing each point individually.
@@ -2149,15 +2185,15 @@ We can see the obvious visual differences in the aesthetics between plots as wel
 \hypertarget{dynamic-reduced-dimensions}{%
 \chapter{Dynamic reduced dimensions}\label{dynamic-reduced-dimensions}}
 
-\hypertarget{overview}{%
-\section{Overview}\label{overview}}
+\hypertarget{overview-4}{%
+\section{Overview}\label{overview-4}}
 
 In this case study, we will create a custom panel class to regenerate sample-level PCA coordinates using only a subset of points transmitted as a multiple column selection from another panel.
 We call this a \textbf{dynamic reduced dimension plot}, as it is dynamically recomputing the dimensionality reduction results rather than using pre-computed values in the \texttt{reducedDims()} slot of a \texttt{SingleCellExperiment} object.
 This proposed class is the basis of the \texttt{DynamicReducedDimensionPlot} from the \emph{\href{https://bioconductor.org/packages/3.11/iSEEu}{iSEEu}} package.
 
-\hypertarget{class-basics}{%
-\section{Class basics}\label{class-basics}}
+\hypertarget{class-basics-1}{%
+\section{Class basics}\label{class-basics-1}}
 
 First, we define the basics of our new \texttt{Panel} class.
 As our new class will be showing each sample as a point, we inherit from the \texttt{ColumnDotPlot} virtual class.
@@ -2207,8 +2243,8 @@ We also implement a constructor for instances of this class.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{setting-up-the-interface}{%
-\section{Setting up the interface}\label{setting-up-the-interface}}
+\hypertarget{setting-up-the-interface-1}{%
+\section{Setting up the interface}\label{setting-up-the-interface-1}}
 
 The most basic requirement is to define some methods that describe our new panel in the \texttt{iSEE()} interface.
 This includes defining the full name and desired default color for display purposes:
@@ -2245,8 +2281,8 @@ We then \texttt{paste0} the name of our panel to the name of any parameter to en
 otherwise, multiple \texttt{DynRedDimPlot}s would override each other.
 One can imagine this as a poor man's Shiny module.
 
-\hypertarget{creating-the-observers}{%
-\section{Creating the observers}\label{creating-the-observers}}
+\hypertarget{creating-the-observers-1}{%
+\section{Creating the observers}\label{creating-the-observers-1}}
 
 We specialize \texttt{.createObservers} to define some observers to respond to changes in our new interface elements.
 Note the use of \texttt{callNextMethod()} to ensure that observers of the parent class are also created;
@@ -2335,8 +2371,8 @@ thus avoiding an unnecessary delay from recomputation.
 Doing so requires overriding \texttt{.renderOutput()} to take advantage of the cached contents of the plot,
 so we will omit that here for simplicity.
 
-\hypertarget{in-action}{%
-\section{In action}\label{in-action}}
+\hypertarget{in-action-1}{%
+\section{In action}\label{in-action-1}}
 
 Let's put our new panel to the test.
 We'll use the \texttt{sce} object from Chapter \ref{developing}, which includes some precomputed dimensionality reduction results.
@@ -2370,15 +2406,15 @@ Brushing at any location in the former will then trigger dynamic recompution of 
 \hypertarget{dynamic-differential-expression}{%
 \chapter{Dynamic differential expression}\label{dynamic-differential-expression}}
 
-\hypertarget{overview}{%
-\section{Overview}\label{overview}}
+\hypertarget{overview-5}{%
+\section{Overview}\label{overview-5}}
 
 In this case study, we will create a panel class to dynamically compute differential expression (DE) statistics between the active sample-level selection and the other saved selections from a transmitting panel.
 We will present the results of this computation in a \texttt{DataTable} widget from the \emph{\href{https://CRAN.R-project.org/package=DT}{DT}} package, where each row is a gene and each column is a relevant statistic (\(p\)-value, FDR, log-fold changes, etc.).
 The class proposed here is the basis of the \texttt{DifferentialStatsticsTable} from \emph{\href{https://bioconductor.org/packages/3.11/iSEEu}{iSEEu}}.
 
-\hypertarget{class-basics}{%
-\section{Class basics}\label{class-basics}}
+\hypertarget{class-basics-2}{%
+\section{Class basics}\label{class-basics-2}}
 
 First, we define the basics of our new \texttt{Panel} class.
 As our new class will be showing each gene as a row, we inherit from the \texttt{RowTable} virtual class.
@@ -2425,8 +2461,8 @@ We also define a constructor to conveniently create new instances.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{setting-up-the-interface}{%
-\section{Setting up the interface}\label{setting-up-the-interface}}
+\hypertarget{setting-up-the-interface-2}{%
+\section{Setting up the interface}\label{setting-up-the-interface-2}}
 
 The most basic requirement is to define some methods that describe our new panel in the \texttt{iSEE()} interface.
 This includes defining the full name and desired default color for display purposes:
@@ -2478,8 +2514,8 @@ For \texttt{DGETable}s, we need to flip this around by specializing \texttt{.hid
 A more advanced version of this panel class might consider responding to a row selection by only performing the DE analysis on the selected features.
 In such cases, we would not need to hide \texttt{RowSelectionSource}, though we will leave that as an exercise for the curious.
 
-\hypertarget{creating-the-observers}{%
-\section{Creating the observers}\label{creating-the-observers}}
+\hypertarget{creating-the-observers-2}{%
+\section{Creating the observers}\label{creating-the-observers-2}}
 
 We specialize \texttt{.createObservers} to define some observers to respond to changes in our new interface elements.
 Note the use of \texttt{callNextMethod()} to ensure that observers of the parent class are also created;
@@ -2543,8 +2579,8 @@ Readers may notice that we prefix internal variables with \texttt{.} in our comm
 This ensures that they do not clash with global variables created by \texttt{iSEE()} itself
 (which is not an issue when running the app, but makes things difficult when the code is reported for tracking purposes).
 
-\hypertarget{in-action}{%
-\section{In action}\label{in-action}}
+\hypertarget{in-action-2}{%
+\section{In action}\label{in-action-2}}
 
 Let's put our new panel to the test.
 We'll use the \texttt{sce} object from Chapter \ref{developing}, which includes some precomputed dimensionality reduction results.
@@ -2594,15 +2630,15 @@ We set up an iSEE instance with an existing brush on the former to trigger compu
 \hypertarget{annotated-gene-list}{%
 \chapter{Annotated gene list}\label{annotated-gene-list}}
 
-\hypertarget{overview}{%
-\section{Overview}\label{overview}}
+\hypertarget{overview-6}{%
+\section{Overview}\label{overview-6}}
 
 When given a gene list, we often need to look up the function of the top genes in a search engine.
 This typically involves copy-pasting the gene name or ID into the search box and pressing Enter, which is a pain.
 Instead, we can automate this process in \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{iSEE}} by creating an \textbf{annotated gene table} that dynamically looks up annotation for each gene in the \texttt{rowData} of a \texttt{SummarizedExperiment}.
 
-\hypertarget{class-basics}{%
-\section{Class basics}\label{class-basics}}
+\hypertarget{class-basics-3}{%
+\section{Class basics}\label{class-basics-3}}
 
 First, we define the basics of our new \texttt{Panel} class.
 Our new class will be showing the gene-level metadata, so we inherit from the \texttt{RowDataTable} class that does exactly this.
@@ -2675,8 +2711,8 @@ We also provide a constructor to conveniently create new instances.
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{setting-up-the-interface}{%
-\section{Setting up the interface}\label{setting-up-the-interface}}
+\hypertarget{setting-up-the-interface-3}{%
+\section{Setting up the interface}\label{setting-up-the-interface-3}}
 
 We define the full name and desired default color for display purposes:
 
@@ -2742,8 +2778,8 @@ which is initialized in an opened or closed state depending on the \texttt{AnnoB
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{creating-the-observers}{%
-\section{Creating the observers}\label{creating-the-observers}}
+\hypertarget{creating-the-observers-3}{%
+\section{Creating the observers}\label{creating-the-observers-3}}
 
 We specialize \texttt{.createObservers} to define some observers to respond to changes in our new interface elements.
 Note the use of \texttt{callNextMethod()} to ensure that observers of the parent class are also created.
@@ -2821,8 +2857,8 @@ Observant readers will note that the body of the rendering expression uses \text
 This is intentional as it ensures that we are using the parameter settings from the current state of the app.
 If we used \texttt{x}, we would always be using the parameters from the initial state of the app, which is not what we want.
 
-\hypertarget{in-action}{%
-\section{In action}\label{in-action}}
+\hypertarget{in-action-3}{%
+\section{In action}\label{in-action-3}}
 
 Let's put our new panel to the test using the \texttt{sce} object from Chapter \ref{developing}.
 We set up our \texttt{iSEE} instance such that clicking on any row will bring up the Entrez annotation (if available) for that feature.
@@ -2840,8 +2876,8 @@ It is probably best to click on some well-annotated genes as the set of RIKEN tr
 \hypertarget{gene-ontology-table}{%
 \chapter{Gene ontology table}\label{gene-ontology-table}}
 
-\hypertarget{overview}{%
-\section{Overview}\label{overview}}
+\hypertarget{overview-7}{%
+\section{Overview}\label{overview-7}}
 
 Here, we will construct a table of GO terms where selection of a row in the table
 causes transmission of a multiple selection of gene names.
@@ -2849,8 +2885,8 @@ The aim is to enable us to transmit multiple row selections to other panels base
 This is a fairly involved example of creating a \texttt{Panel} subclass as we cannot easily inherit from an existing subclass; rather, we need to provide all the methods ourselves.
 Readers may also be interested in the fully fledged version of the proposed class in \emph{\href{https://bioconductor.org/packages/3.11/iSEEu}{iSEEu}}.
 
-\hypertarget{class-basics}{%
-\section{Class basics}\label{class-basics}}
+\hypertarget{class-basics-4}{%
+\section{Class basics}\label{class-basics-4}}
 
 First, we define the basics of our new \texttt{GOTable} class.
 This inherits from the virtual base \texttt{Panel} class as it cannot meet any of the contractual requirements of the subclasses,
@@ -2922,8 +2958,8 @@ We then specialize the initialize method to set reasonable defaults and create a
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{setting-up-the-interface}{%
-\section{Setting up the interface}\label{setting-up-the-interface}}
+\hypertarget{setting-up-the-interface-4}{%
+\section{Setting up the interface}\label{setting-up-the-interface-4}}
 
 We define the full name and desired default color for display purposes:
 
@@ -3014,8 +3050,8 @@ We don't actually depend on any parameters of \texttt{x} itself to generate this
 However, one could imagine a more complex case where the \texttt{GOTable} itself responds to a multiple row selection,
 e.g., by subsetting to the gene sets that contain genes in the selected row.
 
-\hypertarget{creating-the-observers}{%
-\section{Creating the observers}\label{creating-the-observers}}
+\hypertarget{creating-the-observers-4}{%
+\section{Creating the observers}\label{creating-the-observers-4}}
 
 We specialize \texttt{.createObservers} to define some observers to respond to changes in our new interface elements.
 This also involves creating an observer to respond to a change in the selection of a \texttt{DataTable} row,
@@ -3125,8 +3161,8 @@ Some effort is involved in making sure that the output table responds to the mem
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{handling-selections}{%
-\section{Handling selections}\label{handling-selections}}
+\hypertarget{handling-selections-1}{%
+\section{Handling selections}\label{handling-selections-1}}
 
 Now for the most important bit - configuring the \texttt{GOTable} to transmit a multiple row selection to other panels.
 This is achieved by specializing a series of \texttt{.multiSelection*()} methods.
@@ -3193,8 +3229,8 @@ Instead, we use the availability information that we previously stored in the \t
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{in-action}{%
-\section{In action}\label{in-action}}
+\hypertarget{in-action-4}{%
+\section{In action}\label{in-action-4}}
 
 Let's put our new panel to the test using the \texttt{sce} object from Chapter \ref{developing}.
 We set up an \texttt{iSEE} instance where clicking on any row in the \texttt{GOTable} will subset \texttt{RowTable1} to only those genes in the corresponding GO term.
