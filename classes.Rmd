@@ -49,10 +49,6 @@ Instances of this class can only transmit single and multiple selections on colu
 The `r class_link("RowTable")` class inherits from the `Table` class and represents all tables where the rows have a one-to-zero-or-one mapping to rows of the `SummarizedExperiment`.
 Instances of this class can only transmit single and multiple selections on rows.
 
-```{r}
-slotNames(getClass("RowTable"))
-```
-
 ## Concrete classes
 
 The `r class_link("ReducedDimensionPlot")` class inherits from the `ColumnDotPlot` class and plots reduced dimension coordinates from an entry of the `reducedDims` in a `SingleCellExperiment`.
