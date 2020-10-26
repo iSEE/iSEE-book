@@ -113,7 +113,7 @@
 
 \title{Extending \emph{iSEE}}
 \author{Kevin Rue-Albrecht, Federico Marini, Charlotte Soneson, and Aaron Lun}
-\date{2020-10-25}
+\date{2020-10-26}
 
 \begin{document}
 \maketitle
@@ -697,99 +697,48 @@ and to define a new method to actually generate the table of interest with said 
 \hypertarget{overview-1}{%
 \section{Overview}\label{overview-1}}
 
-This chapter lists of all generics provided by \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{iSEE}} to implement class-specific behaviors.
-For each generic, we will show its signature and all available methods implemented for subclasses.
-Do not be intimidated; it is rare that it is necessary to define methods for all of the generics shown here.
+This chapter runs through all generics provided by \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{iSEE}} to implement class-specific behaviors.
+More exhaustive documentation about each generic can be obtained in the usual way, e.g., \texttt{?.defineInterface}.
+Do not be intimidated; it is rarely necessary to define methods for all of the generics shown here.
 If your class inherits from an existing \texttt{Panel} subclass, many of these methods will be implemented for free, and all you have to do is to override a handful of methods to achieve the desired customization.
-We recommend skimming over this chapter on the first read to get a feel for the available entry points into the \texttt{Panel} API.
-Once you have a better idea of what your class needs to do, you can obtain exhaustive documentation about each generic in the usual way, e.g., \texttt{?.defineInterface}.
+To this end, examining the \href{https://github.com/iSEE/iSEEu}{R code} underlying the various panels in the downstream \emph{\href{https://bioconductor.org/packages/3.11/iSEEu}{iSEEu}} package can be highly instructive.
+
+\hypertarget{class-basics}{%
+\section{Class basics}\label{class-basics}}
+
+Class names are expected to be formatted with camelCase, e.g., \texttt{ReducedDimensionPlot}.
+Abbreviations are acceptable if they are well-understood, e.g., \texttt{MAPlot}, otherwise full words should be used to describe the class.
+
+If your new class contains new slots beyond those provided by the parent, we suggest defining an \texttt{initialize()} method to specify the defaults for each new slot.
+We ensures that any \texttt{new()} call to create your class will do something sensible, even if not all arguments are explicitly provided.
+We prefer specializing \texttt{initialize()} rather than specifying \texttt{prototype=} as the former provides more flexibility, especially when there are dependencies between parameters.
+Note that this usually requires a \texttt{callNextMethod()} to ensure that initialization of parent slots is also performed.
+
+We also suggest defining an appropriate validity method via \texttt{setValidity()} to ensure that all user-provided arguments for new slots are valid.
+Note that the validity method will not have access to the \texttt{SummarizedExperiment} so you cannot, e.g., check whether a particular feature name exists in the dataset -
+such checks are deferred to the \texttt{.refineParameters()} generic.
+The validity method should only check the sensibility of a \texttt{Panel}'s slot values in isolation.
+
+Finally, we define a lightweight constructor function with the same name as the class.
+This should wrap \texttt{new()} to make it easy to construct a new instance of your class.
 
 \hypertarget{parameter-set-up}{%
 \section{Parameter set-up}\label{parameter-set-up}}
 
+One of the very first tasks performed by \texttt{iSEE()} is to run through the list of provided \texttt{Panel}s to set up constants and parameters.
+This is done before the Shiny session itself is fully launched to ensure that the app is initialized in a valid state.
+
 \href{https://isee.github.io/iSEE/reference/setup-generics.html}{\texttt{.cacheCommonInfo()}} caches common values to be used for all instances of a particular panel class.
 These cached values can be used to, e.g., populate the UI or set up constants to be used in the panel's output.
 This avoids potentially costly re-calculations throughout the lifetime of the \texttt{iSEE()} application.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".cacheCommonInfo"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".cacheCommonInfo" defined from package "iSEE"
-## 
-## function (x, se) 
-## standardGeneric(".cacheCommonInfo")
-## <bytecode: 0x7fa9b5b91608>
-## <environment: 0x7fa9b5bb99d8>
-## Methods may be defined for arguments: x, se
-## Use  showMethods(".cacheCommonInfo")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".cacheCommonInfo"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .cacheCommonInfo (package iSEE)
-## x="ColumnDataTable"
-## x="ColumnDotPlot"
-## x="ComplexHeatmapPlot"
-## x="DotPlot"
-## x="Panel"
-## x="ReducedDimensionPlot"
-## x="RowDataTable"
-## x="RowDotPlot"
-\end{verbatim}
+Note that the cached values are generated only once for a given class and will be applied globally to all instances of that class;
+thus, this method should only be storing class-specific constants.
 
 \href{https://isee.github.io/iSEE/reference/setup-generics.html}{\texttt{.refineParameters()}} edits the parameters of a panel to ensure that they are valid.
 For example, we may need to restrict the choices of a selectize element to some pre-defined possibilities.
-This is run for each panel during the \texttt{iSEE()} application set-up to validate the user-supplied panel configuration.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".refineParameters"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".refineParameters" defined from package "iSEE"
-## 
-## function (x, se) 
-## standardGeneric(".refineParameters")
-## <bytecode: 0x7fa9b525a690>
-## <environment: 0x7fa9b529b010>
-## Methods may be defined for arguments: x, se
-## Use  showMethods(".refineParameters")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".refineParameters"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .refineParameters (package iSEE)
-## x="ColumnDataPlot"
-## x="ColumnDataTable"
-## x="ColumnDotPlot"
-## x="ColumnTable"
-## x="ComplexHeatmapPlot"
-## x="DotPlot"
-## x="FeatureAssayPlot"
-## x="Panel"
-## x="ReducedDimensionPlot"
-## x="RowDataPlot"
-## x="RowDataTable"
-## x="RowDotPlot"
-## x="RowTable"
-## x="SampleAssayPlot"
-\end{verbatim}
+One can consider this generic to be the version of the validity method that has access to the \texttt{SummarizedExperiment},
+and thus can be used to ``correct'' the slot values based on the known set of valid possibilities.
+This generic is run for each panel during the \texttt{iSEE()} application set-up to validate the user-supplied panel configuration.
 
 \hypertarget{defining-the-user-interface}{%
 \section{Defining the user interface}\label{defining-the-user-interface}}
@@ -797,358 +746,77 @@ This is run for each panel during the \texttt{iSEE()} application set-up to vali
 \hypertarget{in-general}{%
 \subsection{In general}\label{in-general}}
 
-\href{https://isee.github.io/iSEE/reference/interface-generics.html}{\texttt{.defineInterface()}} defines the user interface (UI) for a panel, defining all HTML widgets required to modify parameters.
-Parameters should be bundled into collapsible boxes according to their approximate purpose.
-This generic provides the most general mechanism for controlling the panel's interface.
+The next task performed by \texttt{iSEE()} is to define the user interface (UI) for each panel.
+Each panel follows the general structure of having all UI elements contained in a \texttt{box} element with a panel-specific header color.
+It is mandatory that each input UI element is named according to the \texttt{PANEL\_SLOT} format,
+where \texttt{PANEL} is the ``encoded name'' of the panel (see \texttt{?.getEncodedName}) and \texttt{SLOT} is the name of the slot that receives the input.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".defineInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".defineInterface" defined from package "iSEE"
-## 
-## function (x, se, select_info) 
-## standardGeneric(".defineInterface")
-## <bytecode: 0x7fa9b59b1280>
-## <environment: 0x7fa9b59c1cc8>
-## Methods may be defined for arguments: x, se, select_info
-## Use  showMethods(".defineInterface")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".defineInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .defineInterface (package iSEE)
-## x="ColumnDotPlot"
-## x="ComplexHeatmapPlot"
-## x="Panel"
-## x="RowDotPlot"
-\end{verbatim}
+\href{https://isee.github.io/iSEE/reference/interface-generics.html}{\texttt{.defineInterface()}} defines the panel's UI for modifying parameters.
+Widgest should be bundled into collapsible boxes (see \texttt{?collapseBox}) according to their approximate purpose.
+By default, two boxes are created containing data-related and selection-related parameters, though more boxes can be added in subclasses.
+This generic provides the most general mechanism for controlling the panel's UI.
 
 \href{https://isee.github.io/iSEE/reference/interface-generics.html}{\texttt{.defineDataInterface()}} defines the UI for modifying all data-related parameters in a given panel.
 Such parameters are fundamental to the interpretation of the panel's output, as opposed to their aesthetic counterparts.
-This generic allows developers to fine-tune the data UI for subclasses without reimplementing the parent class' \texttt{.defineInterface()}, especially if we wish to re-use the parent's UI for aesthetic parameters.
+This generic allows developers to fine-tune the data UI for subclasses without reimplementing the parent class's \texttt{.defineInterface()},
+especially if we wish to re-use the parent's UI for visual-related parameters.
+As each panel's data input is likely to require customization, this is the interface-related generic that has the greatest need for (non-trivial) specialization.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".defineDataInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".defineDataInterface" defined from package "iSEE"
-## 
-## function (x, se, select_info) 
-## standardGeneric(".defineDataInterface")
-## <bytecode: 0x7fa9b5a05768>
-## <environment: 0x7fa9b5a3cf88>
-## Methods may be defined for arguments: x, se, select_info
-## Use  showMethods(".defineDataInterface")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".defineDataInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .defineDataInterface (package iSEE)
-## x="ColumnDataPlot"
-## x="ComplexHeatmapPlot"
-## x="FeatureAssayPlot"
-## x="Panel"
-## x="ReducedDimensionPlot"
-## x="RowDataPlot"
-## x="SampleAssayPlot"
-\end{verbatim}
+\href{https://isee.github.io/iSEE/reference/interface-generics.html}{\texttt{.defineSelectionEffectInterface()}} defines the UI for controlling the effects of a multiple row/column selection.
+For example, in a \texttt{DotPlot}, this generic could provide UI elements to change the color of all selected points.
+The idea here is to, again, provide a simpler alternative to specializing \texttt{.defineInterface} when only the selection effect needs to be changed in a subclass.
 
 \href{https://isee.github.io/iSEE/reference/interface-generics.html}{\texttt{.hideInterface()}} determines whether certain UI elements should be hidden from the user.
-This allows subclasses to hide easily inappropriate or irrelevant parts of the parent's UI without redefining \texttt{.defineInterface()}.
+This allows subclasses to hide easily inappropriate or irrelevant parts of the parent's UI, again without redefining \texttt{.defineInterface()} in its entirety.
 For example, we can remove row selection UI elements for panels that only accept column selections.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".hideInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\href{https://isee.github.io/iSEE/reference/getEncodedName.html}{\texttt{.fullName()}} returns the full name of a panel class.
+This is typically a more English-readable version of the camelCase'd class name.
 
-\begin{verbatim}
-## standardGeneric for ".hideInterface" defined from package "iSEE"
-## 
-## function (x, field) 
-## standardGeneric(".hideInterface")
-## <bytecode: 0x7fa9b5427b78>
-## <environment: 0x7fa9b543a4a8>
-## Methods may be defined for arguments: x, field
-## Use  showMethods(".hideInterface")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".hideInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .hideInterface (package iSEE)
-## x="ColumnDataTable"
-## x="ColumnDotPlot"
-## x="ColumnTable"
-## x="ComplexHeatmapPlot"
-## x="Panel"
-## x="RowDataTable"
-## x="RowDotPlot"
-## x="RowTable"
-## x="Table"
-\end{verbatim}
+\href{https://isee.github.io/iSEE/reference/getPanelColor.html}{\texttt{.panelColor()}} is a very important generic that returns the color associated with the class.
+This should be sufficiently dark that white text is visible on a background using this color.
 
 \hypertarget{the-dotplot-visual-interface}{%
 \subsection{\texorpdfstring{The \texttt{DotPlot} visual interface}{The DotPlot visual interface}}\label{the-dotplot-visual-interface}}
 
-\href{https://isee.github.io/iSEE/reference/visual-parameters-generics.html}{\texttt{.defineVisualColorInterface()}} defines the UI for color-related visual parameters in a \texttt{DotPlot} subclass.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".defineVisualColorInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".defineVisualColorInterface" defined from package "iSEE"
-## 
-## function (x, se, select_info) 
-## standardGeneric(".defineVisualColorInterface")
-## <bytecode: 0x7fa9b59304f0>
-## <environment: 0x7fa9b5960f98>
-## Methods may be defined for arguments: x, se, select_info
-## Use  showMethods(".defineVisualColorInterface")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".defineVisualColorInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .defineVisualColorInterface (package iSEE)
-## x="ColumnDotPlot"
-## x="RowDotPlot"
-\end{verbatim}
-
-\href{https://isee.github.io/iSEE/reference/visual-parameters-generics.html}{\texttt{.defineVisualFacetInterface()}} defines the UI for facet-related visual parameters in a \texttt{DotPlot} subclass.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".defineVisualFacetInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".defineVisualFacetInterface" defined from package "iSEE"
-## 
-## function (x, se) 
-## standardGeneric(".defineVisualFacetInterface")
-## <bytecode: 0x7fa9b5901288>
-## <environment: 0x7fa9b590acc0>
-## Methods may be defined for arguments: x, se
-## Use  showMethods(".defineVisualFacetInterface")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".defineVisualFacetInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .defineVisualFacetInterface (package iSEE)
-## x="ColumnDotPlot"
-## x="RowDotPlot"
-\end{verbatim}
-
-\href{https://isee.github.io/iSEE/reference/visual-parameters-generics.html}{\texttt{.defineVisualShapeInterface()}} defines the UI for shape-related visual parameters in a \texttt{DotPlot} subclass.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".defineVisualShapeInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".defineVisualShapeInterface" defined from package "iSEE"
-## 
-## function (x, se) 
-## standardGeneric(".defineVisualShapeInterface")
-## <bytecode: 0x7fa9b588a110>
-## <environment: 0x7fa9b5892e40>
-## Methods may be defined for arguments: x, se
-## Use  showMethods(".defineVisualShapeInterface")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".defineVisualShapeInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .defineVisualShapeInterface (package iSEE)
-## x="ColumnDotPlot"
-## x="RowDotPlot"
-\end{verbatim}
-
-\href{https://isee.github.io/iSEE/reference/visual-parameters-generics.html}{\texttt{.defineVisualSizeInterface()}} defines the UI for size-related visual parameters in a \texttt{DotPlot} subclass.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".defineVisualSizeInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".defineVisualSizeInterface" defined from package "iSEE"
-## 
-## function (x, se) 
-## standardGeneric(".defineVisualSizeInterface")
-## <bytecode: 0x7fa9b584af88>
-## <environment: 0x7fa9b586cb58>
-## Methods may be defined for arguments: x, se
-## Use  showMethods(".defineVisualSizeInterface")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".defineVisualSizeInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .defineVisualSizeInterface (package iSEE)
-## x="ColumnDotPlot"
-## x="RowDotPlot"
-\end{verbatim}
-
-\href{https://isee.github.io/iSEE/reference/visual-parameters-generics.html}{\texttt{.defineVisualTextInterface()}} defines the UI for text-related visual parameters in a \texttt{DotPlot} subclass.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".defineVisualTextInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".defineVisualTextInterface" defined from package "iSEE"
-## 
-## function (x, se) 
-## standardGeneric(".defineVisualTextInterface")
-## <bytecode: 0x7fa9b58364d0>
-## <environment: 0x7fa9b5837740>
-## Methods may be defined for arguments: x, se
-## Use  showMethods(".defineVisualTextInterface")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".defineVisualTextInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .defineVisualTextInterface (package iSEE)
-## x="DotPlot"
-\end{verbatim}
-
-\href{https://isee.github.io/iSEE/reference/visual-parameters-generics.html}{\texttt{.defineVisualOtherInterface()}} defines the UI for other visual parameters in a \texttt{DotPlot} subclass.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".defineVisualOtherInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".defineVisualOtherInterface" defined from package "iSEE"
-## 
-## function (x) 
-## standardGeneric(".defineVisualOtherInterface")
-## <bytecode: 0x7fa9b58df4d8>
-## <environment: 0x7fa9b58e3008>
-## Methods may be defined for arguments: x
-## Use  showMethods(".defineVisualOtherInterface")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".defineVisualOtherInterface"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .defineVisualOtherInterface (package iSEE)
-## x="DotPlot"
-\end{verbatim}
-
-These generics allow developers to change UI elements for a subclass without completely reimplementing \texttt{.defineInterface()}.
+For \texttt{DotPlot} subclasses, the default interface automatically includes another collapsible box containing visual-related parameters.
+We provide a number of additional API points to change the visual-related UI for a subclass without completely reimplementing \texttt{.defineInterface()}.
 Of course, if we have already specialized \texttt{.defineInterface()}, then there's no need to define methods for these generics.
+Similarly, these generics do not need to be specialized if the defaults are adequate.
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://isee.github.io/iSEE/reference/visual-parameters-generics.html}{\texttt{.defineVisualColorInterface()}} for color-related parameters.
+\item
+  \href{https://isee.github.io/iSEE/reference/visual-parameters-generics.html}{\texttt{.defineVisualFacetInterface()}} for facet-related parameters.
+\item
+  \href{https://isee.github.io/iSEE/reference/visual-parameters-generics.html}{\texttt{.defineVisualShapeInterface()}} for shape-related parameters.
+\item
+  \href{https://isee.github.io/iSEE/reference/visual-parameters-generics.html}{\texttt{.defineVisualSizeInterface()}} for size-related parameters.
+\item
+  \href{https://isee.github.io/iSEE/reference/visual-parameters-generics.html}{\texttt{.defineVisualPointInterface()}} for other point-related parameters.
+\item
+  \href{https://isee.github.io/iSEE/reference/visual-parameters-generics.html}{\texttt{.defineVisualTextInterface()}} for text-related parameters.
+\item
+  \href{https://isee.github.io/iSEE/reference/visual-parameters-generics.html}{\texttt{.defineVisualOtherInterface()}} for other parameters.
+\end{itemize}
 
 \hypertarget{creating-observers}{%
 \section{Creating observers}\label{creating-observers}}
 
-\href{https://isee.github.io/iSEE/reference/observer-generics.html}{\texttt{.createObservers()}} sets up Shiny observers for the current session.
+Once the interface is defined, \texttt{iSEE()} runs through all panels to set up its specific observers.
+This is done once during app initialization and again whenever new panels are interactively added by the user.
+
+\href{https://isee.github.io/iSEE/reference/observer-generics.html}{\texttt{.createObservers()}} sets up Shiny observers for the panel in the current session.
 This is the workhorse function to ensure that the panel actually responds to user input.
-Developers can define arbitrarily complex observer logic here as long as it is self-contained within a single panel.
-(Interactive mechanics that involve communication between panels is handled elsewhere.)
+Developers can define arbitrarily complex observer logic here as long as it is self-contained within a single panel -
+interactive mechanics that involve communication between panels are handled elsewhere.
+One should also remember to call \texttt{callNextMethod()} to ensure that the parent class's observers are also defined.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".createObservers"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## nonstandardGenericFunction for ".createObservers" defined from package "iSEE"
-## 
-## function (x, se, input, session, pObjects, rObjects) 
-## {
-##     standardGeneric(".createObservers")
-## }
-## <bytecode: 0x7fa9b5aa2ef0>
-## <environment: 0x7fa9b5ae1dd8>
-## Methods may be defined for arguments: x, se, input, session, pObjects, rObjects
-## Use  showMethods(".createObservers")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".createObservers"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .createObservers (package iSEE)
-## x="ColumnDataPlot"
-## x="ColumnDotPlot"
-## x="ColumnTable"
-## x="ComplexHeatmapPlot"
-## x="DotPlot"
-## x="FeatureAssayPlot"
-## x="Panel"
-## x="ReducedDimensionPlot"
-## x="RowDataPlot"
-## x="RowDotPlot"
-## x="RowTable"
-## x="SampleAssayPlot"
-## x="Table"
-\end{verbatim}
+Note that, unlike typical \emph{\href{https://CRAN.R-project.org/package=shiny}{shiny}} applications, the \texttt{input} never directly interacts with the \texttt{output}.
+All observers in an \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{iSEE}} panel are expected to change the application's ``memory'' upon changes to the \texttt{input} - this concept is discussed more in Chapter \ref{server}.
+Most developers can ignore this subtlety by using \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{iSEE}}-provided utilities to set up the observers rather than calling \texttt{observeEvent()} directly.
 
 \hypertarget{defining-panel-outputs}{%
 \section{Defining panel outputs}\label{defining-panel-outputs}}
@@ -1156,409 +824,56 @@ Developers can define arbitrarily complex observer logic here as long as it is s
 \hypertarget{in-general-1}{%
 \subsection{In general}\label{in-general-1}}
 
-\href{https://isee.github.io/iSEE/reference/output-generics.html}{\texttt{.defineOutput()}} defines the interface element containing the visual output of the panel.
+Finally, \texttt{iSEE()} runs through each panel to define its output elements and rendering expressions.
+When the app appears on the browser, each rendering expression will be triggered to generate the desired visual output.
+Panels transmitting multiple selections will also have their output explicitly generated beforehand by \texttt{iSEE()} so that downstream panels can be initialized properly.
+
+\href{https://isee.github.io/iSEE/reference/output-generics.html}{\texttt{.defineOutput()}} defines the interface element containing the output of the panel.
 Examples include \texttt{plotOutput()} for plots or \texttt{dataTableOutput()} for tables.
 Note that this generic only defines the output in the \texttt{iSEE()} interface; it does not control the rendering.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".defineOutput"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## nonstandardGenericFunction for ".defineOutput" defined from package "iSEE"
-## 
-## function (x, ...) 
-## {
-##     standardGeneric(".defineOutput")
-## }
-## <bytecode: 0x7fa9b597da20>
-## <environment: 0x7fa9b5988078>
-## Methods may be defined for arguments: x
-## Use  showMethods(".defineOutput")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".defineOutput"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .defineOutput (package iSEE)
-## x="ComplexHeatmapPlot"
-## x="DotPlot"
-## x="Table"
-\end{verbatim}
-
 \href{https://isee.github.io/iSEE/reference/output-generics.html}{\texttt{.renderOutput()}} assigns a reactive expression to populate the output interface element with content.
 This is usually as simple as calling functions like \texttt{renderPlotOutput()} with an appropriate rendering expression containing a call to \texttt{.retrieveOutput()}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".renderOutput"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## nonstandardGenericFunction for ".renderOutput" defined from package "iSEE"
-## 
-## function (x, se, ..., output, pObjects, rObjects) 
-## {
-##     standardGeneric(".renderOutput")
-## }
-## <bytecode: 0x7fa9b51e34a0>
-## <environment: 0x7fa9b51fa7e0>
-## Methods may be defined for arguments: x, se, output, pObjects, rObjects
-## Use  showMethods(".renderOutput")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".renderOutput"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .renderOutput (package iSEE)
-## x="ComplexHeatmapPlot"
-## x="DotPlot"
-## x="Panel"
-## x="Table"
-\end{verbatim}
 
 \href{https://isee.github.io/iSEE/reference/output-generics.html}{\texttt{.generateOutput()}} actually generates the panel output, be it a plot or table or something more exotic.
 This is usually the real function that does all the work, being called by \texttt{.retrieveOutput()} prior to rendering the output.
 Some effort is required here to ensure that the commands used to generate the output are also captured.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".generateOutput"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## nonstandardGenericFunction for ".generateOutput" defined from package "iSEE"
-## 
-## function (x, se, ..., all_memory, all_contents) 
-## {
-##     standardGeneric(".generateOutput")
-## }
-## <bytecode: 0x7fa9b549de08>
-## <environment: 0x7fa9b54d2868>
-## Methods may be defined for arguments: x, se, all_memory, all_contents
-## Use  showMethods(".generateOutput")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".generateOutput"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .generateOutput (package iSEE)
-## x="ComplexHeatmapPlot"
-## x="DotPlot"
-## x="Table"
-\end{verbatim}
-
 \href{https://isee.github.io/iSEE/reference/output-generics.html}{\texttt{.exportOutput()}} converts the panel output into a form that is downloadable, such as a PDF file for plots or CSVs for tables.
 This is called whenever the user requests a download of the panel outputs.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".exportOutput"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## nonstandardGenericFunction for ".exportOutput" defined from package "iSEE"
-## 
-## function (x, se, all_memory, all_contents) 
-## {
-##     standardGeneric(".exportOutput")
-## }
-## <bytecode: 0x7fa9b5808b38>
-## <environment: 0x7fa9b5817d28>
-## Methods may be defined for arguments: x, se, all_memory, all_contents
-## Use  showMethods(".exportOutput")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".exportOutput"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .exportOutput (package iSEE)
-## x="DotPlot"
-## x="Panel"
-## x="Table"
-\end{verbatim}
 
 \hypertarget{for-dotplots}{%
 \subsection{\texorpdfstring{For \texttt{DotPlot}s}{For DotPlots}}\label{for-dotplots}}
 
-\href{https://isee.github.io/iSEE/reference/plot-generics.html}{\texttt{.generateDotPlot()}} creates the \texttt{ggplot} object for \texttt{DotPlot} subclasses.
-This is called internally by the \texttt{DotPlot} method for \texttt{.generateOutput()} to create the relevant output.
-Developers of \texttt{DotPlot} subclasses can specialize this generic to avoid having to reimplement \texttt{.generateOutput()} (and the associated data management therein).
+For \texttt{DotPlot}s, additional generics are provided to customize specific aspects of the output.
+These can be specialized to achieve the desired output without rewriting \texttt{.generateOutput()} in its entirety.
+Of course, these are all optional and can be left as the defaults if those are satisfactory.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".generateDotPlot"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".generateDotPlot" defined from package "iSEE"
-## 
-## function (x, labels, envir) 
-## standardGeneric(".generateDotPlot")
-## <bytecode: 0x7fa9b554e7e0>
-## <environment: 0x7fa9b555a1f8>
-## Methods may be defined for arguments: x, labels, envir
-## Use  showMethods(".generateDotPlot")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".generateDotPlot"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .generateDotPlot (package iSEE)
-## x="DotPlot"
-\end{verbatim}
+\href{https://isee.github.io/iSEE/reference/plot-generics.html}{\texttt{.generateDotPlot()}} creates the \texttt{ggplot} object for \texttt{DotPlot} subclasses, given a \texttt{data.frame} of data inputs.
+Developers can specialize this generic if they only need to change the visualization while continuing to use the default data management.
 
 \href{https://isee.github.io/iSEE/reference/plot-generics.html}{\texttt{.generateDotPlotData()}} creates the \texttt{data.frame} that is used by \texttt{.generateDotPlot()}.
-This allows developers to change the data setup for a \texttt{DotPlot} subclass without having to even specialize \texttt{.generateDotPlot()}, provided they are happy with the default \texttt{DotPlot} aesthetics.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".generateDotPlotData"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".generateDotPlotData" defined from package "iSEE"
-## 
-## function (x, envir) 
-## standardGeneric(".generateDotPlotData")
-## <bytecode: 0x7fa9b550a300>
-## <environment: 0x7fa9b55323b8>
-## Methods may be defined for arguments: x, envir
-## Use  showMethods(".generateDotPlotData")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".generateDotPlotData"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .generateDotPlotData (package iSEE)
-## x="ColumnDataPlot"
-## x="FeatureAssayPlot"
-## x="ReducedDimensionPlot"
-## x="RowDataPlot"
-## x="SampleAssayPlot"
-\end{verbatim}
+This allows developers to change the data setup for a \texttt{DotPlot} subclass without having to specialize \texttt{.generateDotPlot()}, if they are satisfied with the default \texttt{DotPlot} aesthetics.
 
 \href{https://isee.github.io/iSEE/reference/plot-generics.html}{\texttt{.prioritizeDotPlotData()}} determines how points should be prioritized during overplotting.
-This usually doesn't need to be specialized.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".prioritizeDotPlotData"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".prioritizeDotPlotData" defined from package "iSEE"
-## 
-## function (x, envir) 
-## standardGeneric(".prioritizeDotPlotData")
-## <bytecode: 0x7fa9b52b5478>
-## <environment: 0x7fa9b52bb018>
-## Methods may be defined for arguments: x, envir
-## Use  showMethods(".prioritizeDotPlotData")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".prioritizeDotPlotData"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .prioritizeDotPlotData (package iSEE)
-## x="DotPlot"
-\end{verbatim}
+This usually doesn't need to be specialized but can be helpful if some points are more important than others (e.g., DE genes versus non-DE genes in a volcano plot).
 
 \href{https://isee.github.io/iSEE/reference/plot-generics.html}{\texttt{.colorByNoneDotPlotField()}} and \href{https://isee.github.io/iSEE/reference/plot-generics.html}{\texttt{.colorByNoneDotPlotScale()}} define the default color scale when \texttt{ColorBy="None"}.
-This usually doesn't need to be specialized.
+This usually doesn't need to be specialized but can be helpful, e.g., to change the color of DE genes according to the sign of the log-fold change.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".colorByNoneDotPlotField"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".colorByNoneDotPlotField" defined from package "iSEE"
-## 
-## function (x) 
-## standardGeneric(".colorByNoneDotPlotField")
-## <bytecode: 0x7fa9b5b4e9b0>
-## <environment: 0x7fa9b5b525f8>
-## Methods may be defined for arguments: x
-## Use  showMethods(".colorByNoneDotPlotField")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".colorByNoneDotPlotField"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .colorByNoneDotPlotField (package iSEE)
-## x="DotPlot"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".colorByNoneDotPlotScale"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".colorByNoneDotPlotScale" defined from package "iSEE"
-## 
-## function (x) 
-## standardGeneric(".colorByNoneDotPlotScale")
-## <bytecode: 0x7fa9b5b34190>
-## <environment: 0x7fa9b5b37dd8>
-## Methods may be defined for arguments: x
-## Use  showMethods(".colorByNoneDotPlotScale")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".colorByNoneDotPlotScale"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .colorByNoneDotPlotScale (package iSEE)
-## x="DotPlot"
-\end{verbatim}
-
-\hypertarget{for-metadata-dotplots}{%
-\subsection{\texorpdfstring{For metadata \texttt{DotPlot}s}{For metadata DotPlots}}\label{for-metadata-dotplots}}
-
-\href{https://isee.github.io/iSEE/reference/metadata-plot-generics.html}{\texttt{.allowableYAxisChoices()}} and \href{https://isee.github.io/iSEE/reference/metadata-plot-generics.html}{\texttt{.allowableXAxisChoices()}} specifies the acceptable fields to put on the x- or y-axes of \texttt{ColumnDataPlot} or \texttt{RowDataPlot} subclasses.
+\href{https://isee.github.io/iSEE/reference/metadata-plot-generics.html}{\texttt{.allowableYAxisChoices()}} and \href{https://isee.github.io/iSEE/reference/metadata-plot-generics.html}{\texttt{.allowableXAxisChoices()}} specifies the acceptable fields for the x- or y-axes of \texttt{ColumnDataPlot} or \texttt{RowDataPlot} subclasses.
 This is typically used to constrain the choices for customized panels that only accept certain column names or types.
 For example, a hypothetical MA plot panel would only accept log-fold changes on the y-axis.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".allowableYAxisChoices"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".allowableYAxisChoices" defined from package "iSEE"
-## 
-## function (x, se) 
-## standardGeneric(".allowableYAxisChoices")
-## <bytecode: 0x7fa9b5bd3268>
-## <environment: 0x7fa9b5bd9b98>
-## Methods may be defined for arguments: x, se
-## Use  showMethods(".allowableYAxisChoices")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".allowableYAxisChoices"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .allowableYAxisChoices (package iSEE)
-## x="ColumnDataPlot"
-## x="RowDataPlot"
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".allowableXAxisChoices"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".allowableXAxisChoices" defined from package "iSEE"
-## 
-## function (x, se) 
-## standardGeneric(".allowableXAxisChoices")
-## <bytecode: 0x7fa9b5633828>
-## <environment: 0x7fa9b563c078>
-## Methods may be defined for arguments: x, se
-## Use  showMethods(".allowableXAxisChoices")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".allowableXAxisChoices"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .allowableXAxisChoices (package iSEE)
-## x="ColumnDataPlot"
-## x="RowDataPlot"
-\end{verbatim}
 
 \hypertarget{for-tables}{%
 \subsection{\texorpdfstring{For \texttt{Table}s}{For Tables}}\label{for-tables}}
 
+For \texttt{Table}s, the most important aspect is the generation of the underlying \texttt{data.frame}.
+This can be customized without requiring the developer to rewrite the \emph{\href{https://CRAN.R-project.org/package=DT}{DT}}-related rendering of the table.
+
 \href{https://isee.github.io/iSEE/reference/table-generics.html}{\texttt{.generateTable()}} creates the \texttt{data.frame} that is rendered into the table widget for \texttt{Table} subclasses.
 Each row of the \texttt{data.frame} is generally expected to correspond to a row or column of the dataset.
-If this is specialized, there is usually no need to specialize \texttt{.generateOutput()}.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".generateTable"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".generateTable" defined from package "iSEE"
-## 
-## function (x, envir) 
-## standardGeneric(".generateTable")
-## <bytecode: 0x7fa9b5458958>
-## <environment: 0x7fa9b54695d8>
-## Methods may be defined for arguments: x, envir
-## Use  showMethods(".generateTable")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".generateTable"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .generateTable (package iSEE)
-## x="ColumnDataTable"
-## x="RowDataTable"
-\end{verbatim}
+If this is specialized, there is usually no need to specialize \texttt{.generateOutput()} for such subclasses.
 
 \hypertarget{handling-selections}{%
 \section{Handling selections}\label{handling-selections}}
@@ -1566,335 +881,56 @@ If this is specialized, there is usually no need to specialize \texttt{.generate
 \hypertarget{multiple}{%
 \subsection{Multiple}\label{multiple}}
 
+Some panels can transmit a selection of multiple row or columns (never both) to other panels.
+\texttt{iSEE()} determines whether a particular panel is a multiple selection transmitter along the rows or columns (or neither) by interrogating a suite of generics.
+Most new panels do not have to care about this if they inherit from \texttt{RowDotPlot}, \texttt{RowTable}, \texttt{ColumnDotPlot} or \texttt{ColumnTable};
+however, more custom panels will have to specialize these generics manually if they intend to transmit multiple selections.
+
 \href{https://isee.github.io/iSEE/reference/multi-select-generics.html}{\texttt{.multiSelectionDimension()}} specifies whether the panel transmits multiple selections along the rows or columns.
 It can also be used to indicate that the panel does not transmit anything.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".multiSelectionDimension"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".multiSelectionDimension" defined from package "iSEE"
-## 
-## function (x) 
-## standardGeneric(".multiSelectionDimension")
-## <bytecode: 0x7fa9b535d290>
-## <environment: 0x7fa9b5362ca8>
-## Methods may be defined for arguments: x
-## Use  showMethods(".multiSelectionDimension")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".multiSelectionDimension"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .multiSelectionDimension (package iSEE)
-## x="ColumnDotPlot"
-## x="ColumnTable"
-## x="Panel"
-## x="RowDotPlot"
-## x="RowTable"
-\end{verbatim}
 
 \href{https://isee.github.io/iSEE/reference/multi-select-generics.html}{\texttt{.multiSelectionActive()}} returns the parameters that define the ``active'' multiple selection in the current panel.
 This is defined as the selection that the user can actively change by interacting with the panel.
 (In contrast, the ``saved'' selections are fixed and can only be deleted.)
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".multiSelectionActive"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".multiSelectionActive" defined from package "iSEE"
-## 
-## function (x) 
-## standardGeneric(".multiSelectionActive")
-## <bytecode: 0x7fa9b53e9c70>
-## <environment: 0x7fa9b53f2958>
-## Methods may be defined for arguments: x
-## Use  showMethods(".multiSelectionActive")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".multiSelectionActive"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .multiSelectionActive (package iSEE)
-## x="DotPlot"
-## x="Panel"
-## x="Table"
-\end{verbatim}
-
 \href{https://isee.github.io/iSEE/reference/multi-select-generics.html}{\texttt{.multiSelectionCommands()}} creates the character vector of row or column names for a multiple selection in the current panel.
 More specifically, it returns the commands that will then be evaluated to generate such character vectors.
 The identity of the selected rows/columns will ultimately be transmitted to other panels to affect their behavior.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".multiSelectionCommands"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".multiSelectionCommands" defined from package "iSEE"
-## 
-## function (x, index) 
-## standardGeneric(".multiSelectionCommands")
-## <bytecode: 0x7fa9b5380af0>
-## <environment: 0x7fa9b5387820>
-## Methods may be defined for arguments: x, index
-## Use  showMethods(".multiSelectionCommands")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".multiSelectionCommands"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .multiSelectionCommands (package iSEE)
-## x="DotPlot"
-## x="Table"
-\end{verbatim}
-
 \href{https://isee.github.io/iSEE/reference/multi-select-generics.html}{\texttt{.multiSelectionAvailable()}} reports how many total points are available for selection in the current panel.
 This is used for reporting ``percent selected'' statistics below each panel.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".multiSelectionAvailable"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".multiSelectionAvailable" defined from package "iSEE"
-## 
-## function (x, contents) 
-## standardGeneric(".multiSelectionAvailable")
-## <bytecode: 0x7fa9b53c3408>
-## <environment: 0x7fa9b53c8de8>
-## Methods may be defined for arguments: x, contents
-## Use  showMethods(".multiSelectionAvailable")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".multiSelectionAvailable"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .multiSelectionAvailable (package iSEE)
-## x="Panel"
-\end{verbatim}
 
 \href{https://isee.github.io/iSEE/reference/multi-select-generics.html}{\texttt{.multiSelectionClear()}} eliminates the active multiple selection in the current panel.
 This is used to wipe selections in response to changes to the plot content that cause those selections to be invalid.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".multiSelectionClear"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".multiSelectionClear" defined from package "iSEE"
-## 
-## function (x) 
-## standardGeneric(".multiSelectionClear")
-## <bytecode: 0x7fa9b53a2520>
-## <environment: 0x7fa9b53a9048>
-## Methods may be defined for arguments: x
-## Use  showMethods(".multiSelectionClear")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".multiSelectionClear"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .multiSelectionClear (package iSEE)
-## x="DotPlot"
-## x="Panel"
-\end{verbatim}
-
 \href{https://isee.github.io/iSEE/reference/multi-select-generics.html}{\texttt{.multiSelectionRestricted()}} indicates whether the current panel's data should be restricted to the rows/columns that it receives from an incoming multiple selection.
 This is used to determine how changes in the upstream transmitters should propagate through to the current panel's children.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".multiSelectionRestricted"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".multiSelectionRestricted" defined from package "iSEE"
-## 
-## function (x) 
-## standardGeneric(".multiSelectionRestricted")
-## <bytecode: 0x7fa9b5312be0>
-## <environment: 0x7fa9b5315c58>
-## Methods may be defined for arguments: x
-## Use  showMethods(".multiSelectionRestricted")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".multiSelectionRestricted"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .multiSelectionRestricted (package iSEE)
-## x="DotPlot"
-## x="Panel"
-\end{verbatim}
 
 \href{https://isee.github.io/iSEE/reference/multi-select-generics.html}{\texttt{.multiSelectionInvalidated()}} indicates whether the current panel is invalidated when it receives a new multiple selection.
 This usually doesn't need to be specialized.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".multiSelectionInvalidated"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".multiSelectionInvalidated" defined from package "iSEE"
-## 
-## function (x) 
-## standardGeneric(".multiSelectionInvalidated")
-## <bytecode: 0x7fa9b5332130>
-## <environment: 0x7fa9b5337d78>
-## Methods may be defined for arguments: x
-## Use  showMethods(".multiSelectionInvalidated")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".multiSelectionInvalidated"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .multiSelectionInvalidated (package iSEE)
-## x="Panel"
-\end{verbatim}
-
 \hypertarget{single}{%
 \subsection{Single}\label{single}}
+
+Some panels can transmit a identity of a single feature or sample to other panels.
+\texttt{iSEE()} determines whether a particular panel is a single selection transmitter along the features or samples (or neither) by interrogating a suite of generics.
+Most new panels do not have to care about this if they inherit from \texttt{RowDotPlot}, \texttt{RowTable}, \texttt{ColumnDotPlot} or \texttt{ColumnTable};
+however, more custom panels will have to specialize these generics manually if they intend to transmit single selections.
 
 \href{https://isee.github.io/iSEE/reference/single-select-generics.html}{\texttt{.singleSelectionDimension()}} specifies whether the panel transmits single selections of a row or column.
 It can also be used to indicate that the panel does not transmit anything.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".singleSelectionDimension"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".singleSelectionDimension" defined from package "iSEE"
-## 
-## function (x) 
-## standardGeneric(".singleSelectionDimension")
-## <bytecode: 0x7fa9b51b5c80>
-## <environment: 0x7fa9b51bd660>
-## Methods may be defined for arguments: x
-## Use  showMethods(".singleSelectionDimension")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".singleSelectionDimension"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .singleSelectionDimension (package iSEE)
-## x="ColumnDotPlot"
-## x="ColumnTable"
-## x="Panel"
-## x="RowDotPlot"
-## x="RowTable"
-\end{verbatim}
-
 \href{https://isee.github.io/iSEE/reference/single-select-generics.html}{\texttt{.singleSelectionValue()}} determines the row or column that has been selected in the current panel.
 The identity of the row/column is passed onto other panels to affect their behavior.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".singleSelectionValue"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## standardGeneric for ".singleSelectionValue" defined from package "iSEE"
-## 
-## function (x, pObjects) 
-## standardGeneric(".singleSelectionValue")
-## <bytecode: 0x7fa9b515dbd8>
-## <environment: 0x7fa9b5163970>
-## Methods may be defined for arguments: x, pObjects
-## Use  showMethods(".singleSelectionValue")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".singleSelectionValue"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .singleSelectionValue (package iSEE)
-## x="DotPlot"
-## x="Table"
-\end{verbatim}
 
 \href{https://isee.github.io/iSEE/reference/single-select-generics.html}{\texttt{.singleSelectionSlots()}} determines how the current panel should respond to single selections from other panels.
 This will also automatically set up some of the more difficult observers if sufficient information is supplied by the class.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{getGeneric}\NormalTok{(}\StringTok{".singleSelectionValue"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+\hypertarget{miscellaneous}{%
+\section{Miscellaneous}\label{miscellaneous}}
 
-\begin{verbatim}
-## standardGeneric for ".singleSelectionValue" defined from package "iSEE"
-## 
-## function (x, pObjects) 
-## standardGeneric(".singleSelectionValue")
-## <bytecode: 0x7fa9b515dbd8>
-## <environment: 0x7fa9b5163970>
-## Methods may be defined for arguments: x, pObjects
-## Use  showMethods(".singleSelectionValue")  for currently available ones.
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{showMethods}\NormalTok{(}\StringTok{".singleSelectionValue"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## Function: .singleSelectionValue (package iSEE)
-## x="DotPlot"
-## x="Table"
-\end{verbatim}
+\href{https://isee.github.io/iSEE/reference/documentation-generics.html}{\texttt{.definePanelTour()}} defines an \emph{\href{https://CRAN.R-project.org/package=rintrojs}{rintrojs}} tour for the functionalities of the current panel.
+This guides users through a short tour of the current panel's most important features, reducing the need to consult external documentation.
 
 \hypertarget{server}{%
 \chapter{Application state}\label{server}}
@@ -1970,8 +1006,8 @@ The idea is to improve plotting speed for large datasets by binning points rathe
 Astute readers will note that the proposed class is the same as the \texttt{ReducedDimensionHexPlot} from \emph{\href{https://bioconductor.org/packages/3.11/iSEEu}{iSEEu}}.
 This chapter will describe the most relevant aspects of the development process to create a reasonably functional class.
 
-\hypertarget{class-basics}{%
-\section{Class basics}\label{class-basics}}
+\hypertarget{class-basics-1}{%
+\section{Class basics}\label{class-basics-1}}
 
 The choice of a parent class depends on the properties that we want that new panel class to start with.
 In this case, to create a panel that inherits all the functionality of the \texttt{ReducedDimensionPlot} panel type, we simply define a new class that extends that class.
@@ -2192,8 +1228,8 @@ In this case study, we will create a custom panel class to regenerate sample-lev
 We call this a \textbf{dynamic reduced dimension plot}, as it is dynamically recomputing the dimensionality reduction results rather than using pre-computed values in the \texttt{reducedDims()} slot of a \texttt{SingleCellExperiment} object.
 This proposed class is the basis of the \texttt{DynamicReducedDimensionPlot} from the \emph{\href{https://bioconductor.org/packages/3.11/iSEEu}{iSEEu}} package.
 
-\hypertarget{class-basics-1}{%
-\section{Class basics}\label{class-basics-1}}
+\hypertarget{class-basics-2}{%
+\section{Class basics}\label{class-basics-2}}
 
 First, we define the basics of our new \texttt{Panel} class.
 As our new class will be showing each sample as a point, we inherit from the \texttt{ColumnDotPlot} virtual class.
@@ -2413,8 +1449,8 @@ In this case study, we will create a panel class to dynamically compute differen
 We will present the results of this computation in a \texttt{DataTable} widget from the \emph{\href{https://CRAN.R-project.org/package=DT}{DT}} package, where each row is a gene and each column is a relevant statistic (\(p\)-value, FDR, log-fold changes, etc.).
 The class proposed here is the basis of the \texttt{DifferentialStatsticsTable} from \emph{\href{https://bioconductor.org/packages/3.11/iSEEu}{iSEEu}}.
 
-\hypertarget{class-basics-2}{%
-\section{Class basics}\label{class-basics-2}}
+\hypertarget{class-basics-3}{%
+\section{Class basics}\label{class-basics-3}}
 
 First, we define the basics of our new \texttt{Panel} class.
 As our new class will be showing each gene as a row, we inherit from the \texttt{RowTable} virtual class.
@@ -2637,8 +1673,8 @@ When given a gene list, we often need to look up the function of the top genes i
 This typically involves copy-pasting the gene name or ID into the search box and pressing Enter, which is a pain.
 Instead, we can automate this process in \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{iSEE}} by creating an \textbf{annotated gene table} that dynamically looks up annotation for each gene in the \texttt{rowData} of a \texttt{SummarizedExperiment}.
 
-\hypertarget{class-basics-3}{%
-\section{Class basics}\label{class-basics-3}}
+\hypertarget{class-basics-4}{%
+\section{Class basics}\label{class-basics-4}}
 
 First, we define the basics of our new \texttt{Panel} class.
 Our new class will be showing the gene-level metadata, so we inherit from the \texttt{RowDataTable} class that does exactly this.
@@ -2885,8 +1921,8 @@ The aim is to enable us to transmit multiple row selections to other panels base
 This is a fairly involved example of creating a \texttt{Panel} subclass as we cannot easily inherit from an existing subclass; rather, we need to provide all the methods ourselves.
 Readers may also be interested in the fully fledged version of the proposed class in \emph{\href{https://bioconductor.org/packages/3.11/iSEEu}{iSEEu}}.
 
-\hypertarget{class-basics-4}{%
-\section{Class basics}\label{class-basics-4}}
+\hypertarget{class-basics-5}{%
+\section{Class basics}\label{class-basics-5}}
 
 First, we define the basics of our new \texttt{GOTable} class.
 This inherits from the virtual base \texttt{Panel} class as it cannot meet any of the contractual requirements of the subclasses,

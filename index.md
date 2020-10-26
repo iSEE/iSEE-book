@@ -1,7 +1,7 @@
 --- 
 title: "Extending _iSEE_"
 author: Kevin Rue-Albrecht, Federico Marini, Charlotte Soneson, and Aaron Lun
-date: "2020-10-25"
+date: "2020-10-26"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
