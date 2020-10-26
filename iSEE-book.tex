@@ -153,197 +153,30 @@ Readers should refer to the documentation for each class (links below) for more 
 \hypertarget{virtual-classes}{%
 \section{Virtual classes}\label{virtual-classes}}
 
-\hypertarget{panel}{%
-\subsection{\texorpdfstring{\texttt{Panel}}{Panel}}\label{panel}}
-
 The \href{https://isee.github.io/iSEE/reference/Panel-class.html}{\texttt{Panel}} class is the base class for all \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{iSEE}} panels.
 It provides functionality to control general panel parameters such as the panel width and height.
 It also controls the transmission of multiple row/column selections across panels.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{slotNames}\NormalTok{(}\KeywordTok{getClass}\NormalTok{(}\StringTok{"Panel"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "PanelId"                      "PanelHeight"                 
-##  [3] "PanelWidth"                   "SelectionBoxOpen"            
-##  [5] "RowSelectionSource"           "ColumnSelectionSource"       
-##  [7] "DataBoxOpen"                  "RowSelectionDynamicSource"   
-##  [9] "RowSelectionType"             "RowSelectionSaved"           
-## [11] "ColumnSelectionDynamicSource" "ColumnSelectionType"         
-## [13] "ColumnSelectionSaved"         "SelectionHistory"
-\end{verbatim}
-
-\hypertarget{dotplot}{%
-\subsection{\texorpdfstring{\texttt{DotPlot}}{DotPlot}}\label{dotplot}}
-
 The \href{https://isee.github.io/iSEE/reference/DotPlot-class.html}{\texttt{DotPlot}} class inherits from the \texttt{Panel} class and is the base class for dot-based plots.
 This refers to all plots where each row or column is represented by no more than one dot (i.e., point) on the plot.
 It provides functionality to create the plot, control the aesthetics of the points and to manage the brush/lasso selection.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{slotNames}\NormalTok{(}\KeywordTok{getClass}\NormalTok{(}\StringTok{"DotPlot"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "FacetByRow"                   "FacetByColumn"               
-##  [3] "ColorBy"                      "ColorByDefaultColor"         
-##  [5] "ColorByFeatureName"           "ColorByFeatureSource"        
-##  [7] "ColorByFeatureDynamicSource"  "ColorBySampleName"           
-##  [9] "ColorBySampleSource"          "ColorBySampleDynamicSource"  
-## [11] "ShapeBy"                      "SizeBy"                      
-## [13] "SelectionEffect"              "SelectionColor"              
-## [15] "SelectionAlpha"               "ZoomData"                    
-## [17] "BrushData"                    "VisualBoxOpen"               
-## [19] "VisualChoices"                "ContourAdd"                  
-## [21] "ContourColor"                 "PointSize"                   
-## [23] "PointAlpha"                   "Downsample"                  
-## [25] "DownsampleResolution"         "FontSize"                    
-## [27] "LegendPosition"               "PanelId"                     
-## [29] "PanelHeight"                  "PanelWidth"                  
-## [31] "SelectionBoxOpen"             "RowSelectionSource"          
-## [33] "ColumnSelectionSource"        "DataBoxOpen"                 
-## [35] "RowSelectionDynamicSource"    "RowSelectionType"            
-## [37] "RowSelectionSaved"            "ColumnSelectionDynamicSource"
-## [39] "ColumnSelectionType"          "ColumnSelectionSaved"        
-## [41] "SelectionHistory"
-\end{verbatim}
-
-\hypertarget{columndotplot}{%
-\subsection{\texorpdfstring{\texttt{ColumnDotPlot}}{ColumnDotPlot}}\label{columndotplot}}
 
 The \href{https://isee.github.io/iSEE/reference/ColumnDotPlot-class.html}{\texttt{ColumnDotPlot}} class inherits from the \texttt{DotPlot} class and represents all per-column dot plots.
 This refers to all plots where each column is represented by no more than one dot on the plot.
 It provides functionality to modify the plot aesthetics based on per-column values in the \texttt{colData} or assays.
 It is also restricted to receiving and transmitting column identities in single and multiple selections.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{slotNames}\NormalTok{(}\KeywordTok{getClass}\NormalTok{(}\StringTok{"ColumnDotPlot"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "ColorByColumnData"            "ColorByFeatureNameAssay"     
-##  [3] "ColorBySampleNameColor"       "ShapeByColumnData"           
-##  [5] "SizeByColumnData"             "FacetByRow"                  
-##  [7] "FacetByColumn"                "ColorBy"                     
-##  [9] "ColorByDefaultColor"          "ColorByFeatureName"          
-## [11] "ColorByFeatureSource"         "ColorByFeatureDynamicSource" 
-## [13] "ColorBySampleName"            "ColorBySampleSource"         
-## [15] "ColorBySampleDynamicSource"   "ShapeBy"                     
-## [17] "SizeBy"                       "SelectionEffect"             
-## [19] "SelectionColor"               "SelectionAlpha"              
-## [21] "ZoomData"                     "BrushData"                   
-## [23] "VisualBoxOpen"                "VisualChoices"               
-## [25] "ContourAdd"                   "ContourColor"                
-## [27] "PointSize"                    "PointAlpha"                  
-## [29] "Downsample"                   "DownsampleResolution"        
-## [31] "FontSize"                     "LegendPosition"              
-## [33] "PanelId"                      "PanelHeight"                 
-## [35] "PanelWidth"                   "SelectionBoxOpen"            
-## [37] "RowSelectionSource"           "ColumnSelectionSource"       
-## [39] "DataBoxOpen"                  "RowSelectionDynamicSource"   
-## [41] "RowSelectionType"             "RowSelectionSaved"           
-## [43] "ColumnSelectionDynamicSource" "ColumnSelectionType"         
-## [45] "ColumnSelectionSaved"         "SelectionHistory"
-\end{verbatim}
-
-\hypertarget{rowdotplot}{%
-\subsection{\texorpdfstring{\texttt{RowDotPlot}}{RowDotPlot}}\label{rowdotplot}}
-
 The \href{https://isee.github.io/iSEE/reference/RowDotPlot-class.html}{\texttt{RowDotPlot}} class inherits from the \texttt{DotPlot} class and represents all per-row dot plots.
 This refers to all plots where each row is represented by no more than one dot on the plot.
 It provides functionality to modify the plot aesthetics based on per-row values in the \texttt{rowData} or assays.
 It is also restricted to receiving and transmitting row identities in single and multiple selections.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{slotNames}\NormalTok{(}\KeywordTok{getClass}\NormalTok{(}\StringTok{"RowDotPlot"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "ColorByRowData"               "ColorBySampleNameAssay"      
-##  [3] "ColorByFeatureNameColor"      "ShapeByRowData"              
-##  [5] "SizeByRowData"                "FacetByRow"                  
-##  [7] "FacetByColumn"                "ColorBy"                     
-##  [9] "ColorByDefaultColor"          "ColorByFeatureName"          
-## [11] "ColorByFeatureSource"         "ColorByFeatureDynamicSource" 
-## [13] "ColorBySampleName"            "ColorBySampleSource"         
-## [15] "ColorBySampleDynamicSource"   "ShapeBy"                     
-## [17] "SizeBy"                       "SelectionEffect"             
-## [19] "SelectionColor"               "SelectionAlpha"              
-## [21] "ZoomData"                     "BrushData"                   
-## [23] "VisualBoxOpen"                "VisualChoices"               
-## [25] "ContourAdd"                   "ContourColor"                
-## [27] "PointSize"                    "PointAlpha"                  
-## [29] "Downsample"                   "DownsampleResolution"        
-## [31] "FontSize"                     "LegendPosition"              
-## [33] "PanelId"                      "PanelHeight"                 
-## [35] "PanelWidth"                   "SelectionBoxOpen"            
-## [37] "RowSelectionSource"           "ColumnSelectionSource"       
-## [39] "DataBoxOpen"                  "RowSelectionDynamicSource"   
-## [41] "RowSelectionType"             "RowSelectionSaved"           
-## [43] "ColumnSelectionDynamicSource" "ColumnSelectionType"         
-## [45] "ColumnSelectionSaved"         "SelectionHistory"
-\end{verbatim}
-
-\hypertarget{table}{%
-\subsection{\texorpdfstring{\texttt{Table}}{Table}}\label{table}}
-
 The \href{https://isee.github.io/iSEE/reference/Table-class.html}{\texttt{Table}} class inherits from the \texttt{Panel} class and represents all tables rendered using \emph{\href{https://CRAN.R-project.org/package=DT}{DT}}.
 Each row of the table is expected to correspond to a row or column of the \texttt{SummarizedExperiment}.
 This class provides functionality to render the \texttt{DT::datatable} widget, monitor single/multiple selections and apply search filters.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{slotNames}\NormalTok{(}\KeywordTok{getClass}\NormalTok{(}\StringTok{"Table"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "Selected"                     "Search"                      
-##  [3] "SearchColumns"                "PanelId"                     
-##  [5] "PanelHeight"                  "PanelWidth"                  
-##  [7] "SelectionBoxOpen"             "RowSelectionSource"          
-##  [9] "ColumnSelectionSource"        "DataBoxOpen"                 
-## [11] "RowSelectionDynamicSource"    "RowSelectionType"            
-## [13] "RowSelectionSaved"            "ColumnSelectionDynamicSource"
-## [15] "ColumnSelectionType"          "ColumnSelectionSaved"        
-## [17] "SelectionHistory"
-\end{verbatim}
-
-\hypertarget{columntable}{%
-\subsection{\texorpdfstring{\texttt{ColumnTable}}{ColumnTable}}\label{columntable}}
-
 The \href{https://isee.github.io/iSEE/reference/ColumnTable-class.html}{\texttt{ColumnTable}} class inherits from the \texttt{Table} class and represents all tables where the rows have a one-to-zero-or-one mapping to columns of the \texttt{SummarizedExperiment}.
 Instances of this class can only transmit single and multiple selections on columns.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{slotNames}\NormalTok{(}\KeywordTok{getClass}\NormalTok{(}\StringTok{"ColumnTable"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "Selected"                     "Search"                      
-##  [3] "SearchColumns"                "PanelId"                     
-##  [5] "PanelHeight"                  "PanelWidth"                  
-##  [7] "SelectionBoxOpen"             "RowSelectionSource"          
-##  [9] "ColumnSelectionSource"        "DataBoxOpen"                 
-## [11] "RowSelectionDynamicSource"    "RowSelectionType"            
-## [13] "RowSelectionSaved"            "ColumnSelectionDynamicSource"
-## [15] "ColumnSelectionType"          "ColumnSelectionSaved"        
-## [17] "SelectionHistory"
-\end{verbatim}
-
-\hypertarget{rowtable}{%
-\subsection{\texorpdfstring{\texttt{RowTable}}{RowTable}}\label{rowtable}}
 
 The \href{https://isee.github.io/iSEE/reference/RowTable-class.html}{\texttt{RowTable}} class inherits from the \texttt{Table} class and represents all tables where the rows have a one-to-zero-or-one mapping to rows of the \texttt{SummarizedExperiment}.
 Instances of this class can only transmit single and multiple selections on rows.
@@ -369,292 +202,31 @@ Instances of this class can only transmit single and multiple selections on rows
 \hypertarget{concrete-classes}{%
 \section{Concrete classes}\label{concrete-classes}}
 
-\hypertarget{reduceddimensionplot}{%
-\subsection{\texorpdfstring{\texttt{ReducedDimensionPlot}}{ReducedDimensionPlot}}\label{reduceddimensionplot}}
-
 The \href{https://isee.github.io/iSEE/reference/ReducedDimensionPlot-class.html}{\texttt{ReducedDimensionPlot}} class inherits from the \texttt{ColumnDotPlot} class and plots reduced dimension coordinates from an entry of the \texttt{reducedDims} in a \texttt{SingleCellExperiment}.
 It provides functionality to choose the result and extract the relevant dimensions in preparation for plotting.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{slotNames}\NormalTok{(}\KeywordTok{getClass}\NormalTok{(}\StringTok{"ReducedDimensionPlot"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "Type"                         "XAxis"                       
-##  [3] "YAxis"                        "ColorByColumnData"           
-##  [5] "ColorByFeatureNameAssay"      "ColorBySampleNameColor"      
-##  [7] "ShapeByColumnData"            "SizeByColumnData"            
-##  [9] "FacetByRow"                   "FacetByColumn"               
-## [11] "ColorBy"                      "ColorByDefaultColor"         
-## [13] "ColorByFeatureName"           "ColorByFeatureSource"        
-## [15] "ColorByFeatureDynamicSource"  "ColorBySampleName"           
-## [17] "ColorBySampleSource"          "ColorBySampleDynamicSource"  
-## [19] "ShapeBy"                      "SizeBy"                      
-## [21] "SelectionEffect"              "SelectionColor"              
-## [23] "SelectionAlpha"               "ZoomData"                    
-## [25] "BrushData"                    "VisualBoxOpen"               
-## [27] "VisualChoices"                "ContourAdd"                  
-## [29] "ContourColor"                 "PointSize"                   
-## [31] "PointAlpha"                   "Downsample"                  
-## [33] "DownsampleResolution"         "FontSize"                    
-## [35] "LegendPosition"               "PanelId"                     
-## [37] "PanelHeight"                  "PanelWidth"                  
-## [39] "SelectionBoxOpen"             "RowSelectionSource"          
-## [41] "ColumnSelectionSource"        "DataBoxOpen"                 
-## [43] "RowSelectionDynamicSource"    "RowSelectionType"            
-## [45] "RowSelectionSaved"            "ColumnSelectionDynamicSource"
-## [47] "ColumnSelectionType"          "ColumnSelectionSaved"        
-## [49] "SelectionHistory"
-\end{verbatim}
-
-\hypertarget{featureassayplot}{%
-\subsection{\texorpdfstring{\texttt{FeatureAssayPlot}}{FeatureAssayPlot}}\label{featureassayplot}}
 
 The \href{https://isee.github.io/iSEE/reference/FeatureAssayPlot-class.html}{\texttt{FeatureAssayPlot}} class inherits from the \texttt{ColumnDotPlot} class and plots the assay values for a feature across all samples, using an entry of the \texttt{assays()} from any \texttt{SummarizedExperiment} object.
 It provides functionality to choose the feature of interest and any associated variable to plot on the x-axis, where the feature of interest can be chosen by a single selection from other row-transmitting panels.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{slotNames}\NormalTok{(}\KeywordTok{getClass}\NormalTok{(}\StringTok{"FeatureAssayPlot"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "Assay"                        "XAxis"                       
-##  [3] "XAxisColumnData"              "XAxisFeatureName"            
-##  [5] "XAxisFeatureSource"           "XAxisFeatureDynamicSource"   
-##  [7] "YAxisFeatureName"             "YAxisFeatureSource"          
-##  [9] "YAxisFeatureDynamicSource"    "ColorByColumnData"           
-## [11] "ColorByFeatureNameAssay"      "ColorBySampleNameColor"      
-## [13] "ShapeByColumnData"            "SizeByColumnData"            
-## [15] "FacetByRow"                   "FacetByColumn"               
-## [17] "ColorBy"                      "ColorByDefaultColor"         
-## [19] "ColorByFeatureName"           "ColorByFeatureSource"        
-## [21] "ColorByFeatureDynamicSource"  "ColorBySampleName"           
-## [23] "ColorBySampleSource"          "ColorBySampleDynamicSource"  
-## [25] "ShapeBy"                      "SizeBy"                      
-## [27] "SelectionEffect"              "SelectionColor"              
-## [29] "SelectionAlpha"               "ZoomData"                    
-## [31] "BrushData"                    "VisualBoxOpen"               
-## [33] "VisualChoices"                "ContourAdd"                  
-## [35] "ContourColor"                 "PointSize"                   
-## [37] "PointAlpha"                   "Downsample"                  
-## [39] "DownsampleResolution"         "FontSize"                    
-## [41] "LegendPosition"               "PanelId"                     
-## [43] "PanelHeight"                  "PanelWidth"                  
-## [45] "SelectionBoxOpen"             "RowSelectionSource"          
-## [47] "ColumnSelectionSource"        "DataBoxOpen"                 
-## [49] "RowSelectionDynamicSource"    "RowSelectionType"            
-## [51] "RowSelectionSaved"            "ColumnSelectionDynamicSource"
-## [53] "ColumnSelectionType"          "ColumnSelectionSaved"        
-## [55] "SelectionHistory"
-\end{verbatim}
-
-\hypertarget{columndataplot}{%
-\subsection{\texorpdfstring{\texttt{ColumnDataPlot}}{ColumnDataPlot}}\label{columndataplot}}
-
 The \href{https://isee.github.io/iSEE/reference/ColumnDataPlot-class.html}{\texttt{ColumnDataPlot}} class inherits from the \texttt{ColumnDotPlot} class and plots \texttt{colData} variables by themselves or against each other.
 It provides functionality to choose the variables to plot.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{slotNames}\NormalTok{(}\KeywordTok{getClass}\NormalTok{(}\StringTok{"ColumnDataPlot"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "XAxis"                        "YAxis"                       
-##  [3] "XAxisColumnData"              "ColorByColumnData"           
-##  [5] "ColorByFeatureNameAssay"      "ColorBySampleNameColor"      
-##  [7] "ShapeByColumnData"            "SizeByColumnData"            
-##  [9] "FacetByRow"                   "FacetByColumn"               
-## [11] "ColorBy"                      "ColorByDefaultColor"         
-## [13] "ColorByFeatureName"           "ColorByFeatureSource"        
-## [15] "ColorByFeatureDynamicSource"  "ColorBySampleName"           
-## [17] "ColorBySampleSource"          "ColorBySampleDynamicSource"  
-## [19] "ShapeBy"                      "SizeBy"                      
-## [21] "SelectionEffect"              "SelectionColor"              
-## [23] "SelectionAlpha"               "ZoomData"                    
-## [25] "BrushData"                    "VisualBoxOpen"               
-## [27] "VisualChoices"                "ContourAdd"                  
-## [29] "ContourColor"                 "PointSize"                   
-## [31] "PointAlpha"                   "Downsample"                  
-## [33] "DownsampleResolution"         "FontSize"                    
-## [35] "LegendPosition"               "PanelId"                     
-## [37] "PanelHeight"                  "PanelWidth"                  
-## [39] "SelectionBoxOpen"             "RowSelectionSource"          
-## [41] "ColumnSelectionSource"        "DataBoxOpen"                 
-## [43] "RowSelectionDynamicSource"    "RowSelectionType"            
-## [45] "RowSelectionSaved"            "ColumnSelectionDynamicSource"
-## [47] "ColumnSelectionType"          "ColumnSelectionSaved"        
-## [49] "SelectionHistory"
-\end{verbatim}
-
-\hypertarget{sampleassayplot}{%
-\subsection{\texorpdfstring{\texttt{SampleAssayPlot}}{SampleAssayPlot}}\label{sampleassayplot}}
 
 The \href{https://isee.github.io/iSEE/reference/SampleAssayPlot-class.html}{\texttt{SampleAssayPlot}} class inherits from the \texttt{RowDotPlot} class and plots the assay values for a sample across all features, using an entry of the \texttt{assays()} from any \texttt{SummarizedExperiment} object.
 It provides functionality to choose the sample of interest and any associated variable to plot on the x-axis, where the sample of interest can be chosen by a single selection from other column-transmitting panels.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{slotNames}\NormalTok{(}\KeywordTok{getClass}\NormalTok{(}\StringTok{"FeatureAssayPlot"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "Assay"                        "XAxis"                       
-##  [3] "XAxisColumnData"              "XAxisFeatureName"            
-##  [5] "XAxisFeatureSource"           "XAxisFeatureDynamicSource"   
-##  [7] "YAxisFeatureName"             "YAxisFeatureSource"          
-##  [9] "YAxisFeatureDynamicSource"    "ColorByColumnData"           
-## [11] "ColorByFeatureNameAssay"      "ColorBySampleNameColor"      
-## [13] "ShapeByColumnData"            "SizeByColumnData"            
-## [15] "FacetByRow"                   "FacetByColumn"               
-## [17] "ColorBy"                      "ColorByDefaultColor"         
-## [19] "ColorByFeatureName"           "ColorByFeatureSource"        
-## [21] "ColorByFeatureDynamicSource"  "ColorBySampleName"           
-## [23] "ColorBySampleSource"          "ColorBySampleDynamicSource"  
-## [25] "ShapeBy"                      "SizeBy"                      
-## [27] "SelectionEffect"              "SelectionColor"              
-## [29] "SelectionAlpha"               "ZoomData"                    
-## [31] "BrushData"                    "VisualBoxOpen"               
-## [33] "VisualChoices"                "ContourAdd"                  
-## [35] "ContourColor"                 "PointSize"                   
-## [37] "PointAlpha"                   "Downsample"                  
-## [39] "DownsampleResolution"         "FontSize"                    
-## [41] "LegendPosition"               "PanelId"                     
-## [43] "PanelHeight"                  "PanelWidth"                  
-## [45] "SelectionBoxOpen"             "RowSelectionSource"          
-## [47] "ColumnSelectionSource"        "DataBoxOpen"                 
-## [49] "RowSelectionDynamicSource"    "RowSelectionType"            
-## [51] "RowSelectionSaved"            "ColumnSelectionDynamicSource"
-## [53] "ColumnSelectionType"          "ColumnSelectionSaved"        
-## [55] "SelectionHistory"
-\end{verbatim}
-
-\hypertarget{rowdataplot}{%
-\subsection{\texorpdfstring{\texttt{RowDataPlot}}{RowDataPlot}}\label{rowdataplot}}
-
 The \href{https://isee.github.io/iSEE/reference/RowDataPlot-class.html}{\texttt{RowDataPlot}} class inherits from the \texttt{RowDotPlot} class and plots \texttt{rowData} variables by themselves or against each other.
 It provides functionality to choose and extract the variables to plot.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{slotNames}\NormalTok{(}\KeywordTok{getClass}\NormalTok{(}\StringTok{"RowDataPlot"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "XAxis"                        "YAxis"                       
-##  [3] "XAxisRowData"                 "ColorByRowData"              
-##  [5] "ColorBySampleNameAssay"       "ColorByFeatureNameColor"     
-##  [7] "ShapeByRowData"               "SizeByRowData"               
-##  [9] "FacetByRow"                   "FacetByColumn"               
-## [11] "ColorBy"                      "ColorByDefaultColor"         
-## [13] "ColorByFeatureName"           "ColorByFeatureSource"        
-## [15] "ColorByFeatureDynamicSource"  "ColorBySampleName"           
-## [17] "ColorBySampleSource"          "ColorBySampleDynamicSource"  
-## [19] "ShapeBy"                      "SizeBy"                      
-## [21] "SelectionEffect"              "SelectionColor"              
-## [23] "SelectionAlpha"               "ZoomData"                    
-## [25] "BrushData"                    "VisualBoxOpen"               
-## [27] "VisualChoices"                "ContourAdd"                  
-## [29] "ContourColor"                 "PointSize"                   
-## [31] "PointAlpha"                   "Downsample"                  
-## [33] "DownsampleResolution"         "FontSize"                    
-## [35] "LegendPosition"               "PanelId"                     
-## [37] "PanelHeight"                  "PanelWidth"                  
-## [39] "SelectionBoxOpen"             "RowSelectionSource"          
-## [41] "ColumnSelectionSource"        "DataBoxOpen"                 
-## [43] "RowSelectionDynamicSource"    "RowSelectionType"            
-## [45] "RowSelectionSaved"            "ColumnSelectionDynamicSource"
-## [47] "ColumnSelectionType"          "ColumnSelectionSaved"        
-## [49] "SelectionHistory"
-\end{verbatim}
-
-\hypertarget{columndatatable}{%
-\subsection{\texorpdfstring{\texttt{ColumnDataTable}}{ColumnDataTable}}\label{columndatatable}}
 
 The \href{https://isee.github.io/iSEE/reference/ColumnDataTable-class.html}{\texttt{ColumnDataTable}} class inherits from the \texttt{ColumnTable} class and shows the contents of the \texttt{colData} in a table.
 It provides functionality to extract the \texttt{colData} in preparation for rendering.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{slotNames}\NormalTok{(}\KeywordTok{getClass}\NormalTok{(}\StringTok{"ColumnDataTable"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "Selected"                     "Search"                      
-##  [3] "SearchColumns"                "PanelId"                     
-##  [5] "PanelHeight"                  "PanelWidth"                  
-##  [7] "SelectionBoxOpen"             "RowSelectionSource"          
-##  [9] "ColumnSelectionSource"        "DataBoxOpen"                 
-## [11] "RowSelectionDynamicSource"    "RowSelectionType"            
-## [13] "RowSelectionSaved"            "ColumnSelectionDynamicSource"
-## [15] "ColumnSelectionType"          "ColumnSelectionSaved"        
-## [17] "SelectionHistory"
-\end{verbatim}
-
-\hypertarget{rowdatatable}{%
-\subsection{\texorpdfstring{\texttt{RowDataTable}}{RowDataTable}}\label{rowdatatable}}
-
 The \href{https://isee.github.io/iSEE/reference/RowDataTable-class.html}{\texttt{RowDataTable}} class inherits from the \texttt{RowTable} class and shows the contents of the \texttt{rowData} in a table.
 It provides functionality to extract the \texttt{rowData} in preparation for rendering.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{slotNames}\NormalTok{(}\KeywordTok{getClass}\NormalTok{(}\StringTok{"RowDataTable"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "Selected"                     "Search"                      
-##  [3] "SearchColumns"                "PanelId"                     
-##  [5] "PanelHeight"                  "PanelWidth"                  
-##  [7] "SelectionBoxOpen"             "RowSelectionSource"          
-##  [9] "ColumnSelectionSource"        "DataBoxOpen"                 
-## [11] "RowSelectionDynamicSource"    "RowSelectionType"            
-## [13] "RowSelectionSaved"            "ColumnSelectionDynamicSource"
-## [15] "ColumnSelectionType"          "ColumnSelectionSaved"        
-## [17] "SelectionHistory"
-\end{verbatim}
-
-\hypertarget{complexheatmapplot}{%
-\subsection{\texorpdfstring{\texttt{ComplexHeatmapPlot}}{ComplexHeatmapPlot}}\label{complexheatmapplot}}
 
 The \href{https://isee.github.io/iSEE/reference/ComplexHeatmapPlot-class.html}{\texttt{ComplexHeatmapPlot}} class inherits from the \texttt{Panel} class and creates a heatmap from assay values using the \emph{\href{https://bioconductor.org/packages/3.11/ComplexHeatmap}{ComplexHeatmap}} package.
 It provides functionality to specify the features to be shown, which assay to show, transformations to be applied, and which metadata variables to display as row and column heatmap annotations.
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{slotNames}\NormalTok{(}\KeywordTok{getClass}\NormalTok{(}\StringTok{"ComplexHeatmapPlot"}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##  [1] "Assay"                        "CustomRows"                  
-##  [3] "CustomRowsText"               "ClusterRows"                 
-##  [5] "ClusterRowsDistance"          "ClusterRowsMethod"           
-##  [7] "DataBoxOpen"                  "VisualChoices"               
-##  [9] "ColumnData"                   "RowData"                     
-## [11] "CustomBounds"                 "LowerBound"                  
-## [13] "UpperBound"                   "AssayCenterRows"             
-## [15] "AssayScaleRows"               "DivergentColormap"           
-## [17] "ShowDimNames"                 "LegendPosition"              
-## [19] "LegendDirection"              "VisualBoxOpen"               
-## [21] "SelectionEffect"              "SelectionColor"              
-## [23] "PanelId"                      "PanelHeight"                 
-## [25] "PanelWidth"                   "SelectionBoxOpen"            
-## [27] "RowSelectionSource"           "ColumnSelectionSource"       
-## [29] "RowSelectionDynamicSource"    "RowSelectionType"            
-## [31] "RowSelectionSaved"            "ColumnSelectionDynamicSource"
-## [33] "ColumnSelectionType"          "ColumnSelectionSaved"        
-## [35] "SelectionHistory"
-\end{verbatim}
+Further examples of concrete classes are also available in the \emph{\href{https://bioconductor.org/packages/3.11/iSEEu}{iSEEu}} package.
 
 \hypertarget{extending-the-classes}{%
 \section{Extending the classes}\label{extending-the-classes}}
@@ -941,8 +513,12 @@ This guides users through a short tour of the current panel's most important fea
 \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{iSEE}} uses global variables to keep track of the application state and to trigger reactive expressions.
 These are passed in the ubiquitous \texttt{pObjects} and \texttt{rObjects} arguments for non-reactive and reactive variables, respectively.
 Both of these objects have pass-by-reference semantics, meaning that any modifications to their contents within functions will persist outside of the function scope.
-Of particular relevance is the application memory in \texttt{pObjects}, which panels are expected to read and modify to respond to user interaction and generate output.
-Developers should also refrain from adding their own application-wide reactive variables, and should only modify the existing ones through a dedicated set of functions provided by \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{iSEE}}.
+This enables their use in communicating changes across all components of the running \texttt{iSEE()} application.
+
+For most part, developers of new panels do not need to be aware of these variables.
+Only panels with relatively complex customizations need to manually specify the reactive logic or memory updates,
+in which case they should use the various utilities provided by \emph{\href{https://bioconductor.org/packages/3.11/iSEE}{iSEE}} to mediate the interactions with \texttt{rObjects} and \texttt{pObjects}.
+Developers should also refrain from adding their own application-wide variables.
 Respecting this paradigm will ensure that custom panels behave correctly in the context of the entire application.
 
 \hypertarget{updating-parameters}{%
@@ -970,8 +546,8 @@ Yet another variant is the \texttt{.requestActiveSelectionUpdate()} function, wh
 The two-step process of memory modification and calling \texttt{.requestUpdate()} is facilitated by functions like \texttt{.createUnprotectedParameterObservers()}, which sets up simple observers for parameter modifications.
 However, more complex observers will have to do this manually.
 
-\hypertarget{using-the-memory}{%
-\section{Using the memory}\label{using-the-memory}}
+\hypertarget{reading-the-memory}{%
+\section{Reading the memory}\label{reading-the-memory}}
 
 In a similar vein, expressions to render output should \emph{never} touch the Shiny \texttt{input} object directly.
 (Indeed, \texttt{.renderOutput()} does not even have access to the \texttt{input}.)
@@ -981,16 +557,34 @@ Other generics that are not setting up reactive expressions can directly extract
 
 Each \texttt{Panel} object can be treated as a list of panel parameters.
 Retrieving values is as simple as using the \texttt{{[}{[}} operator with the name of the parameter.
+(Similarly, setting parameters is as easy as using \texttt{{[}{[}\textless{}-}, though this should only be done in dedicated observers and never in rendering expressions.)
 Direct slot access should be avoided, consistent with best practice for S4 programming.
 
-\hypertarget{responding-to-events}{%
-\section{Responding to events}\label{responding-to-events}}
+\hypertarget{reacting-to-events}{%
+\section{Reacting to events}\label{reacting-to-events}}
 
 Developers can respond to events by calling functions like \texttt{.trackUpdate()} within an observer or rendering expression.
-For example, \texttt{.trackUpdate()} will trigger re-evaluation of its context if the panel is updated by \texttt{.requestUpdate()}.
+This touches \texttt{rObjects} to ensure that the enclosing expression is re-evaluated if the panel is updated elsewhere by \texttt{.requestUpdate()}.
 Other variants like \texttt{.trackMultiSelection()} will trigger re-evaluation upon changes to the panel's multiple selections.
-This is mostly intended for panels that need to synchronize updates to multiple output elements.
-Developers should only use these functions to track updates to the same panel for which the observer/rendering expression is written; management of communication across panels is outside of the scope of these expressions.
+
+Direct use of \texttt{.trackUpdate()} and related functions is generally unnecessary as it is handled by higher-level functions like \texttt{.retrieveOutput()}.
+Nonetheless, if some action needs to be taken after, e.g., a multiple selection, it may be appropriate to create an observer that calls \texttt{.trackMultiSelection()}.
+Note that developers should only use these functions to track updates to the same panel for which the observer/rendering expression is written;
+management of communication across panels is outside of the scope of these expressions.
+
+\hypertarget{guidelines-for-user-globals}{%
+\section{Guidelines for user globals}\label{guidelines-for-user-globals}}
+
+Developers are free to define global parameters that affect all instances of their panel class.
+This makes it easy for the user to modify the behavior of all instances of a particular panel.
+However, we suggest that such user-visible globals limit their effects to the panel's constructor.
+This enables users to reproduce the app state from one session to another by simply saving the memory;
+otherwise, users would also have to export the state of the global variables.
+
+This guideline implies that any global parameters should be represented as slots in the panel class.
+Technically, this also means that different instances of a particular class might have different values for that same slot.
+If all panels must have the same value, this can be enforced via some creative use of \texttt{.cacheCommonInfo} and \texttt{.refineParameters};
+see, for example, the \texttt{MAPlot} class from the \emph{\href{https://bioconductor.org/packages/3.11/iSEEu}{iSEEu}} package.
 
 \hypertarget{part-worked-examples}{%
 \part{Worked examples}\label{part-worked-examples}}

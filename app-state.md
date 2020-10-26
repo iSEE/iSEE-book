@@ -7,8 +7,12 @@
 *[iSEE](https://bioconductor.org/packages/3.11/iSEE)* uses global variables to keep track of the application state and to trigger reactive expressions.
 These are passed in the ubiquitous `pObjects` and `rObjects` arguments for non-reactive and reactive variables, respectively.
 Both of these objects have pass-by-reference semantics, meaning that any modifications to their contents within functions will persist outside of the function scope.
-Of particular relevance is the application memory in `pObjects`, which panels are expected to read and modify to respond to user interaction and generate output.
-Developers should also refrain from adding their own application-wide reactive variables, and should only modify the existing ones through a dedicated set of functions provided by *[iSEE](https://bioconductor.org/packages/3.11/iSEE)*.
+This enables their use in communicating changes across all components of the running `iSEE()` application.
+
+For most part, developers of new panels do not need to be aware of these variables.
+Only panels with relatively complex customizations need to manually specify the reactive logic or memory updates,
+in which case they should use the various utilities provided by *[iSEE](https://bioconductor.org/packages/3.11/iSEE)* to mediate the interactions with `rObjects` and `pObjects`.
+Developers should also refrain from adding their own application-wide variables.
 Respecting this paradigm will ensure that custom panels behave correctly in the context of the entire application.
 
 ## Updating parameters
@@ -33,7 +37,7 @@ Yet another variant is the `.requestActiveSelectionUpdate()` function, which ind
 The two-step process of memory modification and calling `.requestUpdate()` is facilitated by functions like `.createUnprotectedParameterObservers()`, which sets up simple observers for parameter modifications.
 However, more complex observers will have to do this manually.
 
-## Using the memory
+## Reading the memory
 
 In a similar vein, expressions to render output should _never_ touch the Shiny `input` object directly.
 (Indeed, `.renderOutput()` does not even have access to the `input`.)
@@ -43,14 +47,29 @@ Other generics that are not setting up reactive expressions can directly extract
 
 Each `Panel` object can be treated as a list of panel parameters.
 Retrieving values is as simple as using the `[[` operator with the name of the parameter.
+(Similarly, setting parameters is as easy as using `[[<-`, though this should only be done in dedicated observers and never in rendering expressions.)
 Direct slot access should be avoided, consistent with best practice for S4 programming.
 
-## Responding to events
+## Reacting to events
 
 Developers can respond to events by calling functions like `.trackUpdate()` within an observer or rendering expression.
-For example, `.trackUpdate()` will trigger re-evaluation of its context if the panel is updated by `.requestUpdate()`.
+This touches `rObjects` to ensure that the enclosing expression is re-evaluated if the panel is updated elsewhere by `.requestUpdate()`.
 Other variants like `.trackMultiSelection()` will trigger re-evaluation upon changes to the panel's multiple selections.
-This is mostly intended for panels that need to synchronize updates to multiple output elements.
-Developers should only use these functions to track updates to the same panel for which the observer/rendering expression is written; management of communication across panels is outside of the scope of these expressions.
 
+Direct use of `.trackUpdate()` and related functions is generally unnecessary as it is handled by higher-level functions like `.retrieveOutput()`.
+Nonetheless, if some action needs to be taken after, e.g., a multiple selection, it may be appropriate to create an observer that calls `.trackMultiSelection()`.
+Note that developers should only use these functions to track updates to the same panel for which the observer/rendering expression is written; 
+management of communication across panels is outside of the scope of these expressions.
 
+## Guidelines for user globals
+
+Developers are free to define global parameters that affect all instances of their panel class.
+This makes it easy for the user to modify the behavior of all instances of a particular panel.
+However, we suggest that such user-visible globals limit their effects to the panel's constructor.
+This enables users to reproduce the app state from one session to another by simply saving the memory; 
+otherwise, users would also have to export the state of the global variables.
+
+This guideline implies that any global parameters should be represented as slots in the panel class.
+Technically, this also means that different instances of a particular class might have different values for that same slot.
+If all panels must have the same value, this can be enforced via some creative use of `.cacheCommonInfo` and `.refineParameters`;
+see, for example, the `MAPlot` class from the *[iSEEu](https://bioconductor.org/packages/3.11/iSEEu)* package.
