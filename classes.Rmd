@@ -21,68 +21,30 @@ Readers should refer to the documentation for each class (links below) for more 
 
 ## Virtual classes
 
-### `Panel` 
-
 The `r class_link("Panel")` class is the base class for all `r Biocpkg("iSEE")` panels.
 It provides functionality to control general panel parameters such as the panel width and height.
 It also controls the transmission of multiple row/column selections across panels.
 
-```{r}
-slotNames(getClass("Panel"))
-```
-
-### `DotPlot`
-
 The `r class_link("DotPlot")` class inherits from the `Panel` class and is the base class for dot-based plots.
 This refers to all plots where each row or column is represented by no more than one dot (i.e., point) on the plot.
 It provides functionality to create the plot, control the aesthetics of the points and to manage the brush/lasso selection.
-
-```{r}
-slotNames(getClass("DotPlot"))
-```
-
-### `ColumnDotPlot`
 
 The `r class_link("ColumnDotPlot")` class inherits from the `DotPlot` class and represents all per-column dot plots.
 This refers to all plots where each column is represented by no more than one dot on the plot.
 It provides functionality to modify the plot aesthetics based on per-column values in the `colData` or assays.
 It is also restricted to receiving and transmitting column identities in single and multiple selections.
 
-```{r}
-slotNames(getClass("ColumnDotPlot"))
-```
-
-### `RowDotPlot`
-
 The `r class_link("RowDotPlot")` class inherits from the `DotPlot` class and represents all per-row dot plots.
 This refers to all plots where each row is represented by no more than one dot on the plot.
 It provides functionality to modify the plot aesthetics based on per-row values in the `rowData` or assays.
 It is also restricted to receiving and transmitting row identities in single and multiple selections.
 
-```{r}
-slotNames(getClass("RowDotPlot"))
-```
-
-### `Table`
-
 The `r class_link("Table")` class inherits from the `Panel` class and represents all tables rendered using `r CRANpkg("DT")`.
 Each row of the table is expected to correspond to a row or column of the `SummarizedExperiment`.
 This class provides functionality to render the `DT::datatable` widget, monitor single/multiple selections and apply search filters.
 
-```{r}
-slotNames(getClass("Table"))
-```
-
-### `ColumnTable`
-
 The `r class_link("ColumnTable")` class inherits from the `Table` class and represents all tables where the rows have a one-to-zero-or-one mapping to columns of the `SummarizedExperiment`.
 Instances of this class can only transmit single and multiple selections on columns.
-
-```{r}
-slotNames(getClass("ColumnTable"))
-```
-
-### `RowTable`
 
 The `r class_link("RowTable")` class inherits from the `Table` class and represents all tables where the rows have a one-to-zero-or-one mapping to rows of the `SummarizedExperiment`.
 Instances of this class can only transmit single and multiple selections on rows.
@@ -93,77 +55,31 @@ slotNames(getClass("RowTable"))
 
 ## Concrete classes
 
-### `ReducedDimensionPlot`
-
 The `r class_link("ReducedDimensionPlot")` class inherits from the `ColumnDotPlot` class and plots reduced dimension coordinates from an entry of the `reducedDims` in a `SingleCellExperiment`.
 It provides functionality to choose the result and extract the relevant dimensions in preparation for plotting.
-
-```{r}
-slotNames(getClass("ReducedDimensionPlot"))
-```
-
-### `FeatureAssayPlot`
 
 The `r class_link("FeatureAssayPlot")` class inherits from the `ColumnDotPlot` class and plots the assay values for a feature across all samples, using an entry of the `assays()` from any `SummarizedExperiment` object.
 It provides functionality to choose the feature of interest and any associated variable to plot on the x-axis, where the feature of interest can be chosen by a single selection from other row-transmitting panels.
 
-```{r}
-slotNames(getClass("FeatureAssayPlot"))
-```
-
-### `ColumnDataPlot`
-
 The `r class_link("ColumnDataPlot")` class inherits from the `ColumnDotPlot` class and plots `colData` variables by themselves or against each other.
 It provides functionality to choose the variables to plot.
-
-```{r}
-slotNames(getClass("ColumnDataPlot"))
-```
-
-### `SampleAssayPlot`
 
 The `r class_link("SampleAssayPlot")` class inherits from the `RowDotPlot` class and plots the assay values for a sample across all features, using an entry of the `assays()` from any `SummarizedExperiment` object.
 It provides functionality to choose the sample of interest and any associated variable to plot on the x-axis, where the sample of interest can be chosen by a single selection from other column-transmitting panels.
 
-```{r}
-slotNames(getClass("FeatureAssayPlot"))
-```
-
-### `RowDataPlot`
-
 The `r class_link("RowDataPlot")` class inherits from the `RowDotPlot` class and plots `rowData` variables by themselves or against each other.
 It provides functionality to choose and extract the variables to plot.
-
-```{r}
-slotNames(getClass("RowDataPlot"))
-```
-
-### `ColumnDataTable`
 
 The `r class_link("ColumnDataTable")` class inherits from the `ColumnTable` class and shows the contents of the `colData` in a table.
 It provides functionality to extract the `colData` in preparation for rendering.
 
-```{r}
-slotNames(getClass("ColumnDataTable"))
-```
-
-### `RowDataTable`
-
 The `r class_link("RowDataTable")` class inherits from the `RowTable` class and shows the contents of the `rowData` in a table.
 It provides functionality to extract the `rowData` in preparation for rendering.
-
-```{r}
-slotNames(getClass("RowDataTable"))
-```
-
-### `ComplexHeatmapPlot`
 
 The `r class_link("ComplexHeatmapPlot")` class inherits from the `Panel` class and creates a heatmap from assay values using the `r Biocpkg("ComplexHeatmap")` package.
 It provides functionality to specify the features to be shown, which assay to show, transformations to be applied, and which metadata variables to display as row and column heatmap annotations.
 
-```{r}
-slotNames(getClass("ComplexHeatmapPlot"))
-```
+Further examples of concrete classes are also available in the `r Biocpkg("iSEEu")` package.
 
 ## Extending the classes
 
