@@ -8,3 +8,9 @@ rsconnect
 iSEE-book.log
 book-output/
 sce.rds
+*knit.md
+renv/
+renv.lock
+iSEE-book.rds
+.Rprofile
+.DS_Store
