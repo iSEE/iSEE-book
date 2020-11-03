@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Dynamic reduced dimensions | Extending iSEE</title>
   <meta name="description" content="This book describes how to use the Bioconductor iSEE package to create web-applications for exploring data stored in SummarizedExperiment objects." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Dynamic reduced dimensions | Extending iSEE" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Kevin Rue-Albrecht, Federico Marini, Charlotte Soneson, and Aaron Lun" />
 
 
-<meta name="date" content="2020-10-26" />
+<meta name="date" content="2020-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -145,7 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="panels.html"><a href="panels.html#extending-the-classes"><i class="fa fa-check"></i><b>1.4</b> Extending the classes</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="api.html"><a href="api.html"><i class="fa fa-check"></i><b>2</b> Panel generics</a><ul>
-<li class="chapter" data-level="2.1" data-path="api.html"><a href="api.html#overview-1"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
 <li class="chapter" data-level="2.2" data-path="api.html"><a href="api.html#class-basics"><i class="fa fa-check"></i><b>2.2</b> Class basics</a></li>
 <li class="chapter" data-level="2.3" data-path="api.html"><a href="api.html#parameter-set-up"><i class="fa fa-check"></i><b>2.3</b> Parameter set-up</a></li>
 <li class="chapter" data-level="2.4" data-path="api.html"><a href="api.html#defining-the-user-interface"><i class="fa fa-check"></i><b>2.4</b> Defining the user interface</a><ul>
@@ -165,7 +163,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="api.html"><a href="api.html#miscellaneous"><i class="fa fa-check"></i><b>2.8</b> Miscellaneous</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="server.html"><a href="server.html"><i class="fa fa-check"></i><b>3</b> Application state</a><ul>
-<li class="chapter" data-level="3.1" data-path="server.html"><a href="server.html#overview-2"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
 <li class="chapter" data-level="3.2" data-path="server.html"><a href="server.html#updating-parameters"><i class="fa fa-check"></i><b>3.2</b> Updating parameters</a></li>
 <li class="chapter" data-level="3.3" data-path="server.html"><a href="server.html#reading-the-memory"><i class="fa fa-check"></i><b>3.3</b> Reading the memory</a></li>
 <li class="chapter" data-level="3.4" data-path="server.html"><a href="server.html#reacting-to-events"><i class="fa fa-check"></i><b>3.4</b> Reacting to events</a></li>
@@ -173,44 +171,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>II Worked examples</b></span></li>
 <li class="chapter" data-level="4" data-path="developing.html"><a href="developing.html"><i class="fa fa-check"></i><b>4</b> Reduced dimension hexbin plot</a><ul>
-<li class="chapter" data-level="4.1" data-path="developing.html"><a href="developing.html#overview-3"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
-<li class="chapter" data-level="4.2" data-path="developing.html"><a href="developing.html#class-basics-1"><i class="fa fa-check"></i><b>4.2</b> Class basics</a></li>
+<li class="chapter" data-level="4.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="api.html"><a href="api.html#class-basics"><i class="fa fa-check"></i><b>4.2</b> Class basics</a></li>
 <li class="chapter" data-level="4.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>4.3</b> Setting up the interface</a></li>
 <li class="chapter" data-level="4.4" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>4.4</b> Creating the observers</a></li>
 <li class="chapter" data-level="4.5" data-path="developing.html"><a href="developing.html#generating-the-plot"><i class="fa fa-check"></i><b>4.5</b> Generating the plot</a></li>
 <li class="chapter" data-level="4.6" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>4.6</b> In action</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html"><i class="fa fa-check"></i><b>5</b> Dynamic reduced dimensions</a><ul>
-<li class="chapter" data-level="5.1" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#overview-4"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
-<li class="chapter" data-level="5.2" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#class-basics-2"><i class="fa fa-check"></i><b>5.2</b> Class basics</a></li>
-<li class="chapter" data-level="5.3" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#setting-up-the-interface-1"><i class="fa fa-check"></i><b>5.3</b> Setting up the interface</a></li>
-<li class="chapter" data-level="5.4" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#creating-the-observers-1"><i class="fa fa-check"></i><b>5.4</b> Creating the observers</a></li>
+<li class="chapter" data-level="5.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="api.html"><a href="api.html#class-basics"><i class="fa fa-check"></i><b>5.2</b> Class basics</a></li>
+<li class="chapter" data-level="5.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>5.3</b> Setting up the interface</a></li>
+<li class="chapter" data-level="5.4" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>5.4</b> Creating the observers</a></li>
 <li class="chapter" data-level="5.5" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#making-the-plot"><i class="fa fa-check"></i><b>5.5</b> Making the plot</a></li>
-<li class="chapter" data-level="5.6" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#in-action-1"><i class="fa fa-check"></i><b>5.6</b> In action</a></li>
+<li class="chapter" data-level="5.6" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>5.6</b> In action</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html"><i class="fa fa-check"></i><b>6</b> Dynamic differential expression</a><ul>
-<li class="chapter" data-level="6.1" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#overview-5"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
-<li class="chapter" data-level="6.2" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#class-basics-3"><i class="fa fa-check"></i><b>6.2</b> Class basics</a></li>
-<li class="chapter" data-level="6.3" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#setting-up-the-interface-2"><i class="fa fa-check"></i><b>6.3</b> Setting up the interface</a></li>
-<li class="chapter" data-level="6.4" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#creating-the-observers-2"><i class="fa fa-check"></i><b>6.4</b> Creating the observers</a></li>
+<li class="chapter" data-level="6.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="api.html"><a href="api.html#class-basics"><i class="fa fa-check"></i><b>6.2</b> Class basics</a></li>
+<li class="chapter" data-level="6.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>6.3</b> Setting up the interface</a></li>
+<li class="chapter" data-level="6.4" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>6.4</b> Creating the observers</a></li>
 <li class="chapter" data-level="6.5" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#making-the-table"><i class="fa fa-check"></i><b>6.5</b> Making the table</a></li>
-<li class="chapter" data-level="6.6" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#in-action-2"><i class="fa fa-check"></i><b>6.6</b> In action</a></li>
+<li class="chapter" data-level="6.6" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>6.6</b> In action</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html"><i class="fa fa-check"></i><b>7</b> Annotated gene list</a><ul>
-<li class="chapter" data-level="7.1" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#overview-6"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
-<li class="chapter" data-level="7.2" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#class-basics-4"><i class="fa fa-check"></i><b>7.2</b> Class basics</a></li>
-<li class="chapter" data-level="7.3" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#setting-up-the-interface-3"><i class="fa fa-check"></i><b>7.3</b> Setting up the interface</a></li>
-<li class="chapter" data-level="7.4" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#creating-the-observers-3"><i class="fa fa-check"></i><b>7.4</b> Creating the observers</a></li>
-<li class="chapter" data-level="7.5" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#in-action-3"><i class="fa fa-check"></i><b>7.5</b> In action</a></li>
+<li class="chapter" data-level="7.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="api.html"><a href="api.html#class-basics"><i class="fa fa-check"></i><b>7.2</b> Class basics</a></li>
+<li class="chapter" data-level="7.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>7.3</b> Setting up the interface</a></li>
+<li class="chapter" data-level="7.4" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>7.4</b> Creating the observers</a></li>
+<li class="chapter" data-level="7.5" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>7.5</b> In action</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html"><i class="fa fa-check"></i><b>8</b> Gene ontology table</a><ul>
-<li class="chapter" data-level="8.1" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#overview-7"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
-<li class="chapter" data-level="8.2" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#class-basics-5"><i class="fa fa-check"></i><b>8.2</b> Class basics</a></li>
-<li class="chapter" data-level="8.3" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#setting-up-the-interface-4"><i class="fa fa-check"></i><b>8.3</b> Setting up the interface</a></li>
+<li class="chapter" data-level="8.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="api.html"><a href="api.html#class-basics"><i class="fa fa-check"></i><b>8.2</b> Class basics</a></li>
+<li class="chapter" data-level="8.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>8.3</b> Setting up the interface</a></li>
 <li class="chapter" data-level="8.4" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#generating-the-output"><i class="fa fa-check"></i><b>8.4</b> Generating the output</a></li>
-<li class="chapter" data-level="8.5" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#creating-the-observers-4"><i class="fa fa-check"></i><b>8.5</b> Creating the observers</a></li>
-<li class="chapter" data-level="8.6" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#handling-selections-1"><i class="fa fa-check"></i><b>8.6</b> Handling selections</a></li>
-<li class="chapter" data-level="8.7" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#in-action-4"><i class="fa fa-check"></i><b>8.7</b> In action</a></li>
+<li class="chapter" data-level="8.5" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>8.5</b> Creating the observers</a></li>
+<li class="chapter" data-level="8.6" data-path="api.html"><a href="api.html#handling-selections"><i class="fa fa-check"></i><b>8.6</b> Handling selections</a></li>
+<li class="chapter" data-level="8.7" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>8.7</b> In action</a></li>
 </ul></li>
 <li class="part"><span><b>III Appendix</b></span></li>
 <li class="chapter" data-level="9" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>9</b> Contributors</a><ul>
@@ -240,91 +238,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="dynamic-reduced-dimensions" class="section level1">
 <h1><span class="header-section-number">Chapter 5</span> Dynamic reduced dimensions</h1>
-<div id="overview-4" class="section level2">
+<div id="overview" class="section level2">
 <h2><span class="header-section-number">5.1</span> Overview</h2>
-<p>In this case study, we will create a custom panel class to regenerate sample-level PCA coordinates using only a subset of points transmitted as a multiple column selection from another panel.
-We call this a <strong>dynamic reduced dimension plot</strong>, as it is dynamically recomputing the dimensionality reduction results rather than using pre-computed values in the <code>reducedDims()</code> slot of a <code>SingleCellExperiment</code> object.
-This proposed class is the basis of the <code>DynamicReducedDimensionPlot</code> from the <em><a href="https://bioconductor.org/packages/3.11/iSEEu">iSEEu</a></em> package.</p>
+<p>In this case study, we will create a custom panel class to regenerate low-dimensional sample coordinates, using only a subset of points transmitted as a multiple column selection from another panel.
+We call this a “dynamic reduced dimension plot” as it is dynamically recomputing the dimensionality reduction rather than using pre-computed values in the <code>reducedDims()</code> slot of a <code>SingleCellExperiment</code> object.
+This proposed class is the basis of the <code>DynamicReducedDimensionPlot</code> from the <em><a href="https://bioconductor.org/packages/3.12/iSEEu">iSEEu</a></em> package.</p>
 </div>
-<div id="class-basics-2" class="section level2">
+<div id="class-basics" class="section level2">
 <h2><span class="header-section-number">5.2</span> Class basics</h2>
 <p>First, we define the basics of our new <code>Panel</code> class.
 As our new class will be showing each sample as a point, we inherit from the <code>ColumnDotPlot</code> virtual class.
-This automatically gives us access to all the functionality promised in the contract,
+This automatically gives us access to all the functionality promised by the parent,
 including interface elements and observers to handle multiple selections and respond to aesthetic parameters.</p>
 <p>We add a slot specifying the type of dimensionality reduction result and the number of highly variable genes to use.
 Any new slots should also come with validity methods, as shown below.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="dynamic-reduced-dimensions.html#cb15-1"></a><span class="kw">library</span>(S4Vectors)</span>
-<span id="cb15-2"><a href="dynamic-reduced-dimensions.html#cb15-2"></a><span class="kw">setValidity2</span>(<span class="st">&quot;DynRedDimPlot&quot;</span>, <span class="cf">function</span>(object) {</span>
-<span id="cb15-3"><a href="dynamic-reduced-dimensions.html#cb15-3"></a>    msg &lt;-<span class="st"> </span><span class="kw">character</span>(<span class="dv">0</span>)</span>
-<span id="cb15-4"><a href="dynamic-reduced-dimensions.html#cb15-4"></a></span>
-<span id="cb15-5"><a href="dynamic-reduced-dimensions.html#cb15-5"></a>    <span class="cf">if</span> (<span class="kw">length</span>(n &lt;-<span class="st"> </span>object[[<span class="st">&quot;NGenes&quot;</span>]])<span class="op">!=</span>1L <span class="op">||</span><span class="st"> </span>n <span class="op">&lt;</span><span class="st"> </span>1L) {</span>
-<span id="cb15-6"><a href="dynamic-reduced-dimensions.html#cb15-6"></a>        msg &lt;-<span class="st"> </span><span class="kw">c</span>(msg, <span class="st">&quot;&#39;NGenes&#39; must be a positive integer scalar&quot;</span>) </span>
-<span id="cb15-7"><a href="dynamic-reduced-dimensions.html#cb15-7"></a>    }</span>
-<span id="cb15-8"><a href="dynamic-reduced-dimensions.html#cb15-8"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="kw">isSingleString</span>(val &lt;-<span class="st"> </span>object[[<span class="st">&quot;Type&quot;</span>]]) <span class="op">||</span><span class="st"> </span></span>
-<span id="cb15-9"><a href="dynamic-reduced-dimensions.html#cb15-9"></a><span class="st">        </span><span class="op">!</span>val <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;PCA&quot;</span>, <span class="st">&quot;TSNE&quot;</span>, <span class="st">&quot;UMAP&quot;</span>)) </span>
-<span id="cb15-10"><a href="dynamic-reduced-dimensions.html#cb15-10"></a>    {</span>
-<span id="cb15-11"><a href="dynamic-reduced-dimensions.html#cb15-11"></a>        msg &lt;-<span class="st"> </span><span class="kw">c</span>(msg, <span class="st">&quot;&#39;Type&#39; must be one of &#39;TSNE&#39;, &#39;PCA&#39; or &#39;UMAP&#39;&quot;</span>)</span>
-<span id="cb15-12"><a href="dynamic-reduced-dimensions.html#cb15-12"></a>    }</span>
-<span id="cb15-13"><a href="dynamic-reduced-dimensions.html#cb15-13"></a></span>
-<span id="cb15-14"><a href="dynamic-reduced-dimensions.html#cb15-14"></a>    <span class="cf">if</span> (<span class="kw">length</span>(msg)) {</span>
-<span id="cb15-15"><a href="dynamic-reduced-dimensions.html#cb15-15"></a>        <span class="kw">return</span>(msg)</span>
-<span id="cb15-16"><a href="dynamic-reduced-dimensions.html#cb15-16"></a>    }</span>
-<span id="cb15-17"><a href="dynamic-reduced-dimensions.html#cb15-17"></a>    <span class="ot">TRUE</span></span>
-<span id="cb15-18"><a href="dynamic-reduced-dimensions.html#cb15-18"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="dynamic-reduced-dimensions.html#cb13-1"></a><span class="kw">library</span>(S4Vectors)</span>
+<span id="cb13-2"><a href="dynamic-reduced-dimensions.html#cb13-2"></a>allowable.dim &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;PCA&quot;</span>, <span class="st">&quot;TSNE&quot;</span>, <span class="st">&quot;UMAP&quot;</span>)</span>
+<span id="cb13-3"><a href="dynamic-reduced-dimensions.html#cb13-3"></a></span>
+<span id="cb13-4"><a href="dynamic-reduced-dimensions.html#cb13-4"></a><span class="kw">setValidity2</span>(<span class="st">&quot;DynRedDimPlot&quot;</span>, <span class="cf">function</span>(object) {</span>
+<span id="cb13-5"><a href="dynamic-reduced-dimensions.html#cb13-5"></a>    msg &lt;-<span class="st"> </span><span class="kw">character</span>(<span class="dv">0</span>)</span>
+<span id="cb13-6"><a href="dynamic-reduced-dimensions.html#cb13-6"></a></span>
+<span id="cb13-7"><a href="dynamic-reduced-dimensions.html#cb13-7"></a>    msg &lt;-<span class="st"> </span><span class="kw">.validNumberError</span>(msg, object, <span class="st">&quot;NGenes&quot;</span>, <span class="dt">lower=</span><span class="dv">1</span>, <span class="dt">upper=</span><span class="ot">Inf</span>) <span class="co"># must be a positive integer</span></span>
+<span id="cb13-8"><a href="dynamic-reduced-dimensions.html#cb13-8"></a></span>
+<span id="cb13-9"><a href="dynamic-reduced-dimensions.html#cb13-9"></a>    msg &lt;-<span class="st"> </span><span class="kw">.allowableChoiceError</span>(msg, object, <span class="st">&quot;Type&quot;</span>, allowable.dim)</span>
+<span id="cb13-10"><a href="dynamic-reduced-dimensions.html#cb13-10"></a></span>
+<span id="cb13-11"><a href="dynamic-reduced-dimensions.html#cb13-11"></a>    <span class="cf">if</span> (<span class="kw">length</span>(msg)) {</span>
+<span id="cb13-12"><a href="dynamic-reduced-dimensions.html#cb13-12"></a>        <span class="kw">return</span>(msg)</span>
+<span id="cb13-13"><a href="dynamic-reduced-dimensions.html#cb13-13"></a>    }</span>
+<span id="cb13-14"><a href="dynamic-reduced-dimensions.html#cb13-14"></a>    <span class="ot">TRUE</span></span>
+<span id="cb13-15"><a href="dynamic-reduced-dimensions.html#cb13-15"></a>})</span></code></pre></div>
 <p>We specialize the <code>initialize()</code> method to provide a default for new parameters.
 We also implement a constructor for instances of this class.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="dynamic-reduced-dimensions.html#cb16-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;initialize&quot;</span>, <span class="st">&quot;DynRedDimPlot&quot;</span>, </span>
-<span id="cb16-2"><a href="dynamic-reduced-dimensions.html#cb16-2"></a>    <span class="cf">function</span>(.Object, <span class="dt">Type=</span><span class="st">&quot;PCA&quot;</span>, <span class="dt">NGenes=</span>1000L, ...) </span>
-<span id="cb16-3"><a href="dynamic-reduced-dimensions.html#cb16-3"></a>{</span>
-<span id="cb16-4"><a href="dynamic-reduced-dimensions.html#cb16-4"></a>    <span class="kw">callNextMethod</span>(.Object, <span class="dt">Type=</span>Type, <span class="dt">NGenes=</span>NGenes, ...)</span>
-<span id="cb16-5"><a href="dynamic-reduced-dimensions.html#cb16-5"></a>})</span>
-<span id="cb16-6"><a href="dynamic-reduced-dimensions.html#cb16-6"></a></span>
-<span id="cb16-7"><a href="dynamic-reduced-dimensions.html#cb16-7"></a>DynRedDimPlot &lt;-<span class="st"> </span><span class="cf">function</span>(...) {</span>
-<span id="cb16-8"><a href="dynamic-reduced-dimensions.html#cb16-8"></a>    <span class="kw">new</span>(<span class="st">&quot;DynRedDimPlot&quot;</span>, ...)</span>
-<span id="cb16-9"><a href="dynamic-reduced-dimensions.html#cb16-9"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="dynamic-reduced-dimensions.html#cb14-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;initialize&quot;</span>, <span class="st">&quot;DynRedDimPlot&quot;</span>, </span>
+<span id="cb14-2"><a href="dynamic-reduced-dimensions.html#cb14-2"></a>    <span class="cf">function</span>(.Object, <span class="dt">Type=</span><span class="st">&quot;PCA&quot;</span>, <span class="dt">NGenes=</span>1000L, ...) </span>
+<span id="cb14-3"><a href="dynamic-reduced-dimensions.html#cb14-3"></a>{</span>
+<span id="cb14-4"><a href="dynamic-reduced-dimensions.html#cb14-4"></a>    <span class="kw">callNextMethod</span>(.Object, <span class="dt">Type=</span>Type, <span class="dt">NGenes=</span>NGenes, ...)</span>
+<span id="cb14-5"><a href="dynamic-reduced-dimensions.html#cb14-5"></a>})</span>
+<span id="cb14-6"><a href="dynamic-reduced-dimensions.html#cb14-6"></a></span>
+<span id="cb14-7"><a href="dynamic-reduced-dimensions.html#cb14-7"></a>DynRedDimPlot &lt;-<span class="st"> </span><span class="cf">function</span>(...) {</span>
+<span id="cb14-8"><a href="dynamic-reduced-dimensions.html#cb14-8"></a>    <span class="kw">new</span>(<span class="st">&quot;DynRedDimPlot&quot;</span>, ...)</span>
+<span id="cb14-9"><a href="dynamic-reduced-dimensions.html#cb14-9"></a>}</span></code></pre></div>
 </div>
-<div id="setting-up-the-interface-1" class="section level2">
+<div id="setting-up-the-interface" class="section level2">
 <h2><span class="header-section-number">5.3</span> Setting up the interface</h2>
 <p>The most basic requirement is to define some methods that describe our new panel in the <code>iSEE()</code> interface.
 This includes defining the full name and desired default color for display purposes:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="dynamic-reduced-dimensions.html#cb17-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.fullName&quot;</span>, <span class="st">&quot;DynRedDimPlot&quot;</span>, <span class="cf">function</span>(x) <span class="st">&quot;Dynamic reduced dimension plot&quot;</span>)</span>
-<span id="cb17-2"><a href="dynamic-reduced-dimensions.html#cb17-2"></a></span>
-<span id="cb17-3"><a href="dynamic-reduced-dimensions.html#cb17-3"></a><span class="kw">setMethod</span>(<span class="st">&quot;.panelColor&quot;</span>, <span class="st">&quot;DynRedDimPlot&quot;</span>, <span class="cf">function</span>(x) <span class="st">&quot;#0F0F0F&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="dynamic-reduced-dimensions.html#cb15-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.fullName&quot;</span>, <span class="st">&quot;DynRedDimPlot&quot;</span>, <span class="cf">function</span>(x) <span class="st">&quot;Dynamic reduced dimension plot&quot;</span>)</span>
+<span id="cb15-2"><a href="dynamic-reduced-dimensions.html#cb15-2"></a></span>
+<span id="cb15-3"><a href="dynamic-reduced-dimensions.html#cb15-3"></a><span class="kw">setMethod</span>(<span class="st">&quot;.panelColor&quot;</span>, <span class="st">&quot;DynRedDimPlot&quot;</span>, <span class="cf">function</span>(x) <span class="st">&quot;#0F0F0F&quot;</span>)</span></code></pre></div>
 <p>We also add interface elements to change the result type and the number of genes.
 This is most easily done by specializing the <code>.defineDataInterface</code> method:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="dynamic-reduced-dimensions.html#cb18-1"></a><span class="kw">library</span>(shiny)</span>
-<span id="cb18-2"><a href="dynamic-reduced-dimensions.html#cb18-2"></a><span class="kw">setMethod</span>(<span class="st">&quot;.defineDataInterface&quot;</span>, <span class="st">&quot;DynRedDimPlot&quot;</span>, <span class="cf">function</span>(x, se, select_info) {</span>
-<span id="cb18-3"><a href="dynamic-reduced-dimensions.html#cb18-3"></a>    plot_name &lt;-<span class="st"> </span><span class="kw">.getEncodedName</span>(x)</span>
-<span id="cb18-4"><a href="dynamic-reduced-dimensions.html#cb18-4"></a></span>
-<span id="cb18-5"><a href="dynamic-reduced-dimensions.html#cb18-5"></a>    <span class="kw">list</span>(</span>
-<span id="cb18-6"><a href="dynamic-reduced-dimensions.html#cb18-6"></a>        <span class="kw">selectInput</span>(<span class="kw">paste0</span>(plot_name, <span class="st">&quot;_Type&quot;</span>), <span class="dt">label=</span><span class="st">&quot;Type:&quot;</span>,</span>
-<span id="cb18-7"><a href="dynamic-reduced-dimensions.html#cb18-7"></a>            <span class="dt">choices=</span><span class="kw">c</span>(<span class="st">&quot;PCA&quot;</span>, <span class="st">&quot;TSNE&quot;</span>, <span class="st">&quot;UMAP&quot;</span>), <span class="dt">selected=</span>x[[<span class="st">&quot;Type&quot;</span>]]),</span>
-<span id="cb18-8"><a href="dynamic-reduced-dimensions.html#cb18-8"></a>        <span class="kw">numericInput</span>(<span class="kw">paste0</span>(plot_name, <span class="st">&quot;_NGenes&quot;</span>), <span class="dt">label=</span><span class="st">&quot;Number of HVGs:&quot;</span>,</span>
-<span id="cb18-9"><a href="dynamic-reduced-dimensions.html#cb18-9"></a>            <span class="dt">min=</span><span class="dv">1</span>, <span class="dt">value=</span>x[[<span class="st">&quot;NGenes&quot;</span>]])</span>
-<span id="cb18-10"><a href="dynamic-reduced-dimensions.html#cb18-10"></a>    )</span>
-<span id="cb18-11"><a href="dynamic-reduced-dimensions.html#cb18-11"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="dynamic-reduced-dimensions.html#cb16-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb16-2"><a href="dynamic-reduced-dimensions.html#cb16-2"></a><span class="kw">setMethod</span>(<span class="st">&quot;.defineDataInterface&quot;</span>, <span class="st">&quot;DynRedDimPlot&quot;</span>, <span class="cf">function</span>(x, se, select_info) {</span>
+<span id="cb16-3"><a href="dynamic-reduced-dimensions.html#cb16-3"></a>    plot_name &lt;-<span class="st"> </span><span class="kw">.getEncodedName</span>(x)</span>
+<span id="cb16-4"><a href="dynamic-reduced-dimensions.html#cb16-4"></a></span>
+<span id="cb16-5"><a href="dynamic-reduced-dimensions.html#cb16-5"></a>    <span class="kw">list</span>(</span>
+<span id="cb16-6"><a href="dynamic-reduced-dimensions.html#cb16-6"></a>        <span class="kw">selectInput</span>(<span class="kw">paste0</span>(plot_name, <span class="st">&quot;_Type&quot;</span>), <span class="dt">label=</span><span class="st">&quot;Type:&quot;</span>,</span>
+<span id="cb16-7"><a href="dynamic-reduced-dimensions.html#cb16-7"></a>            <span class="dt">choices=</span>allowable.dim, <span class="dt">selected=</span>x[[<span class="st">&quot;Type&quot;</span>]]),</span>
+<span id="cb16-8"><a href="dynamic-reduced-dimensions.html#cb16-8"></a>        <span class="kw">numericInput</span>(<span class="kw">paste0</span>(plot_name, <span class="st">&quot;_NGenes&quot;</span>), <span class="dt">label=</span><span class="st">&quot;Number of HVGs:&quot;</span>,</span>
+<span id="cb16-9"><a href="dynamic-reduced-dimensions.html#cb16-9"></a>            <span class="dt">min=</span><span class="dv">1</span>, <span class="dt">value=</span>x[[<span class="st">&quot;NGenes&quot;</span>]])</span>
+<span id="cb16-10"><a href="dynamic-reduced-dimensions.html#cb16-10"></a>    )</span>
+<span id="cb16-11"><a href="dynamic-reduced-dimensions.html#cb16-11"></a>})</span></code></pre></div>
 <p>We call <code>.getEncodedName()</code> to obtain a unique name for the current instance of our panel, e.g., <code>DynRedDimPlot1</code>.
 We then <code>paste0</code> the name of our panel to the name of any parameter to ensure that the ID is unique to this instance of our panel;
-otherwise, multiple <code>DynRedDimPlot</code>s would override each other.
+otherwise, observers for multiple <code>DynRedDimPlot</code>s would override each other.
 One can imagine this as a poor man’s Shiny module.</p>
 </div>
-<div id="creating-the-observers-1" class="section level2">
+<div id="creating-the-observers" class="section level2">
 <h2><span class="header-section-number">5.4</span> Creating the observers</h2>
-<p>We specialize <code>.createObservers</code> to define some observers to respond to changes in our new interface elements.
+<p>We specialize <code>.createObservers()</code> to define some observers to respond to changes in our new interface elements.
 Note the use of <code>callNextMethod()</code> to ensure that observers of the parent class are also created;
 this automatically ensures that we can respond to changes in parameters provided by <code>ColumnDotPlot</code>.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="dynamic-reduced-dimensions.html#cb19-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.createObservers&quot;</span>, <span class="st">&quot;DynRedDimPlot&quot;</span>, </span>
-<span id="cb19-2"><a href="dynamic-reduced-dimensions.html#cb19-2"></a>    <span class="cf">function</span>(x, se, input, session, pObjects, rObjects) </span>
-<span id="cb19-3"><a href="dynamic-reduced-dimensions.html#cb19-3"></a>{</span>
-<span id="cb19-4"><a href="dynamic-reduced-dimensions.html#cb19-4"></a>    <span class="kw">callNextMethod</span>()</span>
-<span id="cb19-5"><a href="dynamic-reduced-dimensions.html#cb19-5"></a></span>
-<span id="cb19-6"><a href="dynamic-reduced-dimensions.html#cb19-6"></a>    plot_name &lt;-<span class="st"> </span><span class="kw">.getEncodedName</span>(x)</span>
-<span id="cb19-7"><a href="dynamic-reduced-dimensions.html#cb19-7"></a></span>
-<span id="cb19-8"><a href="dynamic-reduced-dimensions.html#cb19-8"></a>    <span class="kw">.createProtectedParameterObservers</span>(plot_name,</span>
-<span id="cb19-9"><a href="dynamic-reduced-dimensions.html#cb19-9"></a>        <span class="dt">fields=</span><span class="kw">c</span>(<span class="st">&quot;Type&quot;</span>, <span class="st">&quot;NGenes&quot;</span>),</span>
-<span id="cb19-10"><a href="dynamic-reduced-dimensions.html#cb19-10"></a>        <span class="dt">input=</span>input, <span class="dt">pObjects=</span>pObjects, <span class="dt">rObjects=</span>rObjects)</span>
-<span id="cb19-11"><a href="dynamic-reduced-dimensions.html#cb19-11"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="dynamic-reduced-dimensions.html#cb17-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.createObservers&quot;</span>, <span class="st">&quot;DynRedDimPlot&quot;</span>, </span>
+<span id="cb17-2"><a href="dynamic-reduced-dimensions.html#cb17-2"></a>    <span class="cf">function</span>(x, se, input, session, pObjects, rObjects) </span>
+<span id="cb17-3"><a href="dynamic-reduced-dimensions.html#cb17-3"></a>{</span>
+<span id="cb17-4"><a href="dynamic-reduced-dimensions.html#cb17-4"></a>    <span class="kw">callNextMethod</span>()</span>
+<span id="cb17-5"><a href="dynamic-reduced-dimensions.html#cb17-5"></a></span>
+<span id="cb17-6"><a href="dynamic-reduced-dimensions.html#cb17-6"></a>    plot_name &lt;-<span class="st"> </span><span class="kw">.getEncodedName</span>(x)</span>
+<span id="cb17-7"><a href="dynamic-reduced-dimensions.html#cb17-7"></a></span>
+<span id="cb17-8"><a href="dynamic-reduced-dimensions.html#cb17-8"></a>    <span class="kw">.createProtectedParameterObservers</span>(plot_name,</span>
+<span id="cb17-9"><a href="dynamic-reduced-dimensions.html#cb17-9"></a>        <span class="dt">fields=</span><span class="kw">c</span>(<span class="st">&quot;Type&quot;</span>, <span class="st">&quot;NGenes&quot;</span>),</span>
+<span id="cb17-10"><a href="dynamic-reduced-dimensions.html#cb17-10"></a>        <span class="dt">input=</span>input, <span class="dt">pObjects=</span>pObjects, <span class="dt">rObjects=</span>rObjects)</span>
+<span id="cb17-11"><a href="dynamic-reduced-dimensions.html#cb17-11"></a>})</span></code></pre></div>
 <p>Both the <code>NGenes</code> and <code>Type</code> parameters are what we consider to be “protected” parameters,
 as changing them will alter the nature of the displayed plot.
 We use the <code>.createProtectedParameterObservers()</code> utility to set up observers for both parameters,
@@ -334,41 +329,41 @@ The idea here is that brushes/lassos made on the previous plot do not make sense
 This indicates that any brushes or lassos in our plot should be destroyed when we receive a new column selection.
 Doing so is the only sensible course of action as the reduced dimension coordinates for one set of samples have no obvious relationship to the coordinates for another set of samples;
 having old brushes or lassos hanging around would be of no benefit at best, and be misleading at worst.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="dynamic-reduced-dimensions.html#cb20-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.multiSelectionInvalidated&quot;</span>, <span class="st">&quot;DynRedDimPlot&quot;</span>, <span class="cf">function</span>(x) <span class="ot">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="dynamic-reduced-dimensions.html#cb18-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.multiSelectionInvalidated&quot;</span>, <span class="st">&quot;DynRedDimPlot&quot;</span>, <span class="cf">function</span>(x) <span class="ot">TRUE</span>)</span></code></pre></div>
 </div>
 <div id="making-the-plot" class="section level2">
 <h2><span class="header-section-number">5.5</span> Making the plot</h2>
-<p>When working with a <code>ColumnDotPlot</code> subclass, the easiest way to change plotting content to override the <code>.generateDotPlotData</code> method.
+<p>When working with a <code>ColumnDotPlot</code> subclass, the easiest way to change plotting content to override the <code>.generateDotPlotData()</code> method.
 This should add a <code>plot.data</code> variable to the <code>envir</code> environment that has columns <code>X</code> and <code>Y</code> and contains one row per column of the original <code>SummarizedExperiment</code>.
 It should also return a character vector of R commands describing how that <code>plot.data</code> object was constructed.
 The easiest way to do this is to create a character vector of commands and call <code>eval(parse(text=...), envir=envir)</code> to evaluate them within <code>envir</code>.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="dynamic-reduced-dimensions.html#cb21-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.generateDotPlotData&quot;</span>, <span class="st">&quot;DynRedDimPlot&quot;</span>, <span class="cf">function</span>(x, envir) {</span>
-<span id="cb21-2"><a href="dynamic-reduced-dimensions.html#cb21-2"></a>    commands &lt;-<span class="st"> </span><span class="kw">character</span>(<span class="dv">0</span>)</span>
-<span id="cb21-3"><a href="dynamic-reduced-dimensions.html#cb21-3"></a></span>
-<span id="cb21-4"><a href="dynamic-reduced-dimensions.html#cb21-4"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="kw">exists</span>(<span class="st">&quot;col_selected&quot;</span>, <span class="dt">envir=</span>envir, <span class="dt">inherits=</span><span class="ot">FALSE</span>)) {</span>
-<span id="cb21-5"><a href="dynamic-reduced-dimensions.html#cb21-5"></a>        commands &lt;-<span class="st"> </span><span class="kw">c</span>(commands, </span>
-<span id="cb21-6"><a href="dynamic-reduced-dimensions.html#cb21-6"></a>            <span class="st">&quot;plot.data &lt;- data.frame(X=numeric(0), Y=numeric(0));&quot;</span>)</span>
-<span id="cb21-7"><a href="dynamic-reduced-dimensions.html#cb21-7"></a>    } <span class="cf">else</span> {</span>
-<span id="cb21-8"><a href="dynamic-reduced-dimensions.html#cb21-8"></a>        commands &lt;-<span class="st"> </span><span class="kw">c</span>(commands,</span>
-<span id="cb21-9"><a href="dynamic-reduced-dimensions.html#cb21-9"></a>            <span class="st">&quot;.chosen &lt;- unique(unlist(col_selected));&quot;</span>,</span>
-<span id="cb21-10"><a href="dynamic-reduced-dimensions.html#cb21-10"></a>            <span class="st">&quot;set.seed(100000)&quot;</span>, <span class="co"># to avoid problems with randomization.</span></span>
-<span id="cb21-11"><a href="dynamic-reduced-dimensions.html#cb21-11"></a>            <span class="kw">sprintf</span>(<span class="st">&quot;.coords &lt;- scater::calculate%s(se[,.chosen], ntop=%i, ncomponents=2);&quot;</span>,</span>
-<span id="cb21-12"><a href="dynamic-reduced-dimensions.html#cb21-12"></a>                x[[<span class="st">&quot;Type&quot;</span>]], x[[<span class="st">&quot;NGenes&quot;</span>]]),</span>
-<span id="cb21-13"><a href="dynamic-reduced-dimensions.html#cb21-13"></a>            <span class="st">&quot;plot.data &lt;- data.frame(.coords, row.names=.chosen);&quot;</span>,</span>
-<span id="cb21-14"><a href="dynamic-reduced-dimensions.html#cb21-14"></a>            <span class="st">&quot;colnames(plot.data) &lt;- c(&#39;X&#39;, &#39;Y&#39;);&quot;</span></span>
-<span id="cb21-15"><a href="dynamic-reduced-dimensions.html#cb21-15"></a>        )</span>
-<span id="cb21-16"><a href="dynamic-reduced-dimensions.html#cb21-16"></a>    }</span>
-<span id="cb21-17"><a href="dynamic-reduced-dimensions.html#cb21-17"></a></span>
-<span id="cb21-18"><a href="dynamic-reduced-dimensions.html#cb21-18"></a>    commands &lt;-<span class="st"> </span><span class="kw">c</span>(commands,</span>
-<span id="cb21-19"><a href="dynamic-reduced-dimensions.html#cb21-19"></a>        <span class="st">&quot;plot.data &lt;- plot.data[colnames(se),,drop=FALSE];&quot;</span>,</span>
-<span id="cb21-20"><a href="dynamic-reduced-dimensions.html#cb21-20"></a>        <span class="st">&quot;rownames(plot.data) &lt;- colnames(se);&quot;</span>)</span>
-<span id="cb21-21"><a href="dynamic-reduced-dimensions.html#cb21-21"></a></span>
-<span id="cb21-22"><a href="dynamic-reduced-dimensions.html#cb21-22"></a>    <span class="kw">eval</span>(<span class="kw">parse</span>(<span class="dt">text=</span>commands), <span class="dt">envir=</span>envir)</span>
-<span id="cb21-23"><a href="dynamic-reduced-dimensions.html#cb21-23"></a></span>
-<span id="cb21-24"><a href="dynamic-reduced-dimensions.html#cb21-24"></a>    <span class="kw">list</span>(<span class="dt">data_cmds=</span>commands, <span class="dt">plot_title=</span><span class="kw">sprintf</span>(<span class="st">&quot;Dynamic %s plot&quot;</span>, x[[<span class="st">&quot;Type&quot;</span>]]), </span>
-<span id="cb21-25"><a href="dynamic-reduced-dimensions.html#cb21-25"></a>        <span class="dt">x_lab=</span><span class="kw">paste0</span>(x[[<span class="st">&quot;Type&quot;</span>]], <span class="st">&quot;1&quot;</span>), <span class="dt">y_lab=</span><span class="kw">paste0</span>(x[[<span class="st">&quot;Type&quot;</span>]], <span class="st">&quot;2&quot;</span>))</span>
-<span id="cb21-26"><a href="dynamic-reduced-dimensions.html#cb21-26"></a>})</span></code></pre></div>
-<p>We use functions from the <em><a href="https://bioconductor.org/packages/3.11/scater">scater</a></em> package to do the actual heavy lifting of calculating the dimensionality reduction results.
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="dynamic-reduced-dimensions.html#cb19-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.generateDotPlotData&quot;</span>, <span class="st">&quot;DynRedDimPlot&quot;</span>, <span class="cf">function</span>(x, envir) {</span>
+<span id="cb19-2"><a href="dynamic-reduced-dimensions.html#cb19-2"></a>    commands &lt;-<span class="st"> </span><span class="kw">character</span>(<span class="dv">0</span>)</span>
+<span id="cb19-3"><a href="dynamic-reduced-dimensions.html#cb19-3"></a></span>
+<span id="cb19-4"><a href="dynamic-reduced-dimensions.html#cb19-4"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="kw">exists</span>(<span class="st">&quot;col_selected&quot;</span>, <span class="dt">envir=</span>envir, <span class="dt">inherits=</span><span class="ot">FALSE</span>)) {</span>
+<span id="cb19-5"><a href="dynamic-reduced-dimensions.html#cb19-5"></a>        commands &lt;-<span class="st"> </span><span class="kw">c</span>(commands, </span>
+<span id="cb19-6"><a href="dynamic-reduced-dimensions.html#cb19-6"></a>            <span class="st">&quot;plot.data &lt;- data.frame(X=numeric(0), Y=numeric(0));&quot;</span>)</span>
+<span id="cb19-7"><a href="dynamic-reduced-dimensions.html#cb19-7"></a>    } <span class="cf">else</span> {</span>
+<span id="cb19-8"><a href="dynamic-reduced-dimensions.html#cb19-8"></a>        commands &lt;-<span class="st"> </span><span class="kw">c</span>(commands,</span>
+<span id="cb19-9"><a href="dynamic-reduced-dimensions.html#cb19-9"></a>            <span class="st">&quot;.chosen &lt;- unique(unlist(col_selected));&quot;</span>,</span>
+<span id="cb19-10"><a href="dynamic-reduced-dimensions.html#cb19-10"></a>            <span class="st">&quot;set.seed(100000)&quot;</span>, <span class="co"># to avoid problems with randomization.</span></span>
+<span id="cb19-11"><a href="dynamic-reduced-dimensions.html#cb19-11"></a>            <span class="kw">sprintf</span>(<span class="st">&quot;.coords &lt;- scater::calculate%s(se[,.chosen], ntop=%i, ncomponents=2);&quot;</span>,</span>
+<span id="cb19-12"><a href="dynamic-reduced-dimensions.html#cb19-12"></a>                x[[<span class="st">&quot;Type&quot;</span>]], x[[<span class="st">&quot;NGenes&quot;</span>]]),</span>
+<span id="cb19-13"><a href="dynamic-reduced-dimensions.html#cb19-13"></a>            <span class="st">&quot;plot.data &lt;- data.frame(.coords, row.names=.chosen);&quot;</span>,</span>
+<span id="cb19-14"><a href="dynamic-reduced-dimensions.html#cb19-14"></a>            <span class="st">&quot;colnames(plot.data) &lt;- c(&#39;X&#39;, &#39;Y&#39;);&quot;</span></span>
+<span id="cb19-15"><a href="dynamic-reduced-dimensions.html#cb19-15"></a>        )</span>
+<span id="cb19-16"><a href="dynamic-reduced-dimensions.html#cb19-16"></a>    }</span>
+<span id="cb19-17"><a href="dynamic-reduced-dimensions.html#cb19-17"></a></span>
+<span id="cb19-18"><a href="dynamic-reduced-dimensions.html#cb19-18"></a>    commands &lt;-<span class="st"> </span><span class="kw">c</span>(commands,</span>
+<span id="cb19-19"><a href="dynamic-reduced-dimensions.html#cb19-19"></a>        <span class="st">&quot;plot.data &lt;- plot.data[colnames(se),,drop=FALSE];&quot;</span>,</span>
+<span id="cb19-20"><a href="dynamic-reduced-dimensions.html#cb19-20"></a>        <span class="st">&quot;rownames(plot.data) &lt;- colnames(se);&quot;</span>)</span>
+<span id="cb19-21"><a href="dynamic-reduced-dimensions.html#cb19-21"></a></span>
+<span id="cb19-22"><a href="dynamic-reduced-dimensions.html#cb19-22"></a>    <span class="kw">eval</span>(<span class="kw">parse</span>(<span class="dt">text=</span>commands), <span class="dt">envir=</span>envir)</span>
+<span id="cb19-23"><a href="dynamic-reduced-dimensions.html#cb19-23"></a></span>
+<span id="cb19-24"><a href="dynamic-reduced-dimensions.html#cb19-24"></a>    <span class="kw">list</span>(<span class="dt">data_cmds=</span>commands, <span class="dt">plot_title=</span><span class="kw">sprintf</span>(<span class="st">&quot;Dynamic %s plot&quot;</span>, x[[<span class="st">&quot;Type&quot;</span>]]), </span>
+<span id="cb19-25"><a href="dynamic-reduced-dimensions.html#cb19-25"></a>        <span class="dt">x_lab=</span><span class="kw">paste0</span>(x[[<span class="st">&quot;Type&quot;</span>]], <span class="st">&quot;1&quot;</span>), <span class="dt">y_lab=</span><span class="kw">paste0</span>(x[[<span class="st">&quot;Type&quot;</span>]], <span class="st">&quot;2&quot;</span>))</span>
+<span id="cb19-26"><a href="dynamic-reduced-dimensions.html#cb19-26"></a>})</span></code></pre></div>
+<p>We use functions from the <em><a href="https://bioconductor.org/packages/3.12/scater">scater</a></em> package to do the actual heavy lifting of calculating the dimensionality reduction results.
 The <code>exists()</code> call will check whether any column selection is being transmitted to this panel; if not, it will just return a <code>plot.data</code> variable that contains all <code>NA</code>s such that an empty plot is created.
 If <code>col_selected</code> does exist, it will contain a list of character vectors specifying the active and saved multiple selections that are being transmitted.
 For this particular example, we do not care about the distinction between active/saved selections so we just take the union of all of them.</p>
@@ -378,29 +373,30 @@ thus avoiding an unnecessary delay from recomputation.
 Doing so requires overriding <code>.renderOutput()</code> to take advantage of the cached contents of the plot,
 so we will omit that here for simplicity.</p>
 </div>
-<div id="in-action-1" class="section level2">
+<div id="in-action" class="section level2">
 <h2><span class="header-section-number">5.6</span> In action</h2>
 <p>Let’s put our new panel to the test.
 We’ll use the <code>sce</code> object from Chapter <a href="developing.html#developing">4</a>, which includes some precomputed dimensionality reduction results.
 The plan is to create a (fixed) reduced dimension plot that will transmit a multiple selection to our dynamic reduced dimension plot.
-Brushing at any location in the former will then trigger dynamic recompution of results in the latter.</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="dynamic-reduced-dimensions.html#cb22-1"></a>rdp &lt;-<span class="st"> </span><span class="kw">ReducedDimensionPlot</span>(<span class="dt">PanelId=</span>1L, <span class="dt">PanelWidth=</span>6L,</span>
-<span id="cb22-2"><a href="dynamic-reduced-dimensions.html#cb22-2"></a>    <span class="dt">BrushData =</span> <span class="kw">list</span>(</span>
-<span id="cb22-3"><a href="dynamic-reduced-dimensions.html#cb22-3"></a>        <span class="dt">xmin =</span> <span class="dv">17</span>, <span class="dt">xmax =</span> <span class="dv">55</span>, <span class="dt">ymin =</span> <span class="dv">-36</span>, <span class="dt">ymax =</span> <span class="dv">29</span>,</span>
-<span id="cb22-4"><a href="dynamic-reduced-dimensions.html#cb22-4"></a>        <span class="dt">coords_css =</span> <span class="kw">list</span>(<span class="dt">xmin =</span> 300L, <span class="dt">xmax =</span> 450L, <span class="dt">ymin =</span> 170L, <span class="dt">ymax =</span> 404L),</span>
-<span id="cb22-5"><a href="dynamic-reduced-dimensions.html#cb22-5"></a>        <span class="dt">coords_img =</span> <span class="kw">list</span>( <span class="dt">xmin =</span> 375L, <span class="dt">xmax =</span> <span class="dv">562</span>, <span class="dt">ymin =</span> <span class="dv">212</span>, <span class="dt">ymax =</span> 505L),</span>
-<span id="cb22-6"><a href="dynamic-reduced-dimensions.html#cb22-6"></a>        <span class="dt">img_css_ratio =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="dv">1</span>),</span>
-<span id="cb22-7"><a href="dynamic-reduced-dimensions.html#cb22-7"></a>        <span class="dt">mapping =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="st">&quot;X&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Y&quot;</span>),</span>
-<span id="cb22-8"><a href="dynamic-reduced-dimensions.html#cb22-8"></a>        <span class="dt">domain =</span> <span class="kw">list</span>(<span class="dt">left =</span> <span class="dv">-49</span>, <span class="dt">right =</span> <span class="dv">57</span>, <span class="dt">bottom =</span> <span class="dv">-53</span>, <span class="dt">top =</span> <span class="dv">70</span>),</span>
-<span id="cb22-9"><a href="dynamic-reduced-dimensions.html#cb22-9"></a>        <span class="dt">range =</span> <span class="kw">list</span>(<span class="dt">left =</span> <span class="dv">49</span>, <span class="dt">right =</span> <span class="dv">570</span>, <span class="dt">bottom =</span> <span class="dv">580</span>, <span class="dt">top =</span> <span class="dv">31</span>),</span>
-<span id="cb22-10"><a href="dynamic-reduced-dimensions.html#cb22-10"></a>        <span class="dt">log =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>),</span>
-<span id="cb22-11"><a href="dynamic-reduced-dimensions.html#cb22-11"></a>        <span class="dt">direction =</span> <span class="st">&quot;xy&quot;</span>, <span class="dt">brushId =</span> <span class="st">&quot;ReducedDimensionPlot1_Brush&quot;</span>,</span>
-<span id="cb22-12"><a href="dynamic-reduced-dimensions.html#cb22-12"></a>        <span class="dt">outputId =</span> <span class="st">&quot;ReducedDimensionPlot1&quot;</span></span>
-<span id="cb22-13"><a href="dynamic-reduced-dimensions.html#cb22-13"></a>    )</span>
-<span id="cb22-14"><a href="dynamic-reduced-dimensions.html#cb22-14"></a>)</span>
-<span id="cb22-15"><a href="dynamic-reduced-dimensions.html#cb22-15"></a></span>
-<span id="cb22-16"><a href="dynamic-reduced-dimensions.html#cb22-16"></a>drdp &lt;-<span class="st"> </span><span class="kw">DynRedDimPlot</span>(<span class="dt">DataBoxOpen=</span><span class="ot">TRUE</span>, <span class="dt">ColumnSelectionSource=</span><span class="st">&quot;ReducedDimensionPlot1&quot;</span>, <span class="dt">PanelWidth=</span>6L)</span>
-<span id="cb22-17"><a href="dynamic-reduced-dimensions.html#cb22-17"></a>app &lt;-<span class="st"> </span><span class="kw">iSEE</span>(sce, <span class="dt">initial=</span><span class="kw">list</span>(rdp, drdp))</span></code></pre></div>
+Brushing at any location in the former will then trigger dynamic recompution of results in the latter.
+We demonstrate by initializing the app with an existing brush, though in real usage, users will interactive create the brush themselves.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="dynamic-reduced-dimensions.html#cb20-1"></a>rdp &lt;-<span class="st"> </span><span class="kw">ReducedDimensionPlot</span>(<span class="dt">PanelId=</span>1L, <span class="dt">PanelWidth=</span>6L,</span>
+<span id="cb20-2"><a href="dynamic-reduced-dimensions.html#cb20-2"></a>    <span class="dt">BrushData =</span> <span class="kw">list</span>(</span>
+<span id="cb20-3"><a href="dynamic-reduced-dimensions.html#cb20-3"></a>        <span class="dt">xmin =</span> <span class="dv">17</span>, <span class="dt">xmax =</span> <span class="dv">55</span>, <span class="dt">ymin =</span> <span class="dv">-36</span>, <span class="dt">ymax =</span> <span class="dv">29</span>,</span>
+<span id="cb20-4"><a href="dynamic-reduced-dimensions.html#cb20-4"></a>        <span class="dt">coords_css =</span> <span class="kw">list</span>(<span class="dt">xmin =</span> 300L, <span class="dt">xmax =</span> 450L, <span class="dt">ymin =</span> 170L, <span class="dt">ymax =</span> 404L),</span>
+<span id="cb20-5"><a href="dynamic-reduced-dimensions.html#cb20-5"></a>        <span class="dt">coords_img =</span> <span class="kw">list</span>( <span class="dt">xmin =</span> 375L, <span class="dt">xmax =</span> <span class="dv">562</span>, <span class="dt">ymin =</span> <span class="dv">212</span>, <span class="dt">ymax =</span> 505L),</span>
+<span id="cb20-6"><a href="dynamic-reduced-dimensions.html#cb20-6"></a>        <span class="dt">img_css_ratio =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">y =</span> <span class="dv">1</span>),</span>
+<span id="cb20-7"><a href="dynamic-reduced-dimensions.html#cb20-7"></a>        <span class="dt">mapping =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="st">&quot;X&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Y&quot;</span>),</span>
+<span id="cb20-8"><a href="dynamic-reduced-dimensions.html#cb20-8"></a>        <span class="dt">domain =</span> <span class="kw">list</span>(<span class="dt">left =</span> <span class="dv">-49</span>, <span class="dt">right =</span> <span class="dv">57</span>, <span class="dt">bottom =</span> <span class="dv">-53</span>, <span class="dt">top =</span> <span class="dv">70</span>),</span>
+<span id="cb20-9"><a href="dynamic-reduced-dimensions.html#cb20-9"></a>        <span class="dt">range =</span> <span class="kw">list</span>(<span class="dt">left =</span> <span class="dv">49</span>, <span class="dt">right =</span> <span class="dv">570</span>, <span class="dt">bottom =</span> <span class="dv">580</span>, <span class="dt">top =</span> <span class="dv">31</span>),</span>
+<span id="cb20-10"><a href="dynamic-reduced-dimensions.html#cb20-10"></a>        <span class="dt">log =</span> <span class="kw">list</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>),</span>
+<span id="cb20-11"><a href="dynamic-reduced-dimensions.html#cb20-11"></a>        <span class="dt">direction =</span> <span class="st">&quot;xy&quot;</span>, <span class="dt">brushId =</span> <span class="st">&quot;ReducedDimensionPlot1_Brush&quot;</span>,</span>
+<span id="cb20-12"><a href="dynamic-reduced-dimensions.html#cb20-12"></a>        <span class="dt">outputId =</span> <span class="st">&quot;ReducedDimensionPlot1&quot;</span></span>
+<span id="cb20-13"><a href="dynamic-reduced-dimensions.html#cb20-13"></a>    )</span>
+<span id="cb20-14"><a href="dynamic-reduced-dimensions.html#cb20-14"></a>)</span>
+<span id="cb20-15"><a href="dynamic-reduced-dimensions.html#cb20-15"></a></span>
+<span id="cb20-16"><a href="dynamic-reduced-dimensions.html#cb20-16"></a>drdp &lt;-<span class="st"> </span><span class="kw">DynRedDimPlot</span>(<span class="dt">DataBoxOpen=</span><span class="ot">TRUE</span>, <span class="dt">ColumnSelectionSource=</span><span class="st">&quot;ReducedDimensionPlot1&quot;</span>, <span class="dt">PanelWidth=</span>6L)</span>
+<span id="cb20-17"><a href="dynamic-reduced-dimensions.html#cb20-17"></a>app &lt;-<span class="st"> </span><span class="kw">iSEE</span>(sce, <span class="dt">initial=</span><span class="kw">list</span>(rdp, drdp))</span></code></pre></div>
 <p><img src="screenshots/adaptive-dimred.png" width="100%" /></p>
 
 </div>

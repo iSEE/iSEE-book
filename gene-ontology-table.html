@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 Gene ontology table | Extending iSEE</title>
   <meta name="description" content="This book describes how to use the Bioconductor iSEE package to create web-applications for exploring data stored in SummarizedExperiment objects." />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 Gene ontology table | Extending iSEE" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Kevin Rue-Albrecht, Federico Marini, Charlotte Soneson, and Aaron Lun" />
 
 
-<meta name="date" content="2020-10-26" />
+<meta name="date" content="2020-11-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,8 +51,6 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -145,7 +143,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="panels.html"><a href="panels.html#extending-the-classes"><i class="fa fa-check"></i><b>1.4</b> Extending the classes</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="api.html"><a href="api.html"><i class="fa fa-check"></i><b>2</b> Panel generics</a><ul>
-<li class="chapter" data-level="2.1" data-path="api.html"><a href="api.html#overview-1"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
 <li class="chapter" data-level="2.2" data-path="api.html"><a href="api.html#class-basics"><i class="fa fa-check"></i><b>2.2</b> Class basics</a></li>
 <li class="chapter" data-level="2.3" data-path="api.html"><a href="api.html#parameter-set-up"><i class="fa fa-check"></i><b>2.3</b> Parameter set-up</a></li>
 <li class="chapter" data-level="2.4" data-path="api.html"><a href="api.html#defining-the-user-interface"><i class="fa fa-check"></i><b>2.4</b> Defining the user interface</a><ul>
@@ -165,7 +163,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.8" data-path="api.html"><a href="api.html#miscellaneous"><i class="fa fa-check"></i><b>2.8</b> Miscellaneous</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="server.html"><a href="server.html"><i class="fa fa-check"></i><b>3</b> Application state</a><ul>
-<li class="chapter" data-level="3.1" data-path="server.html"><a href="server.html#overview-2"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
 <li class="chapter" data-level="3.2" data-path="server.html"><a href="server.html#updating-parameters"><i class="fa fa-check"></i><b>3.2</b> Updating parameters</a></li>
 <li class="chapter" data-level="3.3" data-path="server.html"><a href="server.html#reading-the-memory"><i class="fa fa-check"></i><b>3.3</b> Reading the memory</a></li>
 <li class="chapter" data-level="3.4" data-path="server.html"><a href="server.html#reacting-to-events"><i class="fa fa-check"></i><b>3.4</b> Reacting to events</a></li>
@@ -173,44 +171,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="part"><span><b>II Worked examples</b></span></li>
 <li class="chapter" data-level="4" data-path="developing.html"><a href="developing.html"><i class="fa fa-check"></i><b>4</b> Reduced dimension hexbin plot</a><ul>
-<li class="chapter" data-level="4.1" data-path="developing.html"><a href="developing.html#overview-3"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
-<li class="chapter" data-level="4.2" data-path="developing.html"><a href="developing.html#class-basics-1"><i class="fa fa-check"></i><b>4.2</b> Class basics</a></li>
+<li class="chapter" data-level="4.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="api.html"><a href="api.html#class-basics"><i class="fa fa-check"></i><b>4.2</b> Class basics</a></li>
 <li class="chapter" data-level="4.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>4.3</b> Setting up the interface</a></li>
 <li class="chapter" data-level="4.4" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>4.4</b> Creating the observers</a></li>
 <li class="chapter" data-level="4.5" data-path="developing.html"><a href="developing.html#generating-the-plot"><i class="fa fa-check"></i><b>4.5</b> Generating the plot</a></li>
 <li class="chapter" data-level="4.6" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>4.6</b> In action</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html"><i class="fa fa-check"></i><b>5</b> Dynamic reduced dimensions</a><ul>
-<li class="chapter" data-level="5.1" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#overview-4"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
-<li class="chapter" data-level="5.2" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#class-basics-2"><i class="fa fa-check"></i><b>5.2</b> Class basics</a></li>
-<li class="chapter" data-level="5.3" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#setting-up-the-interface-1"><i class="fa fa-check"></i><b>5.3</b> Setting up the interface</a></li>
-<li class="chapter" data-level="5.4" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#creating-the-observers-1"><i class="fa fa-check"></i><b>5.4</b> Creating the observers</a></li>
+<li class="chapter" data-level="5.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>5.1</b> Overview</a></li>
+<li class="chapter" data-level="5.2" data-path="api.html"><a href="api.html#class-basics"><i class="fa fa-check"></i><b>5.2</b> Class basics</a></li>
+<li class="chapter" data-level="5.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>5.3</b> Setting up the interface</a></li>
+<li class="chapter" data-level="5.4" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>5.4</b> Creating the observers</a></li>
 <li class="chapter" data-level="5.5" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#making-the-plot"><i class="fa fa-check"></i><b>5.5</b> Making the plot</a></li>
-<li class="chapter" data-level="5.6" data-path="dynamic-reduced-dimensions.html"><a href="dynamic-reduced-dimensions.html#in-action-1"><i class="fa fa-check"></i><b>5.6</b> In action</a></li>
+<li class="chapter" data-level="5.6" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>5.6</b> In action</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html"><i class="fa fa-check"></i><b>6</b> Dynamic differential expression</a><ul>
-<li class="chapter" data-level="6.1" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#overview-5"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
-<li class="chapter" data-level="6.2" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#class-basics-3"><i class="fa fa-check"></i><b>6.2</b> Class basics</a></li>
-<li class="chapter" data-level="6.3" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#setting-up-the-interface-2"><i class="fa fa-check"></i><b>6.3</b> Setting up the interface</a></li>
-<li class="chapter" data-level="6.4" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#creating-the-observers-2"><i class="fa fa-check"></i><b>6.4</b> Creating the observers</a></li>
+<li class="chapter" data-level="6.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>6.1</b> Overview</a></li>
+<li class="chapter" data-level="6.2" data-path="api.html"><a href="api.html#class-basics"><i class="fa fa-check"></i><b>6.2</b> Class basics</a></li>
+<li class="chapter" data-level="6.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>6.3</b> Setting up the interface</a></li>
+<li class="chapter" data-level="6.4" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>6.4</b> Creating the observers</a></li>
 <li class="chapter" data-level="6.5" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#making-the-table"><i class="fa fa-check"></i><b>6.5</b> Making the table</a></li>
-<li class="chapter" data-level="6.6" data-path="dynamic-differential-expression.html"><a href="dynamic-differential-expression.html#in-action-2"><i class="fa fa-check"></i><b>6.6</b> In action</a></li>
+<li class="chapter" data-level="6.6" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>6.6</b> In action</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html"><i class="fa fa-check"></i><b>7</b> Annotated gene list</a><ul>
-<li class="chapter" data-level="7.1" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#overview-6"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
-<li class="chapter" data-level="7.2" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#class-basics-4"><i class="fa fa-check"></i><b>7.2</b> Class basics</a></li>
-<li class="chapter" data-level="7.3" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#setting-up-the-interface-3"><i class="fa fa-check"></i><b>7.3</b> Setting up the interface</a></li>
-<li class="chapter" data-level="7.4" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#creating-the-observers-3"><i class="fa fa-check"></i><b>7.4</b> Creating the observers</a></li>
-<li class="chapter" data-level="7.5" data-path="annotated-gene-list.html"><a href="annotated-gene-list.html#in-action-3"><i class="fa fa-check"></i><b>7.5</b> In action</a></li>
+<li class="chapter" data-level="7.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>7.1</b> Overview</a></li>
+<li class="chapter" data-level="7.2" data-path="api.html"><a href="api.html#class-basics"><i class="fa fa-check"></i><b>7.2</b> Class basics</a></li>
+<li class="chapter" data-level="7.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>7.3</b> Setting up the interface</a></li>
+<li class="chapter" data-level="7.4" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>7.4</b> Creating the observers</a></li>
+<li class="chapter" data-level="7.5" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>7.5</b> In action</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html"><i class="fa fa-check"></i><b>8</b> Gene ontology table</a><ul>
-<li class="chapter" data-level="8.1" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#overview-7"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
-<li class="chapter" data-level="8.2" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#class-basics-5"><i class="fa fa-check"></i><b>8.2</b> Class basics</a></li>
-<li class="chapter" data-level="8.3" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#setting-up-the-interface-4"><i class="fa fa-check"></i><b>8.3</b> Setting up the interface</a></li>
+<li class="chapter" data-level="8.1" data-path="panels.html"><a href="panels.html#overview"><i class="fa fa-check"></i><b>8.1</b> Overview</a></li>
+<li class="chapter" data-level="8.2" data-path="api.html"><a href="api.html#class-basics"><i class="fa fa-check"></i><b>8.2</b> Class basics</a></li>
+<li class="chapter" data-level="8.3" data-path="developing.html"><a href="developing.html#setting-up-the-interface"><i class="fa fa-check"></i><b>8.3</b> Setting up the interface</a></li>
 <li class="chapter" data-level="8.4" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#generating-the-output"><i class="fa fa-check"></i><b>8.4</b> Generating the output</a></li>
-<li class="chapter" data-level="8.5" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#creating-the-observers-4"><i class="fa fa-check"></i><b>8.5</b> Creating the observers</a></li>
-<li class="chapter" data-level="8.6" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#handling-selections-1"><i class="fa fa-check"></i><b>8.6</b> Handling selections</a></li>
-<li class="chapter" data-level="8.7" data-path="gene-ontology-table.html"><a href="gene-ontology-table.html#in-action-4"><i class="fa fa-check"></i><b>8.7</b> In action</a></li>
+<li class="chapter" data-level="8.5" data-path="developing.html"><a href="developing.html#creating-the-observers"><i class="fa fa-check"></i><b>8.5</b> Creating the observers</a></li>
+<li class="chapter" data-level="8.6" data-path="api.html"><a href="api.html#handling-selections"><i class="fa fa-check"></i><b>8.6</b> Handling selections</a></li>
+<li class="chapter" data-level="8.7" data-path="developing.html"><a href="developing.html#in-action"><i class="fa fa-check"></i><b>8.7</b> In action</a></li>
 </ul></li>
 <li class="part"><span><b>III Appendix</b></span></li>
 <li class="chapter" data-level="9" data-path="contributors.html"><a href="contributors.html"><i class="fa fa-check"></i><b>9</b> Contributors</a><ul>
@@ -240,279 +238,266 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="gene-ontology-table" class="section level1">
 <h1><span class="header-section-number">Chapter 8</span> Gene ontology table</h1>
-<div id="overview-7" class="section level2">
+<div id="overview" class="section level2">
 <h2><span class="header-section-number">8.1</span> Overview</h2>
 <p>Here, we will construct a table of GO terms where selection of a row in the table
 causes transmission of a multiple selection of gene names.
 The aim is to enable us to transmit multiple row selections to other panels based on their membership of a gene set.
 This is a fairly involved example of creating a <code>Panel</code> subclass as we cannot easily inherit from an existing subclass; rather, we need to provide all the methods ourselves.
-Readers may also be interested in the fully fledged version of the proposed class in <em><a href="https://bioconductor.org/packages/3.11/iSEEu">iSEEu</a></em>.</p>
+Readers may also be interested in the fully fledged version of the proposed class in <em><a href="https://bioconductor.org/packages/3.12/iSEEu">iSEEu</a></em>.</p>
 </div>
-<div id="class-basics-5" class="section level2">
+<div id="class-basics" class="section level2">
 <h2><span class="header-section-number">8.2</span> Class basics</h2>
 <p>First, we define the basics of our new <code>GOTable</code> class.
-This inherits from the virtual base <code>Panel</code> class as it cannot meet any of the contractual requirements of the subclasses,
+This inherits from the virtual base <code>Panel</code> class as its behavior is not compatible with any of the existing subclasses,
 what with the <code>DataTable</code> selection event triggering a multiple selection rather than a single selection.
 We add some slots to specify the feature ID type and the organism of interest as well as for <code>DataTable</code> parameters.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="gene-ontology-table.html#cb40-1"></a><span class="kw">library</span>(iSEE)</span>
-<span id="cb40-2"><a href="gene-ontology-table.html#cb40-2"></a><span class="kw">library</span>(S4Vectors)</span>
-<span id="cb40-3"><a href="gene-ontology-table.html#cb40-3"></a><span class="kw">setClass</span>(<span class="st">&quot;GOTable&quot;</span>, <span class="dt">contains=</span><span class="st">&quot;Panel&quot;</span>,</span>
-<span id="cb40-4"><a href="gene-ontology-table.html#cb40-4"></a>    <span class="dt">slots=</span><span class="kw">c</span>(</span>
-<span id="cb40-5"><a href="gene-ontology-table.html#cb40-5"></a>        <span class="dt">IDType=</span><span class="st">&quot;character&quot;</span>,</span>
-<span id="cb40-6"><a href="gene-ontology-table.html#cb40-6"></a>        <span class="dt">Organism=</span><span class="st">&quot;character&quot;</span>,</span>
-<span id="cb40-7"><a href="gene-ontology-table.html#cb40-7"></a>        <span class="dt">Selected=</span><span class="st">&quot;character&quot;</span>,</span>
-<span id="cb40-8"><a href="gene-ontology-table.html#cb40-8"></a>        <span class="dt">Search=</span><span class="st">&quot;character&quot;</span>,</span>
-<span id="cb40-9"><a href="gene-ontology-table.html#cb40-9"></a>        <span class="dt">SearchColumns=</span><span class="st">&quot;character&quot;</span></span>
-<span id="cb40-10"><a href="gene-ontology-table.html#cb40-10"></a>    )</span>
-<span id="cb40-11"><a href="gene-ontology-table.html#cb40-11"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="gene-ontology-table.html#cb38-1"></a><span class="kw">library</span>(iSEE)</span>
+<span id="cb38-2"><a href="gene-ontology-table.html#cb38-2"></a><span class="kw">library</span>(S4Vectors)</span>
+<span id="cb38-3"><a href="gene-ontology-table.html#cb38-3"></a><span class="kw">setClass</span>(<span class="st">&quot;GOTable&quot;</span>, <span class="dt">contains=</span><span class="st">&quot;Panel&quot;</span>,</span>
+<span id="cb38-4"><a href="gene-ontology-table.html#cb38-4"></a>    <span class="dt">slots=</span><span class="kw">c</span>(</span>
+<span id="cb38-5"><a href="gene-ontology-table.html#cb38-5"></a>        <span class="dt">IDType=</span><span class="st">&quot;character&quot;</span>,</span>
+<span id="cb38-6"><a href="gene-ontology-table.html#cb38-6"></a>        <span class="dt">Organism=</span><span class="st">&quot;character&quot;</span>,</span>
+<span id="cb38-7"><a href="gene-ontology-table.html#cb38-7"></a>        <span class="dt">Selected=</span><span class="st">&quot;character&quot;</span>,</span>
+<span id="cb38-8"><a href="gene-ontology-table.html#cb38-8"></a>        <span class="dt">Search=</span><span class="st">&quot;character&quot;</span>,</span>
+<span id="cb38-9"><a href="gene-ontology-table.html#cb38-9"></a>        <span class="dt">SearchColumns=</span><span class="st">&quot;character&quot;</span></span>
+<span id="cb38-10"><a href="gene-ontology-table.html#cb38-10"></a>    )</span>
+<span id="cb38-11"><a href="gene-ontology-table.html#cb38-11"></a>)</span></code></pre></div>
 <p>We also add some checks for these parameters.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="gene-ontology-table.html#cb41-1"></a>allowable &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ENSEMBL&quot;</span>, <span class="st">&quot;SYMBOL&quot;</span>, <span class="st">&quot;ENTREZID&quot;</span>)</span>
-<span id="cb41-2"><a href="gene-ontology-table.html#cb41-2"></a><span class="kw">setValidity2</span>(<span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(object) {</span>
-<span id="cb41-3"><a href="gene-ontology-table.html#cb41-3"></a>    msg &lt;-<span class="st"> </span><span class="kw">character</span>(<span class="dv">0</span>)</span>
-<span id="cb41-4"><a href="gene-ontology-table.html#cb41-4"></a></span>
-<span id="cb41-5"><a href="gene-ontology-table.html#cb41-5"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="kw">isSingleString</span>(orgdb &lt;-<span class="st"> </span>object[[<span class="st">&quot;Organism&quot;</span>]])) {</span>
-<span id="cb41-6"><a href="gene-ontology-table.html#cb41-6"></a>        msg &lt;-<span class="st"> </span><span class="kw">c</span>(msg, <span class="kw">sprintf</span>(<span class="st">&quot;&#39;Organism&#39; should be a single string&quot;</span>, orgdb))</span>
-<span id="cb41-7"><a href="gene-ontology-table.html#cb41-7"></a>    }</span>
-<span id="cb41-8"><a href="gene-ontology-table.html#cb41-8"></a></span>
-<span id="cb41-9"><a href="gene-ontology-table.html#cb41-9"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="kw">isSingleString</span>(type &lt;-<span class="st"> </span>object[[<span class="st">&quot;IDType&quot;</span>]]) <span class="op">||</span><span class="st"> </span><span class="op">!</span>type <span class="op">%in%</span><span class="st"> </span>allowable) {</span>
-<span id="cb41-10"><a href="gene-ontology-table.html#cb41-10"></a>        msg &lt;-<span class="st"> </span><span class="kw">c</span>(msg, <span class="st">&quot;&#39;IDType&#39; should be &#39;ENSEMBL&#39;, &#39;SYMBOL&#39; or &#39;ENTREZID&#39;&quot;</span>)</span>
-<span id="cb41-11"><a href="gene-ontology-table.html#cb41-11"></a>    }</span>
-<span id="cb41-12"><a href="gene-ontology-table.html#cb41-12"></a></span>
-<span id="cb41-13"><a href="gene-ontology-table.html#cb41-13"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="kw">isSingleString</span>(object[[<span class="st">&quot;Selected&quot;</span>]])) { </span>
-<span id="cb41-14"><a href="gene-ontology-table.html#cb41-14"></a>        msg &lt;-<span class="st"> </span><span class="kw">c</span>(msg, <span class="st">&quot;&#39;Selected&#39; should be a single string&quot;</span>)</span>
-<span id="cb41-15"><a href="gene-ontology-table.html#cb41-15"></a>    }</span>
-<span id="cb41-16"><a href="gene-ontology-table.html#cb41-16"></a></span>
-<span id="cb41-17"><a href="gene-ontology-table.html#cb41-17"></a>    <span class="cf">if</span> (<span class="op">!</span><span class="kw">isSingleString</span>(object[[<span class="st">&quot;Search&quot;</span>]])) {</span>
-<span id="cb41-18"><a href="gene-ontology-table.html#cb41-18"></a>        msg &lt;-<span class="st"> </span><span class="kw">c</span>(msg, <span class="st">&quot;&#39;Search&#39; should be a single string&quot;</span>)</span>
-<span id="cb41-19"><a href="gene-ontology-table.html#cb41-19"></a>    }</span>
-<span id="cb41-20"><a href="gene-ontology-table.html#cb41-20"></a></span>
-<span id="cb41-21"><a href="gene-ontology-table.html#cb41-21"></a>    <span class="cf">if</span> (<span class="kw">length</span>(msg)) {</span>
-<span id="cb41-22"><a href="gene-ontology-table.html#cb41-22"></a>        <span class="kw">return</span>(msg)</span>
-<span id="cb41-23"><a href="gene-ontology-table.html#cb41-23"></a>    }</span>
-<span id="cb41-24"><a href="gene-ontology-table.html#cb41-24"></a>    <span class="ot">TRUE</span></span>
-<span id="cb41-25"><a href="gene-ontology-table.html#cb41-25"></a>})</span></code></pre></div>
-<p>We then specialize the initialize method to set reasonable defaults and create an approprpiate constructor.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="gene-ontology-table.html#cb42-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;initialize&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(.Object, </span>
-<span id="cb42-2"><a href="gene-ontology-table.html#cb42-2"></a>    <span class="dt">Organism=</span><span class="st">&quot;org.Mm.eg.db&quot;</span>, <span class="dt">IDType=</span><span class="st">&quot;SYMBOL&quot;</span>, </span>
-<span id="cb42-3"><a href="gene-ontology-table.html#cb42-3"></a>    <span class="dt">Selected=</span><span class="st">&quot;&quot;</span>, <span class="dt">Search=</span><span class="st">&quot;&quot;</span>, <span class="dt">SearchColumns=</span><span class="kw">character</span>(<span class="dv">0</span>), ...)</span>
-<span id="cb42-4"><a href="gene-ontology-table.html#cb42-4"></a>{</span>
-<span id="cb42-5"><a href="gene-ontology-table.html#cb42-5"></a>    <span class="kw">callNextMethod</span>(.Object, <span class="dt">IDType=</span>IDType, <span class="dt">Organism=</span>Organism, </span>
-<span id="cb42-6"><a href="gene-ontology-table.html#cb42-6"></a>        <span class="dt">Selected=</span>Selected, <span class="dt">Search=</span>Search, </span>
-<span id="cb42-7"><a href="gene-ontology-table.html#cb42-7"></a>        <span class="dt">SearchColumns=</span>SearchColumns, ...)</span>
-<span id="cb42-8"><a href="gene-ontology-table.html#cb42-8"></a>})</span>
-<span id="cb42-9"><a href="gene-ontology-table.html#cb42-9"></a></span>
-<span id="cb42-10"><a href="gene-ontology-table.html#cb42-10"></a>GOTable &lt;-<span class="st"> </span><span class="cf">function</span>(...) <span class="kw">new</span>(<span class="st">&quot;GOTable&quot;</span>, ...)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="gene-ontology-table.html#cb39-1"></a>allowable.ids &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ENSEMBL&quot;</span>, <span class="st">&quot;SYMBOL&quot;</span>, <span class="st">&quot;ENTREZID&quot;</span>)</span>
+<span id="cb39-2"><a href="gene-ontology-table.html#cb39-2"></a>allowable.org &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;org.Mm.eg.db&quot;</span>, <span class="st">&quot;org.Hs.eg.db&quot;</span>)</span>
+<span id="cb39-3"><a href="gene-ontology-table.html#cb39-3"></a></span>
+<span id="cb39-4"><a href="gene-ontology-table.html#cb39-4"></a><span class="kw">setValidity2</span>(<span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(object) {</span>
+<span id="cb39-5"><a href="gene-ontology-table.html#cb39-5"></a>    msg &lt;-<span class="st"> </span><span class="kw">character</span>(<span class="dv">0</span>)</span>
+<span id="cb39-6"><a href="gene-ontology-table.html#cb39-6"></a></span>
+<span id="cb39-7"><a href="gene-ontology-table.html#cb39-7"></a>    msg &lt;-<span class="st"> </span><span class="kw">.allowableChoiceError</span>(msg, object, <span class="st">&quot;Organism&quot;</span>, allowable.org)</span>
+<span id="cb39-8"><a href="gene-ontology-table.html#cb39-8"></a></span>
+<span id="cb39-9"><a href="gene-ontology-table.html#cb39-9"></a>    msg &lt;-<span class="st"> </span><span class="kw">.allowableChoiceError</span>(msg, object, <span class="st">&quot;IDType&quot;</span>, allowable.ids)</span>
+<span id="cb39-10"><a href="gene-ontology-table.html#cb39-10"></a></span>
+<span id="cb39-11"><a href="gene-ontology-table.html#cb39-11"></a>    msg &lt;-<span class="st"> </span><span class="kw">.singleStringError</span>(msg, object, <span class="kw">c</span>(<span class="st">&quot;Selected&quot;</span>, <span class="st">&quot;Search&quot;</span>))</span>
+<span id="cb39-12"><a href="gene-ontology-table.html#cb39-12"></a>    </span>
+<span id="cb39-13"><a href="gene-ontology-table.html#cb39-13"></a>    <span class="cf">if</span> (<span class="kw">length</span>(msg)) {</span>
+<span id="cb39-14"><a href="gene-ontology-table.html#cb39-14"></a>        <span class="kw">return</span>(msg)</span>
+<span id="cb39-15"><a href="gene-ontology-table.html#cb39-15"></a>    }</span>
+<span id="cb39-16"><a href="gene-ontology-table.html#cb39-16"></a>    <span class="ot">TRUE</span></span>
+<span id="cb39-17"><a href="gene-ontology-table.html#cb39-17"></a>})</span></code></pre></div>
+<p>We then specialize the <code>initialize()</code> method to set reasonable defaults and create an approprpiate constructor.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="gene-ontology-table.html#cb40-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;initialize&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(.Object, </span>
+<span id="cb40-2"><a href="gene-ontology-table.html#cb40-2"></a>    <span class="dt">Organism=</span><span class="st">&quot;org.Mm.eg.db&quot;</span>, <span class="dt">IDType=</span><span class="st">&quot;SYMBOL&quot;</span>, </span>
+<span id="cb40-3"><a href="gene-ontology-table.html#cb40-3"></a>    <span class="dt">Selected=</span><span class="st">&quot;&quot;</span>, <span class="dt">Search=</span><span class="st">&quot;&quot;</span>, <span class="dt">SearchColumns=</span><span class="kw">character</span>(<span class="dv">0</span>), ...)</span>
+<span id="cb40-4"><a href="gene-ontology-table.html#cb40-4"></a>{</span>
+<span id="cb40-5"><a href="gene-ontology-table.html#cb40-5"></a>    <span class="kw">callNextMethod</span>(.Object, <span class="dt">IDType=</span>IDType, <span class="dt">Organism=</span>Organism, </span>
+<span id="cb40-6"><a href="gene-ontology-table.html#cb40-6"></a>        <span class="dt">Selected=</span>Selected, <span class="dt">Search=</span>Search, </span>
+<span id="cb40-7"><a href="gene-ontology-table.html#cb40-7"></a>        <span class="dt">SearchColumns=</span>SearchColumns, ...)</span>
+<span id="cb40-8"><a href="gene-ontology-table.html#cb40-8"></a>})</span>
+<span id="cb40-9"><a href="gene-ontology-table.html#cb40-9"></a></span>
+<span id="cb40-10"><a href="gene-ontology-table.html#cb40-10"></a>GOTable &lt;-<span class="st"> </span><span class="cf">function</span>(...) <span class="kw">new</span>(<span class="st">&quot;GOTable&quot;</span>, ...)</span></code></pre></div>
 </div>
-<div id="setting-up-the-interface-4" class="section level2">
+<div id="setting-up-the-interface" class="section level2">
 <h2><span class="header-section-number">8.3</span> Setting up the interface</h2>
 <p>We define the full name and desired default color for display purposes:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="gene-ontology-table.html#cb43-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.fullName&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x) <span class="st">&quot;Gene ontology table&quot;</span>)</span>
-<span id="cb43-2"><a href="gene-ontology-table.html#cb43-2"></a></span>
-<span id="cb43-3"><a href="gene-ontology-table.html#cb43-3"></a><span class="kw">setMethod</span>(<span class="st">&quot;.panelColor&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x) <span class="st">&quot;#BB00FF&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="gene-ontology-table.html#cb41-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.fullName&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x) <span class="st">&quot;Gene ontology table&quot;</span>)</span>
+<span id="cb41-2"><a href="gene-ontology-table.html#cb41-2"></a></span>
+<span id="cb41-3"><a href="gene-ontology-table.html#cb41-3"></a><span class="kw">setMethod</span>(<span class="st">&quot;.panelColor&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x) <span class="st">&quot;#BB00FF&quot;</span>)</span></code></pre></div>
 <p>We add our UI element for showing the gene set table, which is simply a <code>DataTable</code> object from the <em><a href="https://CRAN.R-project.org/package=DT">DT</a></em> package.
-Note that <em><a href="https://CRAN.R-project.org/package=shiny">shiny</a></em> also has a <code>dataTableOutput</code> function so care must be taken to disambiguate them.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="gene-ontology-table.html#cb44-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.defineOutput&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x, ...) {</span>
-<span id="cb44-2"><a href="gene-ontology-table.html#cb44-2"></a>    panel_name &lt;-<span class="st"> </span><span class="kw">.getEncodedName</span>(x)</span>
-<span id="cb44-3"><a href="gene-ontology-table.html#cb44-3"></a>    <span class="kw">tagList</span>(DT<span class="op">::</span><span class="kw">dataTableOutput</span>(panel_name))</span>
-<span id="cb44-4"><a href="gene-ontology-table.html#cb44-4"></a>})</span></code></pre></div>
+Note that <em><a href="https://CRAN.R-project.org/package=shiny">shiny</a></em> also has a <code>dataTableOutput</code> function that is almost-but-not-quite-the-same so care must be taken to disambiguate them if both symbols are imported.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="gene-ontology-table.html#cb42-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.defineOutput&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x, ...) {</span>
+<span id="cb42-2"><a href="gene-ontology-table.html#cb42-2"></a>    panel_name &lt;-<span class="st"> </span><span class="kw">.getEncodedName</span>(x)</span>
+<span id="cb42-3"><a href="gene-ontology-table.html#cb42-3"></a>    <span class="kw">tagList</span>(DT<span class="op">::</span><span class="kw">dataTableOutput</span>(panel_name))</span>
+<span id="cb42-4"><a href="gene-ontology-table.html#cb42-4"></a>})</span></code></pre></div>
 <p>We set up interface elements for changing the annotation parameters.</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="gene-ontology-table.html#cb45-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.defineDataInterface&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x, se, select_info) {</span>
-<span id="cb45-2"><a href="gene-ontology-table.html#cb45-2"></a>    panel_name &lt;-<span class="st"> </span><span class="kw">.getEncodedName</span>(x)</span>
-<span id="cb45-3"><a href="gene-ontology-table.html#cb45-3"></a>    <span class="kw">list</span>(</span>
-<span id="cb45-4"><a href="gene-ontology-table.html#cb45-4"></a>        <span class="kw">selectInput</span>(<span class="kw">paste0</span>(panel_name, <span class="st">&quot;_IDType&quot;</span>),</span>
-<span id="cb45-5"><a href="gene-ontology-table.html#cb45-5"></a>            <span class="dt">label=</span><span class="st">&quot;ID type:&quot;</span>,</span>
-<span id="cb45-6"><a href="gene-ontology-table.html#cb45-6"></a>            <span class="dt">choices=</span>allowable,</span>
-<span id="cb45-7"><a href="gene-ontology-table.html#cb45-7"></a>            <span class="dt">selected=</span>x[[<span class="st">&quot;IDType&quot;</span>]]</span>
-<span id="cb45-8"><a href="gene-ontology-table.html#cb45-8"></a>        ),</span>
-<span id="cb45-9"><a href="gene-ontology-table.html#cb45-9"></a>        <span class="kw">selectInput</span>(<span class="kw">paste0</span>(panel_name, <span class="st">&quot;_Organism&quot;</span>),</span>
-<span id="cb45-10"><a href="gene-ontology-table.html#cb45-10"></a>            <span class="dt">label=</span><span class="st">&quot;Organism&quot;</span>,</span>
-<span id="cb45-11"><a href="gene-ontology-table.html#cb45-11"></a>            <span class="dt">choices=</span><span class="kw">c</span>(<span class="st">&quot;org.Hs.eg.db&quot;</span>, <span class="st">&quot;org.Mm.eg.db&quot;</span>),</span>
-<span id="cb45-12"><a href="gene-ontology-table.html#cb45-12"></a>            <span class="dt">selected=</span>x[[<span class="st">&quot;Organism&quot;</span>]]</span>
-<span id="cb45-13"><a href="gene-ontology-table.html#cb45-13"></a>        )</span>
-<span id="cb45-14"><a href="gene-ontology-table.html#cb45-14"></a>    )</span>
-<span id="cb45-15"><a href="gene-ontology-table.html#cb45-15"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="gene-ontology-table.html#cb43-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.defineDataInterface&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x, se, select_info) {</span>
+<span id="cb43-2"><a href="gene-ontology-table.html#cb43-2"></a>    panel_name &lt;-<span class="st"> </span><span class="kw">.getEncodedName</span>(x)</span>
+<span id="cb43-3"><a href="gene-ontology-table.html#cb43-3"></a>    <span class="kw">list</span>(</span>
+<span id="cb43-4"><a href="gene-ontology-table.html#cb43-4"></a>        <span class="kw">selectInput</span>(<span class="kw">paste0</span>(panel_name, <span class="st">&quot;_IDType&quot;</span>),</span>
+<span id="cb43-5"><a href="gene-ontology-table.html#cb43-5"></a>            <span class="dt">label=</span><span class="st">&quot;ID type:&quot;</span>,</span>
+<span id="cb43-6"><a href="gene-ontology-table.html#cb43-6"></a>            <span class="dt">choices=</span>allowable.ids,</span>
+<span id="cb43-7"><a href="gene-ontology-table.html#cb43-7"></a>            <span class="dt">selected=</span>x[[<span class="st">&quot;IDType&quot;</span>]]</span>
+<span id="cb43-8"><a href="gene-ontology-table.html#cb43-8"></a>        ),</span>
+<span id="cb43-9"><a href="gene-ontology-table.html#cb43-9"></a>        <span class="kw">selectInput</span>(<span class="kw">paste0</span>(panel_name, <span class="st">&quot;_Organism&quot;</span>),</span>
+<span id="cb43-10"><a href="gene-ontology-table.html#cb43-10"></a>            <span class="dt">label=</span><span class="st">&quot;Organism&quot;</span>,</span>
+<span id="cb43-11"><a href="gene-ontology-table.html#cb43-11"></a>            <span class="dt">choices=</span>allowable.org,</span>
+<span id="cb43-12"><a href="gene-ontology-table.html#cb43-12"></a>            <span class="dt">selected=</span>x[[<span class="st">&quot;Organism&quot;</span>]]</span>
+<span id="cb43-13"><a href="gene-ontology-table.html#cb43-13"></a>        )</span>
+<span id="cb43-14"><a href="gene-ontology-table.html#cb43-14"></a>    )</span>
+<span id="cb43-15"><a href="gene-ontology-table.html#cb43-15"></a>})</span></code></pre></div>
 <p>Our implementation will be a pure transmitter, i.e., it will not respond to row or column selections from other panels.
-To avoid confusion, we can hide all selection parameter UI elements by specializing the <code>.hideInterface()</code> method:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="gene-ontology-table.html#cb46-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.hideInterface&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x, field) {</span>
-<span id="cb46-2"><a href="gene-ontology-table.html#cb46-2"></a>    <span class="cf">if</span> (field <span class="op">%in%</span><span class="st"> &quot;SelectionBoxOpen&quot;</span>) {</span>
-<span id="cb46-3"><a href="gene-ontology-table.html#cb46-3"></a>        <span class="ot">TRUE</span></span>
-<span id="cb46-4"><a href="gene-ontology-table.html#cb46-4"></a>    } <span class="cf">else</span> {</span>
-<span id="cb46-5"><a href="gene-ontology-table.html#cb46-5"></a>        <span class="kw">callNextMethod</span>()</span>
-<span id="cb46-6"><a href="gene-ontology-table.html#cb46-6"></a>    }</span>
-<span id="cb46-7"><a href="gene-ontology-table.html#cb46-7"></a>})</span></code></pre></div>
+To avoid confusion, we can hide all selection-related UI elements by specializing the <code>.hideInterface()</code> method:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="gene-ontology-table.html#cb44-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.hideInterface&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x, field) {</span>
+<span id="cb44-2"><a href="gene-ontology-table.html#cb44-2"></a>    <span class="cf">if</span> (field <span class="op">%in%</span><span class="st"> &quot;SelectionBoxOpen&quot;</span>) {</span>
+<span id="cb44-3"><a href="gene-ontology-table.html#cb44-3"></a>        <span class="ot">TRUE</span></span>
+<span id="cb44-4"><a href="gene-ontology-table.html#cb44-4"></a>    } <span class="cf">else</span> {</span>
+<span id="cb44-5"><a href="gene-ontology-table.html#cb44-5"></a>        <span class="kw">callNextMethod</span>()</span>
+<span id="cb44-6"><a href="gene-ontology-table.html#cb44-6"></a>    }</span>
+<span id="cb44-7"><a href="gene-ontology-table.html#cb44-7"></a>})</span></code></pre></div>
 </div>
 <div id="generating-the-output" class="section level2">
 <h2><span class="header-section-number">8.4</span> Generating the output</h2>
-<p>We actually generate the output by specializing the <code>.generateOutput()</code> function,
-using the <em><a href="https://bioconductor.org/packages/3.11/GO.db">GO.db</a></em> package to create a table of GO terms and their definitions.
-We also store the number of available genes in the <code>contents</code> -
-this will be used later to compute the percentage of all genes in a given gene set.</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="gene-ontology-table.html#cb47-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.generateOutput&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x, se, ..., all_memory, all_contents) {</span>
-<span id="cb47-2"><a href="gene-ontology-table.html#cb47-2"></a>    envir &lt;-<span class="st"> </span><span class="kw">new.env</span>()</span>
-<span id="cb47-3"><a href="gene-ontology-table.html#cb47-3"></a>    commands &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;require(GO.db);&quot;</span>,</span>
-<span id="cb47-4"><a href="gene-ontology-table.html#cb47-4"></a>        <span class="st">&quot;tab &lt;- select(GO.db, keys=keys(GO.db), columns=&#39;TERM&#39;);&quot;</span>,</span>
-<span id="cb47-5"><a href="gene-ontology-table.html#cb47-5"></a>        <span class="st">&quot;rownames(tab) &lt;- tab$GOID;&quot;</span>,</span>
-<span id="cb47-6"><a href="gene-ontology-table.html#cb47-6"></a>        <span class="st">&quot;tab$GOID &lt;- NULL;&quot;</span>)</span>
-<span id="cb47-7"><a href="gene-ontology-table.html#cb47-7"></a>    <span class="kw">eval</span>(<span class="kw">parse</span>(<span class="dt">text=</span>commands), <span class="dt">envir=</span>envir)</span>
-<span id="cb47-8"><a href="gene-ontology-table.html#cb47-8"></a>    <span class="kw">list</span>(</span>
-<span id="cb47-9"><a href="gene-ontology-table.html#cb47-9"></a>        <span class="dt">commands=</span><span class="kw">list</span>(commands), </span>
-<span id="cb47-10"><a href="gene-ontology-table.html#cb47-10"></a>        <span class="dt">contents=</span><span class="kw">list</span>(<span class="dt">table=</span>envir<span class="op">$</span>tab, <span class="dt">available=</span><span class="kw">nrow</span>(se)),</span>
-<span id="cb47-11"><a href="gene-ontology-table.html#cb47-11"></a>        <span class="dt">varname=</span><span class="st">&quot;tab&quot;</span></span>
-<span id="cb47-12"><a href="gene-ontology-table.html#cb47-12"></a>    )</span>
-<span id="cb47-13"><a href="gene-ontology-table.html#cb47-13"></a>})</span></code></pre></div>
+<p>We generate the output by specializing the <code>.generateOutput()</code> function, using the <em><a href="https://bioconductor.org/packages/3.12/GO.db">GO.db</a></em> package to create a table of GO terms and their definitions.
+We also store the number of available genes in the <code>contents</code> - this will be used later to compute the percentage of all genes in a given gene set.</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="gene-ontology-table.html#cb45-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.generateOutput&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x, se, ..., all_memory, all_contents) {</span>
+<span id="cb45-2"><a href="gene-ontology-table.html#cb45-2"></a>    envir &lt;-<span class="st"> </span><span class="kw">new.env</span>()</span>
+<span id="cb45-3"><a href="gene-ontology-table.html#cb45-3"></a>    commands &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;require(GO.db);&quot;</span>,</span>
+<span id="cb45-4"><a href="gene-ontology-table.html#cb45-4"></a>        <span class="st">&quot;tab &lt;- select(GO.db, keys=keys(GO.db), columns=&#39;TERM&#39;);&quot;</span>,</span>
+<span id="cb45-5"><a href="gene-ontology-table.html#cb45-5"></a>        <span class="st">&quot;rownames(tab) &lt;- tab$GOID;&quot;</span>,</span>
+<span id="cb45-6"><a href="gene-ontology-table.html#cb45-6"></a>        <span class="st">&quot;tab$GOID &lt;- NULL;&quot;</span>)</span>
+<span id="cb45-7"><a href="gene-ontology-table.html#cb45-7"></a>    <span class="kw">eval</span>(<span class="kw">parse</span>(<span class="dt">text=</span>commands), <span class="dt">envir=</span>envir)</span>
+<span id="cb45-8"><a href="gene-ontology-table.html#cb45-8"></a>    <span class="kw">list</span>(</span>
+<span id="cb45-9"><a href="gene-ontology-table.html#cb45-9"></a>        <span class="dt">commands=</span><span class="kw">list</span>(commands), </span>
+<span id="cb45-10"><a href="gene-ontology-table.html#cb45-10"></a>        <span class="dt">contents=</span><span class="kw">list</span>(<span class="dt">table=</span>envir<span class="op">$</span>tab, <span class="dt">available=</span><span class="kw">nrow</span>(se)),</span>
+<span id="cb45-11"><a href="gene-ontology-table.html#cb45-11"></a>        <span class="dt">varname=</span><span class="st">&quot;tab&quot;</span></span>
+<span id="cb45-12"><a href="gene-ontology-table.html#cb45-12"></a>    )</span>
+<span id="cb45-13"><a href="gene-ontology-table.html#cb45-13"></a>})</span></code></pre></div>
 <p>We don’t actually depend on any parameters of <code>x</code> itself to generate this table.
 However, one could imagine a more complex case where the <code>GOTable</code> itself responds to a multiple row selection,
 e.g., by subsetting to the gene sets that contain genes in the selected row.</p>
 </div>
-<div id="creating-the-observers-4" class="section level2">
+<div id="creating-the-observers" class="section level2">
 <h2><span class="header-section-number">8.5</span> Creating the observers</h2>
 <p>We specialize <code>.createObservers</code> to define some observers to respond to changes in our new interface elements.
 This also involves creating an observer to respond to a change in the selection of a <code>DataTable</code> row,
 calling <code>.requestActiveSelectionUpdate()</code> to trigger changes in panels that are receiving the multiple row selection.
-(We set up observers for the search fields as well, as a courtesy to restore them properly upon re-rendering.)</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="gene-ontology-table.html#cb48-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.createObservers&quot;</span>, <span class="st">&quot;GOTable&quot;</span>,</span>
-<span id="cb48-2"><a href="gene-ontology-table.html#cb48-2"></a>    <span class="cf">function</span>(x, se, input, session, pObjects, rObjects)</span>
-<span id="cb48-3"><a href="gene-ontology-table.html#cb48-3"></a>{</span>
-<span id="cb48-4"><a href="gene-ontology-table.html#cb48-4"></a>    <span class="kw">callNextMethod</span>()</span>
-<span id="cb48-5"><a href="gene-ontology-table.html#cb48-5"></a></span>
-<span id="cb48-6"><a href="gene-ontology-table.html#cb48-6"></a>    panel_name &lt;-<span class="st"> </span><span class="kw">.getEncodedName</span>(x)</span>
-<span id="cb48-7"><a href="gene-ontology-table.html#cb48-7"></a></span>
-<span id="cb48-8"><a href="gene-ontology-table.html#cb48-8"></a>    <span class="kw">.createUnprotectedParameterObservers</span>(panel_name,</span>
-<span id="cb48-9"><a href="gene-ontology-table.html#cb48-9"></a>        <span class="dt">fields=</span><span class="kw">c</span>(<span class="st">&quot;Organism&quot;</span>, <span class="st">&quot;IDType&quot;</span>), </span>
-<span id="cb48-10"><a href="gene-ontology-table.html#cb48-10"></a>        <span class="dt">input=</span>input, <span class="dt">pObjects=</span>pObjects, <span class="dt">rObjects=</span>rObjects)</span>
-<span id="cb48-11"><a href="gene-ontology-table.html#cb48-11"></a></span>
-<span id="cb48-12"><a href="gene-ontology-table.html#cb48-12"></a>    <span class="co"># Observer for the DataTable row selection:</span></span>
-<span id="cb48-13"><a href="gene-ontology-table.html#cb48-13"></a>    select_field &lt;-<span class="st"> </span><span class="kw">paste0</span>(panel_name, <span class="st">&quot;_rows_selected&quot;</span>)</span>
-<span id="cb48-14"><a href="gene-ontology-table.html#cb48-14"></a>    multi_name &lt;-<span class="st"> </span><span class="kw">paste0</span>(panel_name, <span class="st">&quot;_&quot;</span>, iSEE<span class="op">:::</span>.flagMultiSelect)</span>
-<span id="cb48-15"><a href="gene-ontology-table.html#cb48-15"></a>    <span class="kw">observeEvent</span>(input[[select_field]], {</span>
-<span id="cb48-16"><a href="gene-ontology-table.html#cb48-16"></a>        chosen &lt;-<span class="st"> </span>input[[select_field]]</span>
-<span id="cb48-17"><a href="gene-ontology-table.html#cb48-17"></a>        <span class="cf">if</span> (<span class="kw">length</span>(chosen)<span class="op">==</span>0L) {</span>
-<span id="cb48-18"><a href="gene-ontology-table.html#cb48-18"></a>            chosen &lt;-<span class="st"> &quot;&quot;</span> </span>
-<span id="cb48-19"><a href="gene-ontology-table.html#cb48-19"></a>        } <span class="cf">else</span> {</span>
-<span id="cb48-20"><a href="gene-ontology-table.html#cb48-20"></a>            chosen &lt;-<span class="st"> </span><span class="kw">rownames</span>(pObjects<span class="op">$</span>contents[[panel_name]]<span class="op">$</span>table)[chosen]</span>
-<span id="cb48-21"><a href="gene-ontology-table.html#cb48-21"></a>        }</span>
-<span id="cb48-22"><a href="gene-ontology-table.html#cb48-22"></a></span>
-<span id="cb48-23"><a href="gene-ontology-table.html#cb48-23"></a>        previous &lt;-<span class="st"> </span>pObjects<span class="op">$</span>memory[[panel_name]][[<span class="st">&quot;Selected&quot;</span>]]</span>
-<span id="cb48-24"><a href="gene-ontology-table.html#cb48-24"></a>        <span class="cf">if</span> (chosen<span class="op">==</span>previous) {</span>
-<span id="cb48-25"><a href="gene-ontology-table.html#cb48-25"></a>            <span class="kw">return</span>(<span class="ot">NULL</span>)</span>
-<span id="cb48-26"><a href="gene-ontology-table.html#cb48-26"></a>        }</span>
-<span id="cb48-27"><a href="gene-ontology-table.html#cb48-27"></a>        pObjects<span class="op">$</span>memory[[panel_name]][[<span class="st">&quot;Selected&quot;</span>]] &lt;-<span class="st"> </span>chosen</span>
-<span id="cb48-28"><a href="gene-ontology-table.html#cb48-28"></a>        <span class="kw">.requestActiveSelectionUpdate</span>(panel_name, session, pObjects, rObjects, <span class="dt">update_output=</span><span class="ot">FALSE</span>)</span>
-<span id="cb48-29"><a href="gene-ontology-table.html#cb48-29"></a>    }, <span class="dt">ignoreInit=</span><span class="ot">TRUE</span>, <span class="dt">ignoreNULL=</span><span class="ot">FALSE</span>)</span>
-<span id="cb48-30"><a href="gene-ontology-table.html#cb48-30"></a></span>
-<span id="cb48-31"><a href="gene-ontology-table.html#cb48-31"></a>    <span class="co"># Observer for the search field:</span></span>
-<span id="cb48-32"><a href="gene-ontology-table.html#cb48-32"></a>    search_field &lt;-<span class="st"> </span><span class="kw">paste0</span>(panel_name, <span class="st">&quot;_search&quot;</span>)</span>
-<span id="cb48-33"><a href="gene-ontology-table.html#cb48-33"></a>    <span class="kw">observeEvent</span>(input[[search_field]], {</span>
-<span id="cb48-34"><a href="gene-ontology-table.html#cb48-34"></a>        search &lt;-<span class="st"> </span>input[[search_field]]</span>
-<span id="cb48-35"><a href="gene-ontology-table.html#cb48-35"></a>        <span class="cf">if</span> (<span class="kw">identical</span>(search, pObjects<span class="op">$</span>memory[[panel_name]][[<span class="st">&quot;Search&quot;</span>]])) {</span>
-<span id="cb48-36"><a href="gene-ontology-table.html#cb48-36"></a>            <span class="kw">return</span>(<span class="ot">NULL</span>)</span>
-<span id="cb48-37"><a href="gene-ontology-table.html#cb48-37"></a>        }</span>
-<span id="cb48-38"><a href="gene-ontology-table.html#cb48-38"></a>        pObjects<span class="op">$</span>memory[[panel_name]][[<span class="st">&quot;Search&quot;</span>]] &lt;-<span class="st"> </span>search</span>
-<span id="cb48-39"><a href="gene-ontology-table.html#cb48-39"></a>    })</span>
-<span id="cb48-40"><a href="gene-ontology-table.html#cb48-40"></a></span>
-<span id="cb48-41"><a href="gene-ontology-table.html#cb48-41"></a>    <span class="co"># Observer for the column search fields:</span></span>
-<span id="cb48-42"><a href="gene-ontology-table.html#cb48-42"></a>    colsearch_field &lt;-<span class="st"> </span><span class="kw">paste0</span>(panel_name, <span class="st">&quot;_search_columns&quot;</span>)</span>
-<span id="cb48-43"><a href="gene-ontology-table.html#cb48-43"></a>    <span class="kw">observeEvent</span>(input[[colsearch_field]], {</span>
-<span id="cb48-44"><a href="gene-ontology-table.html#cb48-44"></a>        search &lt;-<span class="st"> </span>input[[colsearch_field]]</span>
-<span id="cb48-45"><a href="gene-ontology-table.html#cb48-45"></a>        <span class="cf">if</span> (<span class="kw">identical</span>(search, pObjects<span class="op">$</span>memory[[panel_name]][[<span class="st">&quot;SearchColumns&quot;</span>]])) {</span>
-<span id="cb48-46"><a href="gene-ontology-table.html#cb48-46"></a>            <span class="kw">return</span>(<span class="ot">NULL</span>)</span>
-<span id="cb48-47"><a href="gene-ontology-table.html#cb48-47"></a>        }</span>
-<span id="cb48-48"><a href="gene-ontology-table.html#cb48-48"></a>        pObjects<span class="op">$</span>memory[[panel_name]][[<span class="st">&quot;SearchColumns&quot;</span>]] &lt;-<span class="st"> </span>search</span>
-<span id="cb48-49"><a href="gene-ontology-table.html#cb48-49"></a>    })</span>
-<span id="cb48-50"><a href="gene-ontology-table.html#cb48-50"></a>})</span></code></pre></div>
+(We set up observers for the search fields as well, as a courtesy to restore them properly upon any re-rendering that might occur.)</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="gene-ontology-table.html#cb46-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.createObservers&quot;</span>, <span class="st">&quot;GOTable&quot;</span>,</span>
+<span id="cb46-2"><a href="gene-ontology-table.html#cb46-2"></a>    <span class="cf">function</span>(x, se, input, session, pObjects, rObjects)</span>
+<span id="cb46-3"><a href="gene-ontology-table.html#cb46-3"></a>{</span>
+<span id="cb46-4"><a href="gene-ontology-table.html#cb46-4"></a>    <span class="kw">callNextMethod</span>()</span>
+<span id="cb46-5"><a href="gene-ontology-table.html#cb46-5"></a></span>
+<span id="cb46-6"><a href="gene-ontology-table.html#cb46-6"></a>    panel_name &lt;-<span class="st"> </span><span class="kw">.getEncodedName</span>(x)</span>
+<span id="cb46-7"><a href="gene-ontology-table.html#cb46-7"></a></span>
+<span id="cb46-8"><a href="gene-ontology-table.html#cb46-8"></a>    <span class="kw">.createUnprotectedParameterObservers</span>(panel_name,</span>
+<span id="cb46-9"><a href="gene-ontology-table.html#cb46-9"></a>        <span class="dt">fields=</span><span class="kw">c</span>(<span class="st">&quot;Organism&quot;</span>, <span class="st">&quot;IDType&quot;</span>), </span>
+<span id="cb46-10"><a href="gene-ontology-table.html#cb46-10"></a>        <span class="dt">input=</span>input, <span class="dt">pObjects=</span>pObjects, <span class="dt">rObjects=</span>rObjects)</span>
+<span id="cb46-11"><a href="gene-ontology-table.html#cb46-11"></a></span>
+<span id="cb46-12"><a href="gene-ontology-table.html#cb46-12"></a>    <span class="co"># Observer for the DataTable row selection:</span></span>
+<span id="cb46-13"><a href="gene-ontology-table.html#cb46-13"></a>    select_field &lt;-<span class="st"> </span><span class="kw">paste0</span>(panel_name, <span class="st">&quot;_rows_selected&quot;</span>)</span>
+<span id="cb46-14"><a href="gene-ontology-table.html#cb46-14"></a>    multi_name &lt;-<span class="st"> </span><span class="kw">paste0</span>(panel_name, <span class="st">&quot;_&quot;</span>, iSEE<span class="op">:::</span>.flagMultiSelect)</span>
+<span id="cb46-15"><a href="gene-ontology-table.html#cb46-15"></a>    <span class="kw">observeEvent</span>(input[[select_field]], {</span>
+<span id="cb46-16"><a href="gene-ontology-table.html#cb46-16"></a>        chosen &lt;-<span class="st"> </span>input[[select_field]]</span>
+<span id="cb46-17"><a href="gene-ontology-table.html#cb46-17"></a>        <span class="cf">if</span> (<span class="kw">length</span>(chosen)<span class="op">==</span>0L) {</span>
+<span id="cb46-18"><a href="gene-ontology-table.html#cb46-18"></a>            chosen &lt;-<span class="st"> &quot;&quot;</span> </span>
+<span id="cb46-19"><a href="gene-ontology-table.html#cb46-19"></a>        } <span class="cf">else</span> {</span>
+<span id="cb46-20"><a href="gene-ontology-table.html#cb46-20"></a>            chosen &lt;-<span class="st"> </span><span class="kw">rownames</span>(pObjects<span class="op">$</span>contents[[panel_name]]<span class="op">$</span>table)[chosen]</span>
+<span id="cb46-21"><a href="gene-ontology-table.html#cb46-21"></a>        }</span>
+<span id="cb46-22"><a href="gene-ontology-table.html#cb46-22"></a></span>
+<span id="cb46-23"><a href="gene-ontology-table.html#cb46-23"></a>        previous &lt;-<span class="st"> </span>pObjects<span class="op">$</span>memory[[panel_name]][[<span class="st">&quot;Selected&quot;</span>]]</span>
+<span id="cb46-24"><a href="gene-ontology-table.html#cb46-24"></a>        <span class="cf">if</span> (chosen<span class="op">==</span>previous) {</span>
+<span id="cb46-25"><a href="gene-ontology-table.html#cb46-25"></a>            <span class="kw">return</span>(<span class="ot">NULL</span>)</span>
+<span id="cb46-26"><a href="gene-ontology-table.html#cb46-26"></a>        }</span>
+<span id="cb46-27"><a href="gene-ontology-table.html#cb46-27"></a>        pObjects<span class="op">$</span>memory[[panel_name]][[<span class="st">&quot;Selected&quot;</span>]] &lt;-<span class="st"> </span>chosen</span>
+<span id="cb46-28"><a href="gene-ontology-table.html#cb46-28"></a>        <span class="kw">.requestActiveSelectionUpdate</span>(panel_name, session, pObjects, rObjects, <span class="dt">update_output=</span><span class="ot">FALSE</span>)</span>
+<span id="cb46-29"><a href="gene-ontology-table.html#cb46-29"></a>    }, <span class="dt">ignoreInit=</span><span class="ot">TRUE</span>, <span class="dt">ignoreNULL=</span><span class="ot">FALSE</span>)</span>
+<span id="cb46-30"><a href="gene-ontology-table.html#cb46-30"></a></span>
+<span id="cb46-31"><a href="gene-ontology-table.html#cb46-31"></a>    <span class="co"># Observer for the search field:</span></span>
+<span id="cb46-32"><a href="gene-ontology-table.html#cb46-32"></a>    search_field &lt;-<span class="st"> </span><span class="kw">paste0</span>(panel_name, <span class="st">&quot;_search&quot;</span>)</span>
+<span id="cb46-33"><a href="gene-ontology-table.html#cb46-33"></a>    <span class="kw">observeEvent</span>(input[[search_field]], {</span>
+<span id="cb46-34"><a href="gene-ontology-table.html#cb46-34"></a>        search &lt;-<span class="st"> </span>input[[search_field]]</span>
+<span id="cb46-35"><a href="gene-ontology-table.html#cb46-35"></a>        <span class="cf">if</span> (<span class="kw">identical</span>(search, pObjects<span class="op">$</span>memory[[panel_name]][[<span class="st">&quot;Search&quot;</span>]])) {</span>
+<span id="cb46-36"><a href="gene-ontology-table.html#cb46-36"></a>            <span class="kw">return</span>(<span class="ot">NULL</span>)</span>
+<span id="cb46-37"><a href="gene-ontology-table.html#cb46-37"></a>        }</span>
+<span id="cb46-38"><a href="gene-ontology-table.html#cb46-38"></a>        pObjects<span class="op">$</span>memory[[panel_name]][[<span class="st">&quot;Search&quot;</span>]] &lt;-<span class="st"> </span>search</span>
+<span id="cb46-39"><a href="gene-ontology-table.html#cb46-39"></a>    })</span>
+<span id="cb46-40"><a href="gene-ontology-table.html#cb46-40"></a></span>
+<span id="cb46-41"><a href="gene-ontology-table.html#cb46-41"></a>    <span class="co"># Observer for the column search fields:</span></span>
+<span id="cb46-42"><a href="gene-ontology-table.html#cb46-42"></a>    colsearch_field &lt;-<span class="st"> </span><span class="kw">paste0</span>(panel_name, <span class="st">&quot;_search_columns&quot;</span>)</span>
+<span id="cb46-43"><a href="gene-ontology-table.html#cb46-43"></a>    <span class="kw">observeEvent</span>(input[[colsearch_field]], {</span>
+<span id="cb46-44"><a href="gene-ontology-table.html#cb46-44"></a>        search &lt;-<span class="st"> </span>input[[colsearch_field]]</span>
+<span id="cb46-45"><a href="gene-ontology-table.html#cb46-45"></a>        <span class="cf">if</span> (<span class="kw">identical</span>(search, pObjects<span class="op">$</span>memory[[panel_name]][[<span class="st">&quot;SearchColumns&quot;</span>]])) {</span>
+<span id="cb46-46"><a href="gene-ontology-table.html#cb46-46"></a>            <span class="kw">return</span>(<span class="ot">NULL</span>)</span>
+<span id="cb46-47"><a href="gene-ontology-table.html#cb46-47"></a>        }</span>
+<span id="cb46-48"><a href="gene-ontology-table.html#cb46-48"></a>        pObjects<span class="op">$</span>memory[[panel_name]][[<span class="st">&quot;SearchColumns&quot;</span>]] &lt;-<span class="st"> </span>search</span>
+<span id="cb46-49"><a href="gene-ontology-table.html#cb46-49"></a>    })</span>
+<span id="cb46-50"><a href="gene-ontology-table.html#cb46-50"></a>})</span></code></pre></div>
 <p>Note the use of <code>callNextMethod()</code> to ensure that observers of the parent class are created.
-We also set <code>ignoreInit=TRUE</code> to avoid problems from <code>ignoreNULL=TRUE</code> when the observer is initialized before the table is rendered; otherwise, the <code>NULL</code> selection prior to table rendering will wipe out any initial setting for the <code>Selected</code> slot.</p>
+We also set <code>ignoreInit=TRUE</code> to avoid problems from <code>ignoreNULL=TRUE</code> when the observer is initialized before the table is rendered;
+otherwise, the <code>NULL</code> selection prior to table rendering will wipe out any initial setting for the <code>Selected</code> slot.</p>
 <p>We set up a rendering expression for the output table by specializing <code>.renderOutput()</code>.
 This uses the <code>renderDataTable()</code> function from the <em><a href="https://CRAN.R-project.org/package=DT">DT</a></em> package
 (again, this has a similar-but-not-identical function in <em><a href="https://CRAN.R-project.org/package=shiny">shiny</a></em>, so be careful which one you import.)
 Some effort is involved in making sure that the output table responds to the memorized parameter values of our <code>GOTable</code> panel.</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="gene-ontology-table.html#cb49-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.renderOutput&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x, se, ..., output, pObjects, rObjects) {</span>
-<span id="cb49-2"><a href="gene-ontology-table.html#cb49-2"></a>    <span class="kw">callNextMethod</span>()</span>
-<span id="cb49-3"><a href="gene-ontology-table.html#cb49-3"></a></span>
-<span id="cb49-4"><a href="gene-ontology-table.html#cb49-4"></a>    panel_name &lt;-<span class="st"> </span><span class="kw">.getEncodedName</span>(x)</span>
-<span id="cb49-5"><a href="gene-ontology-table.html#cb49-5"></a>    output[[panel_name]] &lt;-<span class="st"> </span>DT<span class="op">::</span><span class="kw">renderDataTable</span>({</span>
-<span id="cb49-6"><a href="gene-ontology-table.html#cb49-6"></a>        <span class="kw">.trackUpdate</span>(panel_name, rObjects)</span>
-<span id="cb49-7"><a href="gene-ontology-table.html#cb49-7"></a>        param_choices &lt;-<span class="st"> </span>pObjects<span class="op">$</span>memory[[panel_name]]</span>
-<span id="cb49-8"><a href="gene-ontology-table.html#cb49-8"></a></span>
-<span id="cb49-9"><a href="gene-ontology-table.html#cb49-9"></a>        t.out &lt;-<span class="st"> </span><span class="kw">.retrieveOutput</span>(panel_name, se, pObjects, rObjects)</span>
-<span id="cb49-10"><a href="gene-ontology-table.html#cb49-10"></a>        full_tab &lt;-<span class="st"> </span>t.out<span class="op">$</span>contents<span class="op">$</span>table</span>
-<span id="cb49-11"><a href="gene-ontology-table.html#cb49-11"></a></span>
-<span id="cb49-12"><a href="gene-ontology-table.html#cb49-12"></a>        chosen &lt;-<span class="st"> </span>param_choices[[<span class="st">&quot;Selected&quot;</span>]]</span>
-<span id="cb49-13"><a href="gene-ontology-table.html#cb49-13"></a>        search &lt;-<span class="st"> </span>param_choices[[<span class="st">&quot;Search&quot;</span>]]</span>
-<span id="cb49-14"><a href="gene-ontology-table.html#cb49-14"></a>        search_col &lt;-<span class="st"> </span>param_choices[[<span class="st">&quot;SearchColumns&quot;</span>]]</span>
-<span id="cb49-15"><a href="gene-ontology-table.html#cb49-15"></a>        search_col &lt;-<span class="st"> </span><span class="kw">lapply</span>(search_col, <span class="dt">FUN=</span><span class="cf">function</span>(x) { <span class="kw">list</span>(<span class="dt">search=</span>x) })</span>
-<span id="cb49-16"><a href="gene-ontology-table.html#cb49-16"></a></span>
-<span id="cb49-17"><a href="gene-ontology-table.html#cb49-17"></a>        <span class="co"># If the existing row in memory doesn&#39;t exist in the current table, we</span></span>
-<span id="cb49-18"><a href="gene-ontology-table.html#cb49-18"></a>        <span class="co"># don&#39;t initialize it with any selection.</span></span>
-<span id="cb49-19"><a href="gene-ontology-table.html#cb49-19"></a>        idx &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">rownames</span>(full_tab)<span class="op">==</span>chosen)[<span class="dv">1</span>]</span>
-<span id="cb49-20"><a href="gene-ontology-table.html#cb49-20"></a>        <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.na</span>(idx)) {</span>
-<span id="cb49-21"><a href="gene-ontology-table.html#cb49-21"></a>            selection &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">mode=</span><span class="st">&quot;single&quot;</span>, <span class="dt">selected=</span>idx)</span>
-<span id="cb49-22"><a href="gene-ontology-table.html#cb49-22"></a>        } <span class="cf">else</span> {</span>
-<span id="cb49-23"><a href="gene-ontology-table.html#cb49-23"></a>            selection &lt;-<span class="st"> &quot;single&quot;</span></span>
-<span id="cb49-24"><a href="gene-ontology-table.html#cb49-24"></a>        }</span>
-<span id="cb49-25"><a href="gene-ontology-table.html#cb49-25"></a></span>
-<span id="cb49-26"><a href="gene-ontology-table.html#cb49-26"></a>        DT<span class="op">::</span><span class="kw">datatable</span>(</span>
-<span id="cb49-27"><a href="gene-ontology-table.html#cb49-27"></a>            full_tab, <span class="dt">filter=</span><span class="st">&quot;top&quot;</span>, <span class="dt">rownames=</span><span class="ot">TRUE</span>,</span>
-<span id="cb49-28"><a href="gene-ontology-table.html#cb49-28"></a>            <span class="dt">options=</span><span class="kw">list</span>(</span>
-<span id="cb49-29"><a href="gene-ontology-table.html#cb49-29"></a>                <span class="dt">search=</span><span class="kw">list</span>(<span class="dt">search=</span>search, <span class="dt">smart=</span><span class="ot">FALSE</span>, <span class="dt">regex=</span><span class="ot">TRUE</span>, <span class="dt">caseInsensitive=</span><span class="ot">FALSE</span>),</span>
-<span id="cb49-30"><a href="gene-ontology-table.html#cb49-30"></a>                <span class="dt">searchCols=</span><span class="kw">c</span>(<span class="kw">list</span>(<span class="ot">NULL</span>), search_col), <span class="co"># row names are the first column!</span></span>
-<span id="cb49-31"><a href="gene-ontology-table.html#cb49-31"></a>                <span class="dt">scrollX=</span><span class="ot">TRUE</span>),</span>
-<span id="cb49-32"><a href="gene-ontology-table.html#cb49-32"></a>            <span class="dt">selection=</span>selection</span>
-<span id="cb49-33"><a href="gene-ontology-table.html#cb49-33"></a>        )</span>
-<span id="cb49-34"><a href="gene-ontology-table.html#cb49-34"></a>    })</span>
-<span id="cb49-35"><a href="gene-ontology-table.html#cb49-35"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="gene-ontology-table.html#cb47-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.renderOutput&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x, se, ..., output, pObjects, rObjects) {</span>
+<span id="cb47-2"><a href="gene-ontology-table.html#cb47-2"></a>    <span class="kw">callNextMethod</span>()</span>
+<span id="cb47-3"><a href="gene-ontology-table.html#cb47-3"></a></span>
+<span id="cb47-4"><a href="gene-ontology-table.html#cb47-4"></a>    panel_name &lt;-<span class="st"> </span><span class="kw">.getEncodedName</span>(x)</span>
+<span id="cb47-5"><a href="gene-ontology-table.html#cb47-5"></a>    output[[panel_name]] &lt;-<span class="st"> </span>DT<span class="op">::</span><span class="kw">renderDataTable</span>({</span>
+<span id="cb47-6"><a href="gene-ontology-table.html#cb47-6"></a>        t.out &lt;-<span class="st"> </span><span class="kw">.retrieveOutput</span>(panel_name, se, pObjects, rObjects)</span>
+<span id="cb47-7"><a href="gene-ontology-table.html#cb47-7"></a>        full_tab &lt;-<span class="st"> </span>t.out<span class="op">$</span>contents<span class="op">$</span>table</span>
+<span id="cb47-8"><a href="gene-ontology-table.html#cb47-8"></a></span>
+<span id="cb47-9"><a href="gene-ontology-table.html#cb47-9"></a>        param_choices &lt;-<span class="st"> </span>pObjects<span class="op">$</span>memory[[panel_name]]</span>
+<span id="cb47-10"><a href="gene-ontology-table.html#cb47-10"></a>        chosen &lt;-<span class="st"> </span>param_choices[[<span class="st">&quot;Selected&quot;</span>]]</span>
+<span id="cb47-11"><a href="gene-ontology-table.html#cb47-11"></a>        search &lt;-<span class="st"> </span>param_choices[[<span class="st">&quot;Search&quot;</span>]]</span>
+<span id="cb47-12"><a href="gene-ontology-table.html#cb47-12"></a>        search_col &lt;-<span class="st"> </span>param_choices[[<span class="st">&quot;SearchColumns&quot;</span>]]</span>
+<span id="cb47-13"><a href="gene-ontology-table.html#cb47-13"></a>        search_col &lt;-<span class="st"> </span><span class="kw">lapply</span>(search_col, <span class="dt">FUN=</span><span class="cf">function</span>(x) { <span class="kw">list</span>(<span class="dt">search=</span>x) })</span>
+<span id="cb47-14"><a href="gene-ontology-table.html#cb47-14"></a></span>
+<span id="cb47-15"><a href="gene-ontology-table.html#cb47-15"></a>        <span class="co"># If the existing row in memory doesn&#39;t exist in the current table, we</span></span>
+<span id="cb47-16"><a href="gene-ontology-table.html#cb47-16"></a>        <span class="co"># don&#39;t initialize it with any selection.</span></span>
+<span id="cb47-17"><a href="gene-ontology-table.html#cb47-17"></a>        idx &lt;-<span class="st"> </span><span class="kw">which</span>(<span class="kw">rownames</span>(full_tab)<span class="op">==</span>chosen)[<span class="dv">1</span>]</span>
+<span id="cb47-18"><a href="gene-ontology-table.html#cb47-18"></a>        <span class="cf">if</span> (<span class="op">!</span><span class="kw">is.na</span>(idx)) {</span>
+<span id="cb47-19"><a href="gene-ontology-table.html#cb47-19"></a>            selection &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">mode=</span><span class="st">&quot;single&quot;</span>, <span class="dt">selected=</span>idx)</span>
+<span id="cb47-20"><a href="gene-ontology-table.html#cb47-20"></a>        } <span class="cf">else</span> {</span>
+<span id="cb47-21"><a href="gene-ontology-table.html#cb47-21"></a>            selection &lt;-<span class="st"> &quot;single&quot;</span></span>
+<span id="cb47-22"><a href="gene-ontology-table.html#cb47-22"></a>        }</span>
+<span id="cb47-23"><a href="gene-ontology-table.html#cb47-23"></a></span>
+<span id="cb47-24"><a href="gene-ontology-table.html#cb47-24"></a>        DT<span class="op">::</span><span class="kw">datatable</span>(</span>
+<span id="cb47-25"><a href="gene-ontology-table.html#cb47-25"></a>            full_tab, <span class="dt">filter=</span><span class="st">&quot;top&quot;</span>, <span class="dt">rownames=</span><span class="ot">TRUE</span>,</span>
+<span id="cb47-26"><a href="gene-ontology-table.html#cb47-26"></a>            <span class="dt">options=</span><span class="kw">list</span>(</span>
+<span id="cb47-27"><a href="gene-ontology-table.html#cb47-27"></a>                <span class="dt">search=</span><span class="kw">list</span>(<span class="dt">search=</span>search, <span class="dt">smart=</span><span class="ot">FALSE</span>, <span class="dt">regex=</span><span class="ot">TRUE</span>, <span class="dt">caseInsensitive=</span><span class="ot">FALSE</span>),</span>
+<span id="cb47-28"><a href="gene-ontology-table.html#cb47-28"></a>                <span class="dt">searchCols=</span><span class="kw">c</span>(<span class="kw">list</span>(<span class="ot">NULL</span>), search_col), <span class="co"># row names are the first column!</span></span>
+<span id="cb47-29"><a href="gene-ontology-table.html#cb47-29"></a>                <span class="dt">scrollX=</span><span class="ot">TRUE</span>),</span>
+<span id="cb47-30"><a href="gene-ontology-table.html#cb47-30"></a>            <span class="dt">selection=</span>selection</span>
+<span id="cb47-31"><a href="gene-ontology-table.html#cb47-31"></a>        )</span>
+<span id="cb47-32"><a href="gene-ontology-table.html#cb47-32"></a>    })</span>
+<span id="cb47-33"><a href="gene-ontology-table.html#cb47-33"></a>})</span></code></pre></div>
 </div>
-<div id="handling-selections-1" class="section level2">
+<div id="handling-selections" class="section level2">
 <h2><span class="header-section-number">8.6</span> Handling selections</h2>
 <p>Now for the most important bit - configuring the <code>GOTable</code> to transmit a multiple row selection to other panels.
 This is achieved by specializing a series of <code>.multiSelection*()</code> methods.
 The first is the <code>.multiSelectionDimension()</code>, which controls the dimension being transmitted:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="gene-ontology-table.html#cb50-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.multiSelectionDimension&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x) <span class="st">&quot;row&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="gene-ontology-table.html#cb48-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.multiSelectionDimension&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x) <span class="st">&quot;row&quot;</span>)</span></code></pre></div>
 <p>The next most important method is the <code>.multiSelectionCommands()</code>, which tells <code>iSEE()</code> how to create the multiple row selection from the selected <code>DataTable</code> row.
 It is expected to return a vector of commands that, when evaluated, creates a character vector of row names for transmission.
 This has an option (<code>index</code>) to differentiate between active and saved selections, though the latter case is not relevant to our <code>GOTable</code> so we will simply ignore it.
 We also need to protect against cases where the requested GO term is not found, upon which we simply return an empty character vector.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="gene-ontology-table.html#cb51-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.multiSelectionCommands&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x, index) {</span>
-<span id="cb51-2"><a href="gene-ontology-table.html#cb51-2"></a>    orgdb &lt;-<span class="st"> </span>x[[<span class="st">&quot;Organism&quot;</span>]]</span>
-<span id="cb51-3"><a href="gene-ontology-table.html#cb51-3"></a>    type &lt;-<span class="st"> </span>x[[<span class="st">&quot;IDType&quot;</span>]]</span>
-<span id="cb51-4"><a href="gene-ontology-table.html#cb51-4"></a>    <span class="kw">c</span>(</span>
-<span id="cb51-5"><a href="gene-ontology-table.html#cb51-5"></a>        <span class="kw">sprintf</span>(<span class="st">&quot;require(%s);&quot;</span>, orgdb),</span>
-<span id="cb51-6"><a href="gene-ontology-table.html#cb51-6"></a>        <span class="kw">sprintf</span>(<span class="st">&quot;selected &lt;- tryCatch(select(%s, keys=%s, keytype=&#39;GO&#39;, </span></span>
-<span id="cb51-7"><a href="gene-ontology-table.html#cb51-7"></a><span class="st">    column=%s)$SYMBOL, error=function(e) character(0));&quot;</span>, </span>
-<span id="cb51-8"><a href="gene-ontology-table.html#cb51-8"></a>            orgdb, <span class="kw">deparse</span>(x[[<span class="st">&quot;Selected&quot;</span>]]), <span class="kw">deparse</span>(type)),</span>
-<span id="cb51-9"><a href="gene-ontology-table.html#cb51-9"></a>        <span class="st">&quot;selected &lt;- intersect(selected, rownames(se));&quot;</span></span>
-<span id="cb51-10"><a href="gene-ontology-table.html#cb51-10"></a>    )</span>
-<span id="cb51-11"><a href="gene-ontology-table.html#cb51-11"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="gene-ontology-table.html#cb49-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.multiSelectionCommands&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x, index) {</span>
+<span id="cb49-2"><a href="gene-ontology-table.html#cb49-2"></a>    orgdb &lt;-<span class="st"> </span>x[[<span class="st">&quot;Organism&quot;</span>]]</span>
+<span id="cb49-3"><a href="gene-ontology-table.html#cb49-3"></a>    type &lt;-<span class="st"> </span>x[[<span class="st">&quot;IDType&quot;</span>]]</span>
+<span id="cb49-4"><a href="gene-ontology-table.html#cb49-4"></a>    <span class="kw">c</span>(</span>
+<span id="cb49-5"><a href="gene-ontology-table.html#cb49-5"></a>        <span class="kw">sprintf</span>(<span class="st">&quot;require(%s);&quot;</span>, orgdb),</span>
+<span id="cb49-6"><a href="gene-ontology-table.html#cb49-6"></a>        <span class="kw">sprintf</span>(<span class="st">&quot;selected &lt;- tryCatch(select(%s, keys=%s, keytype=&#39;GO&#39;, </span></span>
+<span id="cb49-7"><a href="gene-ontology-table.html#cb49-7"></a><span class="st">    column=%s)$SYMBOL, error=function(e) character(0));&quot;</span>, </span>
+<span id="cb49-8"><a href="gene-ontology-table.html#cb49-8"></a>            orgdb, <span class="kw">deparse</span>(x[[<span class="st">&quot;Selected&quot;</span>]]), <span class="kw">deparse</span>(type)),</span>
+<span id="cb49-9"><a href="gene-ontology-table.html#cb49-9"></a>        <span class="st">&quot;selected &lt;- intersect(selected, rownames(se));&quot;</span></span>
+<span id="cb49-10"><a href="gene-ontology-table.html#cb49-10"></a>    )</span>
+<span id="cb49-11"><a href="gene-ontology-table.html#cb49-11"></a>})</span></code></pre></div>
 <p>We also define some generics to indicate whether a <code>DataTable</code> row is currently selected, and how to delete that selection.
 For the latter, we replace the selected row with an empty string to indicate that no selection has been made,
 consistent with the actions of our observer in <code>.createObservers()</code>.</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="gene-ontology-table.html#cb52-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.multiSelectionActive&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x) {</span>
-<span id="cb52-2"><a href="gene-ontology-table.html#cb52-2"></a>    <span class="cf">if</span> (x[[<span class="st">&quot;Selected&quot;</span>]]<span class="op">!=</span><span class="st">&quot;&quot;</span>) {</span>
-<span id="cb52-3"><a href="gene-ontology-table.html#cb52-3"></a>        x[[<span class="st">&quot;Selected&quot;</span>]]</span>
-<span id="cb52-4"><a href="gene-ontology-table.html#cb52-4"></a>    } <span class="cf">else</span> {</span>
-<span id="cb52-5"><a href="gene-ontology-table.html#cb52-5"></a>        <span class="ot">NULL</span></span>
-<span id="cb52-6"><a href="gene-ontology-table.html#cb52-6"></a>    }</span>
-<span id="cb52-7"><a href="gene-ontology-table.html#cb52-7"></a>})</span>
-<span id="cb52-8"><a href="gene-ontology-table.html#cb52-8"></a></span>
-<span id="cb52-9"><a href="gene-ontology-table.html#cb52-9"></a><span class="kw">setMethod</span>(<span class="st">&quot;.multiSelectionClear&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x) {</span>
-<span id="cb52-10"><a href="gene-ontology-table.html#cb52-10"></a>    x[[<span class="st">&quot;Selected&quot;</span>]] &lt;-<span class="st"> &quot;&quot;</span></span>
-<span id="cb52-11"><a href="gene-ontology-table.html#cb52-11"></a>    x</span>
-<span id="cb52-12"><a href="gene-ontology-table.html#cb52-12"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="gene-ontology-table.html#cb50-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.multiSelectionActive&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x) {</span>
+<span id="cb50-2"><a href="gene-ontology-table.html#cb50-2"></a>    <span class="cf">if</span> (x[[<span class="st">&quot;Selected&quot;</span>]]<span class="op">!=</span><span class="st">&quot;&quot;</span>) {</span>
+<span id="cb50-3"><a href="gene-ontology-table.html#cb50-3"></a>        x[[<span class="st">&quot;Selected&quot;</span>]]</span>
+<span id="cb50-4"><a href="gene-ontology-table.html#cb50-4"></a>    } <span class="cf">else</span> {</span>
+<span id="cb50-5"><a href="gene-ontology-table.html#cb50-5"></a>        <span class="ot">NULL</span></span>
+<span id="cb50-6"><a href="gene-ontology-table.html#cb50-6"></a>    }</span>
+<span id="cb50-7"><a href="gene-ontology-table.html#cb50-7"></a>})</span>
+<span id="cb50-8"><a href="gene-ontology-table.html#cb50-8"></a></span>
+<span id="cb50-9"><a href="gene-ontology-table.html#cb50-9"></a><span class="kw">setMethod</span>(<span class="st">&quot;.multiSelectionClear&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x) {</span>
+<span id="cb50-10"><a href="gene-ontology-table.html#cb50-10"></a>    x[[<span class="st">&quot;Selected&quot;</span>]] &lt;-<span class="st"> &quot;&quot;</span></span>
+<span id="cb50-11"><a href="gene-ontology-table.html#cb50-11"></a>    x</span>
+<span id="cb50-12"><a href="gene-ontology-table.html#cb50-12"></a>})</span></code></pre></div>
 <p>Finally, we define a method to determine the total number of available genes.
-The default is to use the number of rows of the <code>data.frame</code> used in the <code>datatable()</code> call,
-but that would not be right for us as it represents the number of gene sets.
-Instead, we use the availability information that we previously stored in the <code>contents</code> during <code>.generateOutput()</code>.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="gene-ontology-table.html#cb53-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.multiSelectionAvailable&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x, contents) {</span>
-<span id="cb53-2"><a href="gene-ontology-table.html#cb53-2"></a>    contents<span class="op">$</span>available</span>
-<span id="cb53-3"><a href="gene-ontology-table.html#cb53-3"></a>})</span></code></pre></div>
+This is done by returning the availability information that we previously stored in the <code>contents</code> during <code>.generateOutput()</code>.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="gene-ontology-table.html#cb51-1"></a><span class="kw">setMethod</span>(<span class="st">&quot;.multiSelectionAvailable&quot;</span>, <span class="st">&quot;GOTable&quot;</span>, <span class="cf">function</span>(x, contents) {</span>
+<span id="cb51-2"><a href="gene-ontology-table.html#cb51-2"></a>    contents<span class="op">$</span>available</span>
+<span id="cb51-3"><a href="gene-ontology-table.html#cb51-3"></a>})</span></code></pre></div>
 </div>
-<div id="in-action-4" class="section level2">
+<div id="in-action" class="section level2">
 <h2><span class="header-section-number">8.7</span> In action</h2>
 <p>Let’s put our new panel to the test using the <code>sce</code> object from Chapter <a href="developing.html#developing">4</a>.
 We set up an <code>iSEE</code> instance where clicking on any row in the <code>GOTable</code> will subset <code>RowTable1</code> to only those genes in the corresponding GO term.</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="gene-ontology-table.html#cb54-1"></a>got &lt;-<span class="st"> </span><span class="kw">GOTable</span>(<span class="dt">PanelWidth=</span>8L, <span class="dt">Selected=</span><span class="st">&quot;GO:0007049&quot;</span>, <span class="dt">Search=</span><span class="st">&quot;^cell cycle&quot;</span>)</span>
-<span id="cb54-2"><a href="gene-ontology-table.html#cb54-2"></a>rst &lt;-<span class="st"> </span><span class="kw">RowDataTable</span>(<span class="dt">RowSelectionSource=</span><span class="st">&quot;GOTable1&quot;</span>)</span>
-<span id="cb54-3"><a href="gene-ontology-table.html#cb54-3"></a>app &lt;-<span class="st"> </span><span class="kw">iSEE</span>(sce, <span class="dt">initial=</span><span class="kw">list</span>(got, rst))</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="gene-ontology-table.html#cb52-1"></a>got &lt;-<span class="st"> </span><span class="kw">GOTable</span>(<span class="dt">PanelWidth=</span>8L, <span class="dt">Selected=</span><span class="st">&quot;GO:0007049&quot;</span>, <span class="dt">Search=</span><span class="st">&quot;^cell cycle&quot;</span>)</span>
+<span id="cb52-2"><a href="gene-ontology-table.html#cb52-2"></a>rst &lt;-<span class="st"> </span><span class="kw">RowDataTable</span>(<span class="dt">RowSelectionSource=</span><span class="st">&quot;GOTable1&quot;</span>)</span>
+<span id="cb52-3"><a href="gene-ontology-table.html#cb52-3"></a>app &lt;-<span class="st"> </span><span class="kw">iSEE</span>(sce, <span class="dt">initial=</span><span class="kw">list</span>(got, rst))</span></code></pre></div>
 <p><img src="screenshots/go-table.png" width="100%" /></p>
 
 </div>

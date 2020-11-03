@@ -8,7 +8,7 @@
 
 When given a gene list, we often need to look up the function of the top genes in a search engine.
 This typically involves copy-pasting the gene name or ID into the search box and pressing Enter, which is a pain.
-Instead, we can automate this process in *[iSEE](https://bioconductor.org/packages/3.11/iSEE)* by creating an **annotated gene table** that dynamically looks up annotation for each gene in the `rowData` of a `SummarizedExperiment`.
+Instead, we can automate this process in *[iSEE](https://bioconductor.org/packages/3.12/iSEE)* by creating an **annotated gene table** that dynamically looks up annotation for each gene in the `rowData` of a `SummarizedExperiment`.
 
 ## Class basics 
 
@@ -40,21 +40,15 @@ allowable <- c("ENSEMBL", "SYMBOL", "ENTREZID")
 setValidity2("GeneAnnoTable", function(object) {
     msg <- character(0)
 
-    if (!is.null(val <- object[["IDColumn"]]) && (length(val)!=1L || is.na(val))) {
-        msg <- c(msg, "'IDColumn must be NULL or a string")
+    if (!is.null(val <- object[["IDColumn"]])) {
+        msg <- .validStringError(msg, object, "IDColumn")
     }
 
-    if (!isSingleString(orgdb <- object[["Organism"]])) {
-        msg <- c(msg, sprintf("'Organism' should be a single string", orgdb))
-    }
+    msg <- .validStringError(msg, object, "Organism")
 
-    if (!isSingleString(type <- object[["IDType"]]) || !type %in% allowable) {
-        msg <- c(msg, "'IDType' should be 'ENSEMBL', 'SYMBOL' or 'ENTREZID'")
-    }
+    msg <- .allowableChoiceError(msg, object, "IDType", allowable)
 
-    if (length(open <- object[["AnnoBoxOpen"]])!=1L || is.na(open)) {
-        msg <- c(msg, "'AnnoBoxOpen' should be a non-missing logical scalar")
-    }
+    msg <- .validLogicalError(msg, object, "AnnoBoxOpen")
 
     if (length(msg)) {
         return(msg)

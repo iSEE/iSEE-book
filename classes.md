@@ -6,7 +6,7 @@
 
 ## Overview
 
-This chapter provides a list of all of the classes that are implemented by the core *[iSEE](https://bioconductor.org/packages/3.11/iSEE)* package.
+This chapter provides a list of all of the classes that are implemented by the core *[iSEE](https://bioconductor.org/packages/3.12/iSEE)* package.
 Each class comes with its specialized implementations of methods for various generics described in Chapter \@ref(api).
 Thus, it is often possible for developers to inherit from one of these classes to get most of the relevant methods implemented "for free".
 The classes themselves are either virtual or concrete; the latter can be created and used directly in an `iSEE()` application, 
@@ -16,7 +16,7 @@ Readers should refer to the documentation for each class (links below) for more 
 
 ## Virtual classes
 
-The [`Panel`](https://isee.github.io/iSEE/reference/Panel-class.html) class is the base class for all *[iSEE](https://bioconductor.org/packages/3.11/iSEE)* panels.
+The [`Panel`](https://isee.github.io/iSEE/reference/Panel-class.html) class is the base class for all *[iSEE](https://bioconductor.org/packages/3.12/iSEE)* panels.
 It provides functionality to control general panel parameters such as the panel width and height.
 It also controls the transmission of multiple row/column selections across panels.
 
@@ -44,23 +44,6 @@ Instances of this class can only transmit single and multiple selections on colu
 The [`RowTable`](https://isee.github.io/iSEE/reference/RowTable-class.html) class inherits from the `Table` class and represents all tables where the rows have a one-to-zero-or-one mapping to rows of the `SummarizedExperiment`.
 Instances of this class can only transmit single and multiple selections on rows.
 
-
-```r
-slotNames(getClass("RowTable"))
-```
-
-```
-##  [1] "Selected"                     "Search"                      
-##  [3] "SearchColumns"                "PanelId"                     
-##  [5] "PanelHeight"                  "PanelWidth"                  
-##  [7] "SelectionBoxOpen"             "RowSelectionSource"          
-##  [9] "ColumnSelectionSource"        "DataBoxOpen"                 
-## [11] "RowSelectionDynamicSource"    "RowSelectionType"            
-## [13] "RowSelectionSaved"            "ColumnSelectionDynamicSource"
-## [15] "ColumnSelectionType"          "ColumnSelectionSaved"        
-## [17] "SelectionHistory"
-```
-
 ## Concrete classes
 
 The [`ReducedDimensionPlot`](https://isee.github.io/iSEE/reference/ReducedDimensionPlot-class.html) class inherits from the `ColumnDotPlot` class and plots reduced dimension coordinates from an entry of the `reducedDims` in a `SingleCellExperiment`.
@@ -84,10 +67,10 @@ It provides functionality to extract the `colData` in preparation for rendering.
 The [`RowDataTable`](https://isee.github.io/iSEE/reference/RowDataTable-class.html) class inherits from the `RowTable` class and shows the contents of the `rowData` in a table.
 It provides functionality to extract the `rowData` in preparation for rendering.
 
-The [`ComplexHeatmapPlot`](https://isee.github.io/iSEE/reference/ComplexHeatmapPlot-class.html) class inherits from the `Panel` class and creates a heatmap from assay values using the *[ComplexHeatmap](https://bioconductor.org/packages/3.11/ComplexHeatmap)* package.
+The [`ComplexHeatmapPlot`](https://isee.github.io/iSEE/reference/ComplexHeatmapPlot-class.html) class inherits from the `Panel` class and creates a heatmap from assay values using the *[ComplexHeatmap](https://bioconductor.org/packages/3.12/ComplexHeatmap)* package.
 It provides functionality to specify the features to be shown, which assay to show, transformations to be applied, and which metadata variables to display as row and column heatmap annotations.
 
-Further examples of concrete classes are also available in the *[iSEEu](https://bioconductor.org/packages/3.11/iSEEu)* package.
+Further examples of concrete classes are also available in the *[iSEEu](https://bioconductor.org/packages/3.12/iSEEu)* package.
 
 ## Extending the classes
 
@@ -115,7 +98,7 @@ This is not an uncommon request if our dataset contains many experimental groups
 However, we cannot easily inherit from the `ComplexHeatmapPlot` as it does not mandate the definition of a grouping factor.
 We also cannot inherit from `DotPlot`s or `Table`s as we are not showing anything of the sort.
 Thus, we must inherit from the `Panel` class and manually define methods for most of the generics.
-(Though this task is not as hard as it seems, due to many utilities exported by *[iSEE](https://bioconductor.org/packages/3.11/iSEE)* to facilitate observer and interface set-up.)
+(Though this task is not as hard as it seems, due to many utilities exported by *[iSEE](https://bioconductor.org/packages/3.12/iSEE)* to facilitate observer and interface set-up.)
 
 **Case study 4.**
 Finally, we want to create a table that dynamically computes statistics for each feature, e.g., for differential expression based on a user-selected factor.

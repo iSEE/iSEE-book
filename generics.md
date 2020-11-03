@@ -4,11 +4,11 @@
 
 ## Overview
 
-This chapter runs through all generics provided by *[iSEE](https://bioconductor.org/packages/3.11/iSEE)* to implement class-specific behaviors.
+This chapter runs through all generics provided by *[iSEE](https://bioconductor.org/packages/3.12/iSEE)* to implement class-specific behaviors.
 More exhaustive documentation about each generic can be obtained in the usual way, e.g., `?.defineInterface`.
 Do not be intimidated; it is rarely necessary to define methods for all of the generics shown here.
 If your class inherits from an existing `Panel` subclass, many of these methods will be implemented for free, and all you have to do is to override a handful of methods to achieve the desired customization.
-To this end, examining the [R code](https://github.com/iSEE/iSEEu) underlying the various panels in the downstream *[iSEEu](https://bioconductor.org/packages/3.11/iSEEu)* package can be highly instructive.
+To this end, examining the [R code](https://github.com/iSEE/iSEEu) underlying the various panels in the downstream *[iSEEu](https://bioconductor.org/packages/3.12/iSEEu)* package can be highly instructive.
 
 ## Class basics
 
@@ -106,8 +106,8 @@ interactive mechanics that involve communication between panels are handled else
 One should also remember to call `callNextMethod()` to ensure that the parent class's observers are also defined.
 
 Note that, unlike typical *[shiny](https://CRAN.R-project.org/package=shiny)* applications, the `input` never directly interacts with the `output`.
-All observers in an *[iSEE](https://bioconductor.org/packages/3.11/iSEE)* panel are expected to change the application's "memory" upon changes to the `input` - this concept is discussed more in Chapter \@ref(server).
-Most developers can ignore this subtlety by using *[iSEE](https://bioconductor.org/packages/3.11/iSEE)*-provided utilities to set up the observers rather than calling `observeEvent()` directly.
+All observers in an *[iSEE](https://bioconductor.org/packages/3.12/iSEE)* panel are expected to change the application's "memory" upon changes to the `input` - this concept is discussed more in Chapter \@ref(server).
+Most developers can ignore this subtlety by using *[iSEE](https://bioconductor.org/packages/3.12/iSEE)*-provided utilities to set up the observers rather than calling `observeEvent()` directly.
 
 ## Defining panel outputs
 

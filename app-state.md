@@ -4,20 +4,20 @@
 
 ## Overview
 
-*[iSEE](https://bioconductor.org/packages/3.11/iSEE)* uses global variables to keep track of the application state and to trigger reactive expressions.
+*[iSEE](https://bioconductor.org/packages/3.12/iSEE)* uses global variables to keep track of the application state and to trigger reactive expressions.
 These are passed in the ubiquitous `pObjects` and `rObjects` arguments for non-reactive and reactive variables, respectively.
 Both of these objects have pass-by-reference semantics, meaning that any modifications to their contents within functions will persist outside of the function scope.
 This enables their use in communicating changes across all components of the running `iSEE()` application.
 
 For most part, developers of new panels do not need to be aware of these variables.
 Only panels with relatively complex customizations need to manually specify the reactive logic or memory updates,
-in which case they should use the various utilities provided by *[iSEE](https://bioconductor.org/packages/3.11/iSEE)* to mediate the interactions with `rObjects` and `pObjects`.
+in which case they should use the various utilities provided by *[iSEE](https://bioconductor.org/packages/3.12/iSEE)* to mediate the interactions with `rObjects` and `pObjects`.
 Developers should also refrain from adding their own application-wide variables.
 Respecting this paradigm will ensure that custom panels behave correctly in the context of the entire application.
 
 ## Updating parameters
 
-The application memory is a list of `Panel` instances in `pObjects$memory` that captures the current state of the *[iSEE](https://bioconductor.org/packages/3.11/iSEE)* application.
+The application memory is a list of `Panel` instances in `pObjects$memory` that captures the current state of the *[iSEE](https://bioconductor.org/packages/3.12/iSEE)* application.
 Conceptually, one should be able to extract this list from a running application, pass it to the `initial=` argument of the `iSEE()` function and expect to recover the same state.
 All modifications to the state should be recorded in the memory, meaning that observer expressions will commonly contain code like:
 
@@ -72,4 +72,4 @@ otherwise, users would also have to export the state of the global variables.
 This guideline implies that any global parameters should be represented as slots in the panel class.
 Technically, this also means that different instances of a particular class might have different values for that same slot.
 If all panels must have the same value, this can be enforced via some creative use of `.cacheCommonInfo` and `.refineParameters`;
-see, for example, the `MAPlot` class from the *[iSEEu](https://bioconductor.org/packages/3.11/iSEEu)* package.
+see, for example, the `MAPlot` class from the *[iSEEu](https://bioconductor.org/packages/3.12/iSEEu)* package.

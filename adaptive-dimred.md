@@ -6,15 +6,15 @@
 
 ## Overview
 
-In this case study, we will create a custom panel class to regenerate sample-level PCA coordinates using only a subset of points transmitted as a multiple column selection from another panel.
-We call this a **dynamic reduced dimension plot**, as it is dynamically recomputing the dimensionality reduction results rather than using pre-computed values in the `reducedDims()` slot of a `SingleCellExperiment` object.
-This proposed class is the basis of the `DynamicReducedDimensionPlot` from the *[iSEEu](https://bioconductor.org/packages/3.11/iSEEu)* package.
+In this case study, we will create a custom panel class to regenerate low-dimensional sample coordinates, using only a subset of points transmitted as a multiple column selection from another panel.
+We call this a "dynamic reduced dimension plot" as it is dynamically recomputing the dimensionality reduction rather than using pre-computed values in the `reducedDims()` slot of a `SingleCellExperiment` object.
+This proposed class is the basis of the `DynamicReducedDimensionPlot` from the *[iSEEu](https://bioconductor.org/packages/3.12/iSEEu)* package.
 
 ## Class basics
 
 First, we define the basics of our new `Panel` class.
 As our new class will be showing each sample as a point, we inherit from the `ColumnDotPlot` virtual class.
-This automatically gives us access to all the functionality promised in the contract, 
+This automatically gives us access to all the functionality promised by the parent,
 including interface elements and observers to handle multiple selections and respond to aesthetic parameters.
 
 
@@ -25,17 +25,14 @@ Any new slots should also come with validity methods, as shown below.
 
 ```r
 library(S4Vectors)
+allowable.dim <- c("PCA", "TSNE", "UMAP")
+
 setValidity2("DynRedDimPlot", function(object) {
     msg <- character(0)
 
-    if (length(n <- object[["NGenes"]])!=1L || n < 1L) {
-        msg <- c(msg, "'NGenes' must be a positive integer scalar") 
-    }
-    if (!isSingleString(val <- object[["Type"]]) || 
-        !val %in% c("PCA", "TSNE", "UMAP")) 
-    {
-        msg <- c(msg, "'Type' must be one of 'TSNE', 'PCA' or 'UMAP'")
-    }
+    msg <- .validNumberError(msg, object, "NGenes", lower=1, upper=Inf) # must be a positive integer
+
+    msg <- .allowableChoiceError(msg, object, "Type", allowable.dim)
 
     if (length(msg)) {
         return(msg)
@@ -83,7 +80,7 @@ setMethod(".defineDataInterface", "DynRedDimPlot", function(x, se, select_info) 
 
     list(
         selectInput(paste0(plot_name, "_Type"), label="Type:",
-            choices=c("PCA", "TSNE", "UMAP"), selected=x[["Type"]]),
+            choices=allowable.dim, selected=x[["Type"]]),
         numericInput(paste0(plot_name, "_NGenes"), label="Number of HVGs:",
             min=1, value=x[["NGenes"]])
     )
@@ -92,12 +89,12 @@ setMethod(".defineDataInterface", "DynRedDimPlot", function(x, se, select_info) 
 
 We call `.getEncodedName()` to obtain a unique name for the current instance of our panel, e.g., `DynRedDimPlot1`.
 We then `paste0` the name of our panel to the name of any parameter to ensure that the ID is unique to this instance of our panel;
-otherwise, multiple `DynRedDimPlot`s would override each other.
+otherwise, observers for multiple `DynRedDimPlot`s would override each other.
 One can imagine this as a poor man's Shiny module.
 
 ## Creating the observers
 
-We specialize `.createObservers` to define some observers to respond to changes in our new interface elements.
+We specialize `.createObservers()` to define some observers to respond to changes in our new interface elements.
 Note the use of `callNextMethod()` to ensure that observers of the parent class are also created;
 this automatically ensures that we can respond to changes in parameters provided by `ColumnDotPlot`.
 
@@ -134,7 +131,7 @@ setMethod(".multiSelectionInvalidated", "DynRedDimPlot", function(x) TRUE)
 
 ## Making the plot
 
-When working with a `ColumnDotPlot` subclass, the easiest way to change plotting content to override the `.generateDotPlotData` method.
+When working with a `ColumnDotPlot` subclass, the easiest way to change plotting content to override the `.generateDotPlotData()` method.
 This should add a `plot.data` variable to the `envir` environment that has columns `X` and `Y` and contains one row per column of the original `SummarizedExperiment`.
 It should also return a character vector of R commands describing how that `plot.data` object was constructed.
 The easiest way to do this is to create a character vector of commands and call `eval(parse(text=...), envir=envir)` to evaluate them within `envir`.
@@ -169,7 +166,7 @@ setMethod(".generateDotPlotData", "DynRedDimPlot", function(x, envir) {
 })
 ```
 
-We use functions from the *[scater](https://bioconductor.org/packages/3.11/scater)* package to do the actual heavy lifting of calculating the dimensionality reduction results.
+We use functions from the *[scater](https://bioconductor.org/packages/3.12/scater)* package to do the actual heavy lifting of calculating the dimensionality reduction results.
 The `exists()` call will check whether any column selection is being transmitted to this panel; if not, it will just return a `plot.data` variable that contains all `NA`s such that an empty plot is created.
 If `col_selected` does exist, it will contain a list of character vectors specifying the active and saved multiple selections that are being transmitted.
 For this particular example, we do not care about the distinction between active/saved selections so we just take the union of all of them.
@@ -188,6 +185,7 @@ Let's put our new panel to the test.
 We'll use the `sce` object from Chapter \@ref(developing), which includes some precomputed dimensionality reduction results.
 The plan is to create a (fixed) reduced dimension plot that will transmit a multiple selection to our dynamic reduced dimension plot.
 Brushing at any location in the former will then trigger dynamic recompution of results in the latter.
+We demonstrate by initializing the app with an existing brush, though in real usage, users will interactive create the brush themselves.
 
 
 ```r

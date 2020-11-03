@@ -8,13 +8,13 @@
 
 In this case study, we will create a panel class to dynamically compute differential expression (DE) statistics between the active sample-level selection and the other saved selections from a transmitting panel.
 We will present the results of this computation in a `DataTable` widget from the *[DT](https://CRAN.R-project.org/package=DT)* package, where each row is a gene and each column is a relevant statistic ($p$-value, FDR, log-fold changes, etc.).
-The class proposed here is the basis of the `DifferentialStatsticsTable` from *[iSEEu](https://bioconductor.org/packages/3.11/iSEEu)*.
+The class proposed here is the basis of the `DifferentialStatsticsTable` from *[iSEEu](https://bioconductor.org/packages/3.12/iSEEu)*.
 
 ## Class basics
 
 First, we define the basics of our new `Panel` class.
 As our new class will be showing each gene as a row, we inherit from the `RowTable` virtual class.
-This automatically gives us access to all the functionality promised in the contract,
+This automatically gives us access to all the functionality promised by the parent, 
 including interface elements and observers to respond to multiple selections.
 We also add a slot specifying the log-fold change threshold to use in the null hypothesis.
 
@@ -28,9 +28,8 @@ library(S4Vectors)
 setValidity2("DGETable", function(object) {
     msg <- character(0)
 
-    if (length(val <- object[["LogFC"]])!=1L || val < 0) {
-        msg <- c(msg, "'NGenes' must be a non-negative number")
-    }
+    msg <- .validNumberError(msg, object, "LogFC", lower=0, upper=Inf) # must be non-negative.
+
     if (length(msg)) {
         return(msg)
     }
@@ -86,7 +85,7 @@ setMethod(".defineDataInterface", "DGETable", function(x, se, select_info) {
 ```
 
 By default, all `RowTable`s hide their multiple column selection parameter choices.
-This considers the typical use case where `RowTable`s respond to a selection of rows rather than a selection of columns. 
+This is motivated by the typical use case where `RowTable`s respond to a selection of rows rather than a selection of columns. 
 For `DGETable`s, we need to flip this around by specializing `.hideInterface()` so that the unresponsive row selection parameters are hidden in the interface while the useful column selection parameters are visible.
 
 
@@ -132,11 +131,12 @@ as long as the types of the columns do not change between renderings, any column
 
 ## Making the table
 
-When working with a `RowTable` subclass, the easiest way to change plotting content to override the `.generateTable` method.
+When working with a `RowTable` subclass, the easiest way to change plotting content to override the `.generateTable()` method.
 This is expected to generate a `data.frame` in the evaluation environment, returning the commands required to do so.
 In this case, we want to perform one-sided $t$-tests between the active selection and any number of saved selections.
-We will use the `findMarkers()` function from *[scran](https://bioconductor.org/packages/3.11/scran)* to compute the desired statistics.
-This performs all pairwise comparisons, so is not as efficient as could be, but it will suffice for this demonstration.
+We will use the `findMarkers()` function from *[scran](https://bioconductor.org/packages/3.12/scran)* to compute the desired statistics.
+This performs all pairwise comparisons rather than just those involving the active selection,
+so is not as efficient as could be, but it will suffice for this demonstration.
 
 
 ```r
@@ -175,6 +175,7 @@ Let's put our new panel to the test.
 We'll use the `sce` object from Chapter \@ref(developing), which includes some precomputed dimensionality reduction results.
 The plan is to create a (fixed) reduced dimension plot that will transmit to our DGE table.
 We set up an iSEE instance with an existing brush on the former to trigger computation of differential results by the latter.
+In practice, of course, the brushes will be created by the user and do not have to be explicitly defined during initialization.
 
 
 ```r

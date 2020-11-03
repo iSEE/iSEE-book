@@ -10,12 +10,12 @@ Here, we will construct a table of GO terms where selection of a row in the tabl
 causes transmission of a multiple selection of gene names.
 The aim is to enable us to transmit multiple row selections to other panels based on their membership of a gene set.
 This is a fairly involved example of creating a `Panel` subclass as we cannot easily inherit from an existing subclass; rather, we need to provide all the methods ourselves.
-Readers may also be interested in the fully fledged version of the proposed class in *[iSEEu](https://bioconductor.org/packages/3.11/iSEEu)*.
+Readers may also be interested in the fully fledged version of the proposed class in *[iSEEu](https://bioconductor.org/packages/3.12/iSEEu)*.
 
 ## Class basics 
 
 First, we define the basics of our new `GOTable` class.
-This inherits from the virtual base `Panel` class as it cannot meet any of the contractual requirements of the subclasses,
+This inherits from the virtual base `Panel` class as its behavior is not compatible with any of the existing subclasses, 
 what with the `DataTable` selection event triggering a multiple selection rather than a single selection.
 We add some slots to specify the feature ID type and the organism of interest as well as for `DataTable` parameters.
 
@@ -38,26 +38,18 @@ We also add some checks for these parameters.
 
 
 ```r
-allowable <- c("ENSEMBL", "SYMBOL", "ENTREZID")
+allowable.ids <- c("ENSEMBL", "SYMBOL", "ENTREZID")
+allowable.org <- c("org.Mm.eg.db", "org.Hs.eg.db")
+
 setValidity2("GOTable", function(object) {
     msg <- character(0)
 
-    if (!isSingleString(orgdb <- object[["Organism"]])) {
-        msg <- c(msg, sprintf("'Organism' should be a single string", orgdb))
-    }
+    msg <- .allowableChoiceError(msg, object, "Organism", allowable.org)
 
-    if (!isSingleString(type <- object[["IDType"]]) || !type %in% allowable) {
-        msg <- c(msg, "'IDType' should be 'ENSEMBL', 'SYMBOL' or 'ENTREZID'")
-    }
+    msg <- .allowableChoiceError(msg, object, "IDType", allowable.ids)
 
-    if (!isSingleString(object[["Selected"]])) { 
-        msg <- c(msg, "'Selected' should be a single string")
-    }
-
-    if (!isSingleString(object[["Search"]])) {
-        msg <- c(msg, "'Search' should be a single string")
-    }
-
+    msg <- .singleStringError(msg, object, c("Selected", "Search"))
+    
     if (length(msg)) {
         return(msg)
     }
@@ -65,7 +57,7 @@ setValidity2("GOTable", function(object) {
 })
 ```
 
-We then specialize the initialize method to set reasonable defaults and create an approprpiate constructor. 
+We then specialize the `initialize()` method to set reasonable defaults and create an approprpiate constructor. 
 
 
 ```r
@@ -93,7 +85,7 @@ setMethod(".panelColor", "GOTable", function(x) "#BB00FF")
 ```
 
 We add our UI element for showing the gene set table, which is simply a `DataTable` object from the *[DT](https://CRAN.R-project.org/package=DT)* package.
-Note that *[shiny](https://CRAN.R-project.org/package=shiny)* also has a `dataTableOutput` function so care must be taken to disambiguate them.
+Note that *[shiny](https://CRAN.R-project.org/package=shiny)* also has a `dataTableOutput` function that is almost-but-not-quite-the-same so care must be taken to disambiguate them if both symbols are imported.
 
 
 ```r
@@ -112,12 +104,12 @@ setMethod(".defineDataInterface", "GOTable", function(x, se, select_info) {
     list(
         selectInput(paste0(panel_name, "_IDType"),
             label="ID type:",
-            choices=allowable,
+            choices=allowable.ids,
             selected=x[["IDType"]]
         ),
         selectInput(paste0(panel_name, "_Organism"),
             label="Organism",
-            choices=c("org.Hs.eg.db", "org.Mm.eg.db"),
+            choices=allowable.org,
             selected=x[["Organism"]]
         )
     )
@@ -125,7 +117,7 @@ setMethod(".defineDataInterface", "GOTable", function(x, se, select_info) {
 ```
 
 Our implementation will be a pure transmitter, i.e., it will not respond to row or column selections from other panels.
-To avoid confusion, we can hide all selection parameter UI elements by specializing the `.hideInterface()` method:
+To avoid confusion, we can hide all selection-related UI elements by specializing the `.hideInterface()` method:
 
 
 ```r
@@ -140,10 +132,8 @@ setMethod(".hideInterface", "GOTable", function(x, field) {
 
 ## Generating the output 
 
-We actually generate the output by specializing the `.generateOutput()` function,
-using the *[GO.db](https://bioconductor.org/packages/3.11/GO.db)* package to create a table of GO terms and their definitions.
-We also store the number of available genes in the `contents` - 
-this will be used later to compute the percentage of all genes in a given gene set. 
+We generate the output by specializing the `.generateOutput()` function, using the *[GO.db](https://bioconductor.org/packages/3.12/GO.db)* package to create a table of GO terms and their definitions.
+We also store the number of available genes in the `contents` - this will be used later to compute the percentage of all genes in a given gene set. 
 
 
 ```r
@@ -171,7 +161,7 @@ e.g., by subsetting to the gene sets that contain genes in the selected row.
 We specialize `.createObservers` to define some observers to respond to changes in our new interface elements.
 This also involves creating an observer to respond to a change in the selection of a `DataTable` row,
 calling `.requestActiveSelectionUpdate()` to trigger changes in panels that are receiving the multiple row selection.
-(We set up observers for the search fields as well, as a courtesy to restore them properly upon re-rendering.) 
+(We set up observers for the search fields as well, as a courtesy to restore them properly upon any re-rendering that might occur.) 
 
 
 ```r
@@ -228,7 +218,8 @@ setMethod(".createObservers", "GOTable",
 ```
 
 Note the use of `callNextMethod()` to ensure that observers of the parent class are created.
-We also set `ignoreInit=TRUE` to avoid problems from `ignoreNULL=TRUE` when the observer is initialized before the table is rendered; otherwise, the `NULL` selection prior to table rendering will wipe out any initial setting for the `Selected` slot.
+We also set `ignoreInit=TRUE` to avoid problems from `ignoreNULL=TRUE` when the observer is initialized before the table is rendered; 
+otherwise, the `NULL` selection prior to table rendering will wipe out any initial setting for the `Selected` slot.
 
 We set up a rendering expression for the output table by specializing `.renderOutput()`.
 This uses the `renderDataTable()` function from the *[DT](https://CRAN.R-project.org/package=DT)* package
@@ -242,12 +233,10 @@ setMethod(".renderOutput", "GOTable", function(x, se, ..., output, pObjects, rOb
 
     panel_name <- .getEncodedName(x)
     output[[panel_name]] <- DT::renderDataTable({
-        .trackUpdate(panel_name, rObjects)
-        param_choices <- pObjects$memory[[panel_name]]
-
         t.out <- .retrieveOutput(panel_name, se, pObjects, rObjects)
         full_tab <- t.out$contents$table
 
+        param_choices <- pObjects$memory[[panel_name]]
         chosen <- param_choices[["Selected"]]
         search <- param_choices[["Search"]]
         search_col <- param_choices[["SearchColumns"]]
@@ -326,9 +315,7 @@ setMethod(".multiSelectionClear", "GOTable", function(x) {
 ```
 
 Finally, we define a method to determine the total number of available genes.
-The default is to use the number of rows of the `data.frame` used in the `datatable()` call,
-but that would not be right for us as it represents the number of gene sets.
-Instead, we use the availability information that we previously stored in the `contents` during `.generateOutput()`.
+This is done by returning the availability information that we previously stored in the `contents` during `.generateOutput()`.
 
 
 ```r

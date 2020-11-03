@@ -10,7 +10,7 @@
 
 In this example, we will create a panel class to show dimensionality reduction results using a hexbin plot.
 The idea is to improve plotting speed for large datasets by binning points rather than showing each point individually.
-Astute readers will note that the proposed class is the same as the `ReducedDimensionHexPlot` from *[iSEEu](https://bioconductor.org/packages/3.11/iSEEu)*.
+Astute readers will note that the proposed class is the same as the `ReducedDimensionHexPlot` from *[iSEEu](https://bioconductor.org/packages/3.12/iSEEu)*.
 This chapter will describe the most relevant aspects of the development process to create a reasonably functional class.
 
 ## Class basics
@@ -33,9 +33,8 @@ library(S4Vectors)
 setValidity2("RedDimHexPlot", function(object) {
     msg <- character(0)
 
-    if (length(val <- object[["BinResolution"]])!=1L || val <= 0) {
-        msg <- c(msg, "'BinResolution' must be a positive number")
-    }
+    msg <- .validNumberError(msg, object, "BinResolution", lower=1, upper=Inf) # i.e., >= 1.
+
     if (length(msg)) {
         return(msg)
     }
@@ -49,7 +48,7 @@ We also define a constructor function to make it easier to create a new instance
 
 ```r
 setMethod("initialize", "RedDimHexPlot",
-    function(.Object, BinResolution=100, ...)
+    function(.Object, BinResolution=20, ...)
 {
     callNextMethod(.Object, BinResolution=BinResolution, ...)
 })
@@ -59,7 +58,7 @@ RedDimHexPlot <- function(...) {
 }
 ```
 
-At this point, we can already create and use instances of this new panel class in *[iSEE](https://bioconductor.org/packages/3.11/iSEE)* apps.
+At this point, we can already create and use instances of this new panel class in *[iSEE](https://bioconductor.org/packages/3.12/iSEE)* apps.
 However, that would not be very exciting as instances of this new panel class would behave exactly like the those of the parent `ReducedDimensionPlot` class.
 Let's define a few more methods to introduce some more relevant differences in behavior.
 
@@ -108,16 +107,12 @@ setMethod(".hideInterface", "RedDimHexPlot", function(x, field) {
 setMethod(".defineVisualShapeInterface", "RedDimHexPlot", function(x) {
     NULL
 })
-
-setMethod(".defineVisualOtherInterface", "RedDimHexPlot", function(x) {
-    NULL
-})
 ```
 
 ## Creating the observers
 
 The only new UI element we added was the widget to control the bin resolution.
-Thus, the only new observer that needs to be added is the one that respects to this element.
+Thus, the only new observer that needs to be added is the one that responds to this element.
 Note the use of `callNextMethod()` to ensure that the observers for the parent class are also instantiated.
 
 
@@ -127,7 +122,7 @@ setMethod(".createObservers", "RedDimHexPlot", function(x, se, input, session, p
 
     plot_name <- .getEncodedName(x)
 
-    .createProtectedParameterObservers(plot_name,
+    .createUnprotectedParameterObservers(plot_name,
         fields=c("BinResolution"),
         input=input, pObjects=pObjects, rObjects=rObjects)
 
@@ -149,7 +144,7 @@ setMethod(".generateDotPlot", "RedDimHexPlot", function(x, labels, envir) {
     plot_cmds[["ggplot"]] <- "dot.plot <- ggplot() +"
     
     # Adding hexbins to the plot.
-    plot_cmds[["hex"]] <- "geom_hex(aes(X, Y), plot.data) +"
+    plot_cmds[["hex"]] <- sprintf("geom_hex(aes(X, Y), plot.data, bins=%s) +", deparse(x[["BinResolution"]]))
     plot_cmds[["labs"]] <- "labs(fill='Count') +"
     plot_cmds[["labs"]] <- sprintf(
         "labs(x='%s', y='%s', title='%s', fill='%s') +",
@@ -176,12 +171,12 @@ setMethod(".generateDotPlot", "RedDimHexPlot", function(x, labels, envir) {
 })
 ```
 
-For brevity, we have omitted the more tiresome parts of coloring the bins with respect to assay values or metadata variables.
+For brevity, we have omitted the more tiresome parts of coloring the bins with respect to assay values or metadata variables, ensuring that the plot boundaries do not change upon receiving a restricted selection, etc.
 However, it is relatively straightforward to extend `.generateDotPlot()` to ensure that it responds to such choices as well as any other relevant parameters in `x` (e.g., font size).
 
 ## In action
 
-To demonstrate, we will load a small example dataset [@tasic2016adult] from the *[scRNAseq](https://bioconductor.org/packages/3.11/scRNAseq)* package.
+To demonstrate, we will load a small example dataset [@tasic2016adult] from the *[scRNAseq](https://bioconductor.org/packages/3.12/scRNAseq)* package.
 This is provided as a `SingleCellExperiment` on which we compute the usual $t$-SNE plot.
 
 
